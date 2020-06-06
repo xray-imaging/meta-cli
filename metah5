@@ -1,0 +1,79 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""
+.. module:: metah5.py
+   :platform: Unix
+   :synopsis: Reads the meta data of a tomographic hdf5 file and generates a table (rst) compatible with sphynx/readthedocs.
+
+"""
+
+from __future__ import print_function
+
+import os
+import sys
+import argparse
+import dxchange.reader as dxreader
+
+import log
+import pathlib
+from datetime import datetime
+import pandas as pd
+
+
+def main(arg):
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('fname', help='DataExchange file or directory: /data/sample.h5 or /data/')
+
+    args = parser.parse_args()
+
+    # Set path to the micro-CT data hdf5 file(s).
+    fname = args.fname
+
+    # create logger
+    logs_home = os.path.join(str(pathlib.Path.home()), 'logs')
+
+    # make sure logs directory exists
+    if not os.path.exists(logs_home):
+        os.makedirs(logs_home)
+
+    lfname = os.path.join(logs_home, 'metah5_' + datetime.strftime(datetime.now(), "%Y-%m-%d_%H_%M_%S") + '.log')
+ 
+    log.setup_custom_logger(lfname)
+    log.info("Saving log at %s" % lfname)
+
+    list_to_extract = ('name', 'full_file_name', 'resolution', 'energy', 'sample_in_x', 'sample_in_y')
+    if os.path.isfile(fname): 
+        meta = dxreader.read_dx_meta(fname) 
+        meta['full_file_name'][0] = os.path.basename(meta['full_file_name'][0])
+        sub_dict = {k:v for k, v in meta.items() if k in list_to_extract}
+        pd.options.display.max_rows = 999
+        df = pd.DataFrame.from_dict(sub_dict, orient='index', columns=('value', 'unit'))
+        # log.info(df)
+        print(df)
+
+    elif os.path.isdir(fname):
+        # Add a trailing slash if missing
+        top = os.path.join(fname, '')
+    
+        # Set the file name that will store the rotation axis positions.
+        h5_file_list = list(filter(lambda x: x.endswith(('.h5', '.hdf')), os.listdir(top)))
+        h5_file_list.sort()
+        big_dict = {}
+        i=0
+
+        for fname in h5_file_list:
+            h5fname = top + fname
+            meta = dxreader.read_dx_meta(h5fname) 
+            meta['full_file_name'][0] = os.path.basename(meta['full_file_name'][0])
+            sub_dict = {(('%3.3d' % i) +'_' + k):v for k, v in meta.items() if k in list_to_extract}
+            big_dict.update(sub_dict)
+            i+=1
+        pd.options.display.max_rows = 999
+        df = pd.DataFrame.from_dict(big_dict, orient='index', columns=('value', 'unit'))
+        # log.info(df.to_markdown(tablefmt='grid'))
+        print(df.to_markdown(tablefmt='grid'))
+
+if __name__ == "__main__":
+    main(sys.argv[1:])
