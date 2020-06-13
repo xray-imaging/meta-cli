@@ -142,4 +142,4 @@ Thumbs.db
 *~
 
 # custom
-log*
+log_*.rst
