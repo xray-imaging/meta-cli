@@ -26,7 +26,7 @@ View the meta data
 
 To view the meta data::
 
-    $ metah5 show --h5-name /data/base_file_name_001.h5 
+    $ metah5 show --h5-name data/base_file_name_001.h5 
 
 	2020-06-12 23:26:19,796 - General
 	2020-06-12 23:26:19,797 -   config           ./metah5.conf
@@ -54,11 +54,11 @@ To view the meta data::
 
 To generate an rst file containing a table compatible sphinx/readthedocs::
 
-    $ metah5 docs --h5-name /data/base_file_name_001.h5
+    $ metah5 docs --h5-name data/base_file_name_001.h5
 
 
 .. note:: 
-	--h5-name can be also a folder, e.g. --h5-name /Users//data/ in this case all hdf files in the folder will be processed.
+	--h5-name can be also a folder, e.g. --h5-name data/ in this case all hdf files in the folder will be processed.
 
 
 to list of all available options::
