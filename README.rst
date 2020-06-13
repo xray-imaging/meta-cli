@@ -15,7 +15,8 @@ Installation
 
 in a prepared virtualenv or as root for system-wide installation.
 
-.. warning:: If your python installation is in a location different from #!/usr/bin/env python please edit the first line of the bin/metah5 file to match yours.
+.. warning:: 
+	If your python installation is in a location different from #!/usr/bin/env python please edit the first line of the bin/metah5 file to match yours.
 
 Usage
 =====
@@ -51,12 +52,13 @@ To view the meta data::
 | 000_start_date        | 2020-06-12T14:02:35-0500 |         |
 +-----------------------+--------------------------+---------+
 
-To generate an rst file containing a table compatible sphinx/readthedocs:
+To generate an rst file containing a table compatible sphinx/readthedocs::
 
     $ metah5 docs --h5-name /Users//data/base_file_name_001.h5
 
 
-.. note:: --h5-name can be also a folder, e.g. --h5-name /Users//data/ in this case all hdf files in the folder will be processed.
+.. note:: 
+	--h5-name can be also a folder, e.g. --h5-name /Users//data/ in this case all hdf files in the folder will be processed.
 
 
 to list of all available options::
