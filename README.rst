@@ -54,7 +54,7 @@ To view the meta data::
 
 To generate an rst file containing a table compatible sphinx/readthedocs::
 
-    $ metah5 docs --h5-name /Users//data/base_file_name_001.h5
+    $ metah5 docs --h5-name /data/base_file_name_001.h5
 
 
 .. note:: 
