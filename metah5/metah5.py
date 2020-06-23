@@ -80,7 +80,7 @@ def extract_meta(args):
 
     fname = args.h5_name
 
-    list_to_extract = ('experimenter_name', 'start_date', 'end_date', 'full_file_name', 'resolution', 'energy', 'sample_in_x', 'sample_in_y')
+    list_to_extract = ('experimenter_name', 'start_date', 'end_date', 'full_file_name',  'sample_in_x', 'sample_in_y', 'proposal', 'sample_name', 'sample_y', 'camera_objective', 'resolution', 'energy', 'camera_distance', 'exposure_time', 'num_angles', 'scintillator_type', 'model')
     # set pandas display
     pd.options.display.max_rows = 999
 
