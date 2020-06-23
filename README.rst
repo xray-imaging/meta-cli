@@ -73,7 +73,7 @@ metah5 parameters are stored in **metah5.conf**. You can create a template with:
 
     $ metah5 init
 
-**metah52bm.conf** is constantly updated to keep track of the last stored parameters, as initalized by **init** or modified by setting a new option value. For example to re-run the last metah4 with identical --h5-name parameters used before just use::
+**metah5.conf** is constantly updated to keep track of the last stored parameters, as initalized by **init** or modified by setting a new option value. For example to re-run the last metah4 with identical --h5-name parameters used before just use::
 
     $ metah5 docs
 
