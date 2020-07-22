@@ -18,6 +18,14 @@ in a prepared virtualenv or as root for system-wide installation.
 .. warning:: 
 	If your python installation is in a location different from #!/usr/bin/env python please edit the first line of the bin/metah5 file to match yours.
 
+
+Dependencies
+============
+
+- `dxchange <https://github.com/data-exchange/dxchange>`_ version > 0.1.6 
+- pandas => ``conda install pandas``
+- tabulate => ``conda install tabulate``
+
 Usage
 =====
 
