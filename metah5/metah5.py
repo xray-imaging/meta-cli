@@ -83,14 +83,14 @@ def extract_meta(args):
     list_to_extract = ('experimenter_name', 'start_date', 'end_date', 'full_file_name',  'sample_in_x', 'sample_in_y', 'proposal', 'sample_name', 'sample_y', 'camera_objective', 'resolution', 'energy', 'camera_distance', 'exposure_time', 'num_angles', 'scintillator_type', 'model')
     # set pandas display
     pd.options.display.max_rows = 999
-
+    year_month = 'unknown'
+    pi_name = 'unknown'
     if os.path.isfile(fname): 
         meta_dict, year_month, pi_name = extract_dict(fname, list_to_extract)
-
+        print (meta_dict, year_month, pi_name)
     elif os.path.isdir(fname):
         # Add a trailing slash if missing
         top = os.path.join(fname, '')
-    
         # Set the file name that will store the rotation axis positions.
         h5_file_list = list(filter(lambda x: x.endswith(('.h5', '.hdf')), os.listdir(top)))
         h5_file_list.sort()
@@ -101,9 +101,15 @@ def extract_meta(args):
             sub_dict, year_month, pi_name = extract_dict(h5fname, list_to_extract, index=file_counter)
             meta_dict.update(sub_dict)
             file_counter+=1
+        if year_month == 'unknown':
+            log.error('No valid HDF5 file(s) fund in the directory %s' % top)
+            log.warning('Make sure to use the --h5-name H5_NAME  option to select  the hdf5 file or directory containing multiple hdf5 files')
+            return None
+           
     else:
         log.error('No valid HDF5 file(s) fund')
         return None
+
 
     df = pd.DataFrame.from_dict(meta_dict, orient='index', columns=('value', 'unit'))
     return df.to_markdown(tablefmt='grid'), year_month, pi_name
