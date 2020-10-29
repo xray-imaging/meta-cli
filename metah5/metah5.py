@@ -58,13 +58,16 @@ def create_rst_file(args):
 def extract_dict(fname, list_to_extract, index=0):
 
     meta = dxreader.read_dx_meta(fname) 
-
+    # print(meta)
     try: 
         dt = datetime.datetime.strptime(meta['start_date'][0], "%Y-%m-%dT%H:%M:%S%z")
         year_month = str(dt.year) + '-' + '{:02d}'.format(dt.month)
     except ValueError:
-        log.error("The start date information is missing from the hdf file. Doc file cannot be created.") 
-        exit()
+        log.error("The start date information is missing from the hdf file %s. Error (2020-01)." % fname)
+        year_month = '2020-01'
+    except TypeError:
+        log.error("The start date information is missing from the hdf file %s. Error (2020-02)." % fname)
+        year_month = '2020-02'
     pi_name = meta['experimenter_name'][0]
 
     # compact full_file_name to file name only as original data collection directory may have changed
@@ -87,7 +90,7 @@ def extract_meta(args):
     pi_name = 'unknown'
     if os.path.isfile(fname): 
         meta_dict, year_month, pi_name = extract_dict(fname, list_to_extract)
-        print (meta_dict, year_month, pi_name)
+        # print (meta_dict, year_month, pi_name)
     elif os.path.isdir(fname):
         # Add a trailing slash if missing
         top = os.path.join(fname, '')

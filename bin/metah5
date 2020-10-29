@@ -23,6 +23,9 @@ def init(args):
     else:
         raise RuntimeError("{0} already exists".format(args.config))
 
+def status(args):
+    config.show_config(args)
+
 def show(args):
     metah5.show_meta(args)
 
@@ -47,6 +50,7 @@ def main():
 
     cmd_parsers = [
         ('init',        init,           (),                             "Create configuration file"),
+        ('status',      status,         show_params,                    "Show metah5 status"),
         ('show',        show,           show_params,                    "Show meta data extracted from --h5-name"),
         ('docs',        run_docs,       docs_params,                    "Create in --doc-dir an rst file compatible with sphinx/readthedocs containing the hdf file meta data"),
     ]

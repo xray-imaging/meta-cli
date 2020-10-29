@@ -29,8 +29,8 @@ SECTIONS['metah5'] = {
         'help': "sphinx/readthedocs documentation directory where the meta data table extracted from the hdf5 file should be saved, e.g. docs/source/..."},
     'doc-file-prefix': {
         'type': str,
-        'default': 'metah5',
-        'help': "the sphinx/readthedocs compatible table file name prefix. Adding doc-dir/doc-file-prefix* in the doc rst handling the metadata tables will allow for automatic table update in the docs"},
+        'default': 'log',
+        'help': "the sphinx/readthedocs compatible table file name prefix"},
     'h5-name': {
         'type': str,
         'default': '.',
@@ -142,7 +142,7 @@ def write(config_file, args=None, sections=None):
             if args and sections and section in sections and hasattr(args, name.replace('-', '_')):
                 value = getattr(args, name.replace('-', '_'))
                 if isinstance(value, list):
-                    print(type(value), value)
+                    # print(type(value), value)
                     value = ', '.join(value)
             else:
                 value = opts['default'] if opts['default'] is not None else ''
@@ -165,10 +165,28 @@ def log_values(args):
 
     for section, name in zip(SECTIONS, NICE_NAMES):
         entries = sorted((k for k in args.keys() if k in SECTIONS[section]))
-
         if entries:
             log.info(name)
-
             for entry in entries:
                 value = args[entry] if args[entry] is not None else "-"
                 log.info("  {:<16} {}".format(entry, value))
+
+
+def show_config(args):
+    """Log all values set in the args namespace.
+
+    Arguments are grouped according to their section and logged alphabetically
+    using the DEBUG log level thus --verbose is required.
+    """
+    args = args.__dict__
+
+    log.warning('metah5 status start')
+    for section, name in zip(SECTIONS, NICE_NAMES):
+        entries = sorted((k for k in args.keys() if k.replace('_', '-') in SECTIONS[section]))
+        if entries:
+            for entry in entries:
+                value = args[entry] if args[entry] != None else "-"
+                log.info("  {:<16} {}".format(entry, value))
+
+    log.warning('metah5 status end')
+ 
