@@ -12,8 +12,15 @@ from metah5 import log
 
 def show_meta(args):
 
+    fname = args.h5_name
+    if os.path.isfile(fname): 
+        all_meta = dxreader.read_dx_meta(fname) 
+        log.info('All meta data available in the HDF5 raw data file: start')
+        log.info(all_meta)
+        log.info('All meta data available in the HDF5 raw data file: end')
     meta, year_month, pi_name = extract_meta(args)
     if meta != None:
+        log.info('All meta data extracted from the HDF5 raw data file:')
         print(meta)
 
 def add_header(label):
@@ -83,7 +90,9 @@ def extract_meta(args):
 
     fname = args.h5_name
 
-    list_to_extract = ('experimenter_name', 'start_date', 'end_date', 'full_file_name',  'sample_in_x', 'sample_in_y', 'proposal', 'sample_name', 'sample_y', 'camera_objective', 'resolution', 'energy', 'camera_distance', 'exposure_time', 'num_angles', 'scintillator_type', 'model')
+    list_to_extract = ('experimenter_name', 'start_date', 'end_date', 'full_file_name', 'sample_in_x', 'sample_in_y', 'proposal', 'sample_name', 'sample_y', 'camera_objective', 'resolution', 'energy', 'camera_distance', 'exposure_time', 'num_angles', 'scintillator_type', 'model')
+
+    # list_to_extract = ('experimenter_name', 'full_file_name', 'description_1', 'description_2', 'resolution', 'energy', 'start_date','sample_pitch', 'sample_roll')
     # set pandas display
     pd.options.display.max_rows = 999
     year_month = 'unknown'
