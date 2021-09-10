@@ -5,9 +5,9 @@ import argparse
 import configparser
 import numpy as np
 from collections import OrderedDict
-from metah5 import log
+from meta import log
 
-CONFIG_FILE_NAME = os.path.join(str(pathlib.Path.home()), 'metah5.conf')
+CONFIG_FILE_NAME = os.path.join(str(pathlib.Path.home()), 'meta.conf')
 
 SECTIONS = OrderedDict()
 
@@ -22,7 +22,7 @@ SECTIONS['general'] = {
         'help': 'Verbose output',
         'action': 'store_true'}}
 
-SECTIONS['metah5'] = {
+SECTIONS['meta'] = {
     'doc-dir': {
         'type': str,
         'default': '.',
@@ -37,7 +37,7 @@ SECTIONS['metah5'] = {
         'help': "hdf5 file or directory containing multiple hdf5 files, e.g. /data/sample.h5 or /data/"},
         }
 
-METAH5_PARAMS = ('metah5', )
+meta_PARAMS = ('meta', )
 
 NICE_NAMES = ('General', 'Meta HDF5')
 
@@ -180,7 +180,7 @@ def show_config(args):
     """
     args = args.__dict__
 
-    log.warning('metah5 status start')
+    log.warning('meta status start')
     for section, name in zip(SECTIONS, NICE_NAMES):
         entries = sorted((k for k in args.keys() if k.replace('_', '-') in SECTIONS[section]))
         if entries:
@@ -188,5 +188,5 @@ def show_config(args):
                 value = args[entry] if args[entry] != None else "-"
                 log.info("  {:<16} {}".format(entry, value))
 
-    log.warning('metah5 status end')
+    log.warning('meta status end')
  
