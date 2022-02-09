@@ -34,7 +34,7 @@ View the hdf tree
 
 To view the data tree contained in a generic hdf file::
 
-    $ meta show --tree --h5-name data/base_file_name_001.h5 
+    $ meta tree --h5-name data/base_file_name_001.h5 
     │
     ├── defaults
     │   │
@@ -75,30 +75,27 @@ To view the meta data contained in a in a generic hdf file::
     2022-02-08 20:29:42,153 - /measurement/instrument/beam_monitor/setup/beam_monitor_y: 0.0 mm
     ...
 
-+-----------------------+--------------------------+---------+
-|                       | value                    | unit    |
-+=======================+==========================+=========+
-| 000_resolution        | 4.7                      | microns |
-+-----------------------+--------------------------+---------+
-| 000_energy            | 20.0                     | keV     |
-+-----------------------+--------------------------+---------+
-| 000_experimenter_name | Francesco De Carlo       |         |
-+-----------------------+--------------------------+---------+
-| 000_full_file_name    | base_file_name_001.h5    |         |
-+-----------------------+--------------------------+---------+
-| 000_end_date          | 2020-06-12T15:11:12-0500 |         |
-+-----------------------+--------------------------+---------+
-| 000_sample_in_x       | 0.0                      | mm      |
-+-----------------------+--------------------------+---------+
-| 000_sample_in_y       | 0.0                      | mm      |
-+-----------------------+--------------------------+---------+
-| 000_start_date        | 2020-06-12T14:02:35-0500 |         |
-+-----------------------+--------------------------+---------+
+Meta data rst table
+-------------------
 
-To generate an rst file containing a table compatible sphinx/readthedocs::
+To generate a meta data rst table compatible with sphinx/readthedocs::
 
-    $ meta docs --h5-name data/base_file_name_001.h5
+    $ meta docs --h5-name data/base_file_name_001.h5 
 
+    2022-02-09 12:30:15,421 - General
+    2022-02-09 12:30:15,422 -   config           /Users/decarlo/meta.conf
+    2022-02-09 12:30:15,422 -   tree             False
+    2022-02-09 12:30:15,422 -   verbose          True
+    2022-02-09 12:30:16,983 - Please copy/paste the content of ./log_2020-03.rst in your rst docs file
+
+
++-------------------------------------------------+---------------------------------+--------+
+|                                                 | value                           | unit   |
++=================================================+=================================+========+
+| 000_measurement_instrument_monochromator_energy | 8.0                             | keV    |
++-------------------------------------------------+---------------------------------+--------+
+| 000_measurement_sample_experimenter_email       | decarlo@anl.gov                 |        |
++-------------------------------------------------+---------------------------------+--------+
 
 .. note:: 
 	--h5-name can be also a folder, e.g. --h5-name data/ in this case all hdf files in the folder will be processed.
