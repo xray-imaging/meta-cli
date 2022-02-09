@@ -174,7 +174,7 @@ def _get_subgroups(hdf_object, key=None):
         list_group = sorted(list_group)
     return list_group, key
 
-def _add_branches(tree, hdf_object, key, key1, index, last_index, prefix,
+def _add_branches(args, tree, hdf_object, key, key1, index, last_index, prefix,
                   connector, level, add_shape):
     """
     Supplementary method for building the tree view of a hdf5 file.
@@ -188,6 +188,14 @@ def _add_branches(tree, hdf_object, key, key1, index, last_index, prefix,
                 obj = hdf_object[key_comb]
                 if isinstance(obj, h5py.Dataset):
                     shape = str(obj.shape)
+                    if obj.shape[0]==1:
+                        value = obj[()][0]
+                        attr = obj.attrs.get('units')
+                        if attr != None and args.tree == False:
+                            log.info("%s: %s %s" % (obj.name, value, attr.decode('UTF-8')))
+                        if  (value.dtype.kind == 'S') and args.tree == False:
+                            value = value.decode(encoding="utf-8")
+                            log.info("%s: %s" % (obj.name, value))
             except KeyError:
                 shape = str("-> ???External-link???")
     if shape is not None:
@@ -198,10 +206,10 @@ def _add_branches(tree, hdf_object, key, key1, index, last_index, prefix,
         prefix += PIPE_PREFIX
     else:
         prefix += SPACE_PREFIX
-    _make_tree_body(tree, hdf_object, prefix=prefix, key=key_comb,
+    _make_tree_body(args, tree, hdf_object, prefix=prefix, key=key_comb,
                     level=level, add_shape=add_shape)
 
-def _make_tree_body(tree, hdf_object, prefix="", key=None, level=0,
+def _make_tree_body(args, tree, hdf_object, prefix="", key=None, level=0,
                     add_shape=True):
     """
     Supplementary method for building the tree view of a hdf5 file.
@@ -218,17 +226,17 @@ def _make_tree_body(tree, hdf_object, prefix="", key=None, level=0,
                 connector = PIPE
             else:
                 connector = ELBOW if level > 1 else ""
-            _add_branches(tree, hdf_object, key, entries[0], 0, 0, prefix,
+            _add_branches(args, tree, hdf_object, key, entries[0], 0, 0, prefix,
                           connector, level, add_shape)
         else:
             for index, key1 in enumerate(entries):
                 connector = ELBOW if index == last_index else TEE
                 if index == 0:
                     tree.append(prefix + PIPE)
-                _add_branches(tree, hdf_object, key, key1, index, last_index,
+                _add_branches(args, tree, hdf_object, key, key1, index, last_index,
                               prefix, connector, level, add_shape)
 
-def get_hdf_tree(args, output=None, add_shape=True, display=True):
+def get_hdf_tree(args, output=None, add_shape=True):
     """
     Get the tree view of a hdf/nxs file.
 
@@ -240,8 +248,6 @@ def get_hdf_tree(args, output=None, add_shape=True, display=True):
         Path to the output file in a text-format file (.txt, .md,...).
     add_shape : bool
         Including the shape of a dataset to the tree if True.
-    display : bool
-        Print the tree onto the screen if True.
 
     Returns
     -------
@@ -250,7 +256,7 @@ def get_hdf_tree(args, output=None, add_shape=True, display=True):
     file_path = args.h5_name
     hdf_object = h5py.File(file_path, 'r')
     tree = deque()
-    _make_tree_body(tree, hdf_object, add_shape=add_shape)
+    _make_tree_body(args, tree, hdf_object, add_shape=add_shape)
     if output is not None:
         make_folder(output)
         output_file = open(output, mode="w", encoding="UTF-8")
@@ -258,7 +264,7 @@ def get_hdf_tree(args, output=None, add_shape=True, display=True):
             for entry in tree:
                 print(entry, file=stream)
     else:
-        if display:
+        if args.tree:
             for entry in tree:
                 print(entry)
     return tree

@@ -34,7 +34,7 @@ View the hdf tree
 
 To view the data tree contained in a generic hdf file::
 
-    $ meta tree --h5-name data/base_file_name_001.h5 
+    $ meta show --tree --h5-name data/base_file_name_001.h5 
     │
     ├── defaults
     │   │
@@ -58,13 +58,22 @@ To view the data tree contained in a generic hdf file::
 View the meta data
 ------------------
 
-To view the meta data contained in a `dxchange <https://github.com/data-exchange/dxchange>`_ file::
+To view the meta data contained in a in a generic hdf file::
 
-    $ meta dx --h5-name data/base_file_name_001.h5 
+    $ meta show --h5-name data/base_file_name_001.h5 
 
-	2020-06-12 23:26:19,796 - General
-	2020-06-12 23:26:19,797 -   config           ./meta.conf
-	2020-06-12 23:26:19,797 -   verbose          True
+    2022-02-08 20:29:42,114 - General
+    2022-02-08 20:29:42,114 -   config           /Users/decarlo/meta.conf
+    2022-02-08 20:29:42,114 -   tree             False
+    2022-02-08 20:29:42,114 -   verbose          True
+    2022-02-08 20:29:42,141 - /measurement/instrument/attenuator/name: Filter
+    2022-02-08 20:29:42,143 - /measurement/instrument/attenuator/setup/filter_x: nan mm
+    2022-02-08 20:29:42,145 - /measurement/instrument/attenuator/setup/filter_x_dial: nan mm
+    2022-02-08 20:29:42,147 - /measurement/instrument/beam_monitor/name: Beam Monitor
+    2022-02-08 20:29:42,149 - /measurement/instrument/beam_monitor/setup/beam_monitor_x: 0.0 mm
+    2022-02-08 20:29:42,151 - /measurement/instrument/beam_monitor/setup/beam_monitor_x_dial: 0.06 mm
+    2022-02-08 20:29:42,153 - /measurement/instrument/beam_monitor/setup/beam_monitor_y: 0.0 mm
+    ...
 
 +-----------------------+--------------------------+---------+
 |                       | value                    | unit    |

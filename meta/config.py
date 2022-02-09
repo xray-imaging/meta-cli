@@ -20,6 +20,10 @@ SECTIONS['general'] = {
     'verbose': {
         'default': True,
         'help': 'Verbose output',
+        'action': 'store_true'},
+    'tree': {
+        'default': False,
+        'help': 'when set show the hdf file tree structure',
         'action': 'store_true'}}
 
 SECTIONS['meta'] = {
