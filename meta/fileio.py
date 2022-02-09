@@ -19,7 +19,7 @@ TEE = "├──"
 PIPE_PREFIX = "│   "
 SPACE_PREFIX = "    "
 
-def read_dx_meta(fname, output=None, add_shape=True):
+def read_hdf_meta(fname, add_shape=True):
     """
     Get the tree view of a hdf/nxs file.
 
@@ -27,8 +27,6 @@ def read_dx_meta(fname, output=None, add_shape=True):
     ----------
     file_path : str
         Path to the file.
-    output : str or None
-        Path to the output file in a text-format file (.txt, .md,...).
     add_shape : bool
         Including the shape of a dataset to the tree if True.
 
@@ -37,11 +35,11 @@ def read_dx_meta(fname, output=None, add_shape=True):
     list of string
     """
 
-    file_path = fname
-    hdf_object = h5py.File(file_path, 'r')
     tree = deque()
     meta = {}
-    _make_tree_body(tree, meta, hdf_object, add_shape=add_shape)
+
+    with h5py.File(fname, 'r') as hdf_object:
+        _extract_hdf(tree, meta, hdf_object, add_shape=add_shape)
     # for entry in tree:
     #     print(entry)
     return tree, meta
@@ -110,14 +108,15 @@ def _add_branches(tree, meta, hdf_object, key, key1, index, last_index, prefix,
         prefix += PIPE_PREFIX
     else:
         prefix += SPACE_PREFIX
-    _make_tree_body(tree, meta, hdf_object, prefix=prefix, key=key_comb,
+    _extract_hdf(tree, meta, hdf_object, prefix=prefix, key=key_comb,
                     level=level, add_shape=add_shape)
 
-def _make_tree_body(tree, meta, hdf_object, prefix="", key=None, level=0,
+def _extract_hdf(tree, meta, hdf_object, prefix="", key=None, level=0,
                     add_shape=True):
     """
-    Supplementary method for building the tree view of a hdf5 file.
-    Create the tree body.
+    Supplementary method for extracting from a generic hdf file the meta data 
+    tree view and the 1D meta data values/units.
+    Create the tree body and a meta dictionary 
     """
     entries, key = _get_subgroups(hdf_object, key)
     num_ent = len(entries)
@@ -143,7 +142,7 @@ def _make_tree_body(tree, meta, hdf_object, prefix="", key=None, level=0,
 # #####################################################################################
 def create_rst_file(args):
     
-    meta, year_month, pi_name = extract_meta(args)
+    meta, year_month, pi_name = extract_dx_meta(args)
 
     decorator = '='
     if os.path.isdir(args.doc_dir):
@@ -162,7 +161,7 @@ def create_rst_file(args):
         f.write('\n\n')        
     log.warning('Please copy/paste the content of %s in your rst docs file' % (log_fname))
 
-def extract_meta(args):
+def extract_dx_meta(args):
 
     list_to_extract = ('measurement_instrument_monochromator_energy', 
                     'measurement_sample_experimenter_email',
@@ -206,7 +205,7 @@ def extract_meta(args):
 
 def extract_dict(fname, list_to_extract, index=0):
 
-    tree, meta = read_dx_meta(fname)
+    tree, meta = read_hdf_meta(fname)
 
     start_date     = 'process_acquisition_start_date'
     experimenter   = 'measurement_sample_experimenter_name'
