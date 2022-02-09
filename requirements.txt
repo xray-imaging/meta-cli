@@ -1,3 +1,4 @@
+collections
 dxchange
 h5py
 numpy

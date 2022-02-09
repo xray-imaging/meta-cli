@@ -26,8 +26,11 @@ def init(args):
 def status(args):
     config.show_config(args)
 
-def show(args):
+def show_values(args):
     meta.show_meta(args)
+
+def show_tree(args):
+    meta.get_hdf_tree(args)
 
 def run_docs(args):
     meta.create_rst_file(args)
@@ -51,8 +54,9 @@ def main():
     cmd_parsers = [
         ('init',        init,           (),                             "Create configuration file"),
         ('status',      status,         show_params,                    "Show meta status"),
-        ('show',        show,           show_params,                    "Show meta data extracted from --h5-name"),
-        ('docs',        run_docs,       docs_params,                    "Create in --doc-dir an rst file compatible with sphinx/readthedocs containing the hdf file meta data"),
+        ('tree',        show_tree,      show_params,                    "Show meta data tree extracted from --h5-name"),
+        ('dx',          show_values,    show_params,                    "Show meta data values extracted from DataExchange --h5-name"),
+        ('docs',        run_docs,       docs_params,                    "Create in --doc-dir an rst file compatible with sphinx/readthedocs containing the DataExchange hdf file meta data"),
     ]
 
     subparsers = parser.add_subparsers(title="Commands", metavar='')

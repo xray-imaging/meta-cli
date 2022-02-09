@@ -29,12 +29,38 @@ Dependencies
 Usage
 =====
 
+View the hdf tree
+-----------------
+
+To view the data tree contained in a generic hdf file::
+
+    $ meta tree --h5-name data/base_file_name_001.h5 
+    │
+    ├── defaults
+    │   │
+    │   ├── ColorMode (754,)
+    │   ├── NDArrayEpicsTSSec (754,)
+    │   ├── NDArrayEpicsTSnSec (754,)
+    │   ├── NDArrayTimeStamp (754,)
+    │   ├── NDArrayUniqueId (754,)
+    │   ├── SaveDest (754,)
+    │   └── timestamp (754, 5)
+    ├── exchange
+    │   │
+    │   ├── data (726, 2048, 2448)
+    │   ├── data_dark (8, 2048, 2448)
+    │   ├── data_white (20, 2048, 2448)
+    │   └── theta (726,)
+    ├── measurement
+    ...
+
+
 View the meta data
--------------------
+------------------
 
-To view the meta data::
+To view the meta data contained in a `dxchange <https://github.com/data-exchange/dxchange>`_ file::
 
-    $ meta show --h5-name data/base_file_name_001.h5 
+    $ meta dx --h5-name data/base_file_name_001.h5 
 
 	2020-06-12 23:26:19,796 - General
 	2020-06-12 23:26:19,797 -   config           ./meta.conf

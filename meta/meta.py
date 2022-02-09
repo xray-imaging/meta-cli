@@ -1,14 +1,21 @@
 import os
 import sys
+import h5py
 import argparse
 import datetime
 
 import pandas as pd
 import dxchange.reader as dxreader
 
+from collections import OrderedDict, deque
 from pathlib import Path
 from meta import log
 
+PIPE = "│"
+ELBOW = "└──"
+TEE = "├──"
+PIPE_PREFIX = "│   "
+SPACE_PREFIX = "    "
 
 def show_meta(args):
 
@@ -65,7 +72,6 @@ def create_rst_file(args):
 def extract_dict(fname, list_to_extract, index=0):
 
     meta = dxreader.read_dx_meta(fname) 
-    # print(meta)
     try: 
         dt = datetime.datetime.strptime(meta['start_date'][0], "%Y-%m-%dT%H:%M:%S%z")
         year_month = str(dt.year) + '-' + '{:02d}'.format(dt.month)
@@ -75,10 +81,16 @@ def extract_dict(fname, list_to_extract, index=0):
     except TypeError:
         log.error("The start date information is missing from the hdf file %s. Error (2020-02)." % fname)
         year_month = '2020-02'
-    pi_name = meta['experimenter_name'][0]
-
-    # compact full_file_name to file name only as original data collection directory may have changed
-    meta['full_file_name'][0] = os.path.basename(meta['full_file_name'][0])
+    try:
+        pi_name = meta['experimenter_name'][0]
+    except KeyError:
+        log.error("The experimenter name is missing from the hdf file %s." % fname)
+        pi_name = 'Unknown'
+    try:    
+        # compact full_file_name to file name only as original data collection directory may have changed
+        meta['full_file_name'][0] = os.path.basename(meta['full_file_name'][0])
+    except KeyError:
+        log.error("The full file name is missing from the hdf file %s." % fname)
 
     # sub_dict = {k:v for k, v in meta.items() if k in list_to_extract}
     sub_dict = {(('%3.3d' % index) +'_' + k):v for k, v in meta.items() if k in list_to_extract}
@@ -90,7 +102,8 @@ def extract_meta(args):
 
     fname = args.h5_name
 
-    list_to_extract = ('experimenter_name', 'start_date', 'end_date', 'full_file_name', 'sample_in_x', 'sample_in_y', 'proposal', 'sample_name', 'sample_y', 'camera_objective', 'resolution', 'energy', 'camera_distance', 'exposure_time', 'num_angles', 'scintillator_type', 'model')
+    # list_to_extract = ('experimenter_name', 'start_date', 'end_date', 'full_file_name', 'sample_in_x', 'sample_in_y', 'proposal', 'sample_name', 'sample_y', 'camera_objective', 'resolution', 'energy', 'camera_distance', 'exposure_time', 'num_angles', 'scintillator_type', 'model')
+    # list_to_extract = ('experimenter_name', 'full_file_name', 'description_1', 'description_2', 'resolution', 'energy', 'start_date','sample_pitch', 'sample_roll')
     list_to_extract = ('attenuator_name', 'user_filter_ds', 'user_filter_ds_legend', 'user_filter_us', 'user_filter_us_legend', 'attenuator_1_name', 'description', 
         'camera_motor_stack_name', 'camera_distance', 'camera_objective', 'camera_tube_length', 'resolution', 'scintillating_thickness', 'scintillator_type', 'ADcore_version', 
         'HDFplugin_version', 'SDK_version', 'acquire_period', 'array_counter', 'binning_x', 'binning_y', 'convert_pixel_format', 'dimension_x', 'dimension_y', 'driver_version', 
@@ -102,8 +115,6 @@ def extract_meta(args):
         'current', 'fill_mode', 'source_name', 'top_up', 'description_1', 'description_2', 'description_3', 'ESAF_number', 'proposal', 'title', 'email', 'experimenter_name', 'facility_user_id', 
         'institution', 'file_name', 'file_path', 'full_file_name', 'sample_name', 'dark_field_mode', 'dark_field_value', 'num_dark_fields', 'end_date', 'flat_field_axis', 'flat_field_mode', 
         'flat_field_value', 'num_flat_fields', 'sample_in_x', 'sample_in_y', 'sample_out_x', 'sample_out_y', 'num_angles', 'return_rotation', 'rotation_speed', 'rotation_start', 'rotation_step', 'start_date')
-
-    # list_to_extract = ('experimenter_name', 'full_file_name', 'description_1', 'description_2', 'resolution', 'energy', 'start_date','sample_pitch', 'sample_roll')
     # set pandas display
     pd.options.display.max_rows = 999
     year_month = 'unknown'
@@ -137,3 +148,117 @@ def extract_meta(args):
     df = pd.DataFrame.from_dict(meta_dict, orient='index', columns=('value', 'unit'))
     return df.to_markdown(tablefmt='grid'), year_month, pi_name
 
+def _get_subgroups(hdf_object, key=None):
+    """
+    Supplementary method for building the tree view of a hdf5 file.
+    Return the name of subgroups.
+    """
+    list_group = []
+    if key is None:
+        for group in hdf_object.keys():
+            list_group.append(group)
+        if len(list_group) == 1:
+            key = list_group[0]
+        else:
+            key = ""
+    else:
+        if key in hdf_object:
+            try:
+                obj = hdf_object[key]
+                if isinstance(obj, h5py.Group):
+                    for group in hdf_object[key].keys():
+                        list_group.append(group)
+            except KeyError:
+                pass
+    if len(list_group) > 0:
+        list_group = sorted(list_group)
+    return list_group, key
+
+def _add_branches(tree, hdf_object, key, key1, index, last_index, prefix,
+                  connector, level, add_shape):
+    """
+    Supplementary method for building the tree view of a hdf5 file.
+    Add branches to the tree.
+    """
+    shape = None
+    key_comb = key + "/" + key1
+    if add_shape is True:
+        if key_comb in hdf_object:
+            try:
+                obj = hdf_object[key_comb]
+                if isinstance(obj, h5py.Dataset):
+                    shape = str(obj.shape)
+            except KeyError:
+                shape = str("-> ???External-link???")
+    if shape is not None:
+        tree.append(f"{prefix}{connector} {key1} {shape}")
+    else:
+        tree.append(f"{prefix}{connector} {key1}")
+    if index != last_index:
+        prefix += PIPE_PREFIX
+    else:
+        prefix += SPACE_PREFIX
+    _make_tree_body(tree, hdf_object, prefix=prefix, key=key_comb,
+                    level=level, add_shape=add_shape)
+
+def _make_tree_body(tree, hdf_object, prefix="", key=None, level=0,
+                    add_shape=True):
+    """
+    Supplementary method for building the tree view of a hdf5 file.
+    Create the tree body.
+    """
+    entries, key = _get_subgroups(hdf_object, key)
+    num_ent = len(entries)
+    last_index = num_ent - 1
+    level = level + 1
+    if num_ent > 0:
+        if last_index == 0:
+            key = "" if level == 1 else key
+            if num_ent > 1:
+                connector = PIPE
+            else:
+                connector = ELBOW if level > 1 else ""
+            _add_branches(tree, hdf_object, key, entries[0], 0, 0, prefix,
+                          connector, level, add_shape)
+        else:
+            for index, key1 in enumerate(entries):
+                connector = ELBOW if index == last_index else TEE
+                if index == 0:
+                    tree.append(prefix + PIPE)
+                _add_branches(tree, hdf_object, key, key1, index, last_index,
+                              prefix, connector, level, add_shape)
+
+def get_hdf_tree(args, output=None, add_shape=True, display=True):
+    """
+    Get the tree view of a hdf/nxs file.
+
+    Parameters
+    ----------
+    file_path : str
+        Path to the file.
+    output : str or None
+        Path to the output file in a text-format file (.txt, .md,...).
+    add_shape : bool
+        Including the shape of a dataset to the tree if True.
+    display : bool
+        Print the tree onto the screen if True.
+
+    Returns
+    -------
+    list of string
+    """
+    file_path = args.h5_name
+    hdf_object = h5py.File(file_path, 'r')
+    tree = deque()
+    _make_tree_body(tree, hdf_object, add_shape=add_shape)
+    if output is not None:
+        make_folder(output)
+        output_file = open(output, mode="w", encoding="UTF-8")
+        with output_file as stream:
+            for entry in tree:
+                print(entry, file=stream)
+    else:
+        if display:
+            for entry in tree:
+                print(entry)
+    return tree
