@@ -98,7 +98,7 @@ To generate a meta data rst table compatible with sphinx/readthedocs::
 +-------------------------------------------------+---------------------------------+--------+
 
 .. note:: 
-	--h5-name can be also a folder, e.g. --h5-name data/ in this case all hdf files in the folder will be processed.
+	when using the **docs** option --h5-name can be also a folder, e.g. --h5-name data/ in this case all hdf files in the folder will be processed.
 
 
 to list of all available options::
