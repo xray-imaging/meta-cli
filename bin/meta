@@ -17,6 +17,18 @@ from meta import log
 from meta import config
 from meta import fileio
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+
 def init(args):
     if not os.path.exists(str(args.config)):
         config.write(str(args.config))
@@ -30,14 +42,17 @@ def run_show(args):
     tree, meta_dict = fileio.read_hdf_meta(args.h5_name)
     for entry in meta_dict:
         if meta_dict[entry][1] == None:
-            log.info('%s: %s' % (entry, meta_dict[entry][0]))
+            # log.info('%s: %s' % (entry, meta_dict[entry][0]))
+            print(f'{bcolors.OKGREEN}{entry}: {bcolors.WARNING}{meta_dict[entry][0]}{bcolors.ENDC}')
         else:
-            log.info('%s: %s %s' % (entry, meta_dict[entry][0], meta_dict[entry][1]))
+            # log.info('%s: %s %s' % (entry, meta_dict[entry][0], meta_dict[entry][1]))
+            print(f'{bcolors.OKGREEN}{entry}: {bcolors.WARNING}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
 
 def run_tree(args):
     tree, meta_dict = fileio.read_hdf_meta(args.h5_name)
     for entry in tree:
-        log.info(entry)
+        # log.info(entry)
+        print(entry)
 
 def run_docs(args):
     fileio.create_rst_file(args)
