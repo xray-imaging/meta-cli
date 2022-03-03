@@ -208,7 +208,7 @@ def extract_dict(fname, list_to_extract, index=0):
     tree, meta = read_hdf_meta(fname)
 
     start_date     = 'process_acquisition_start_date'
-    experimenter   = 'measurement_sample_experimenter_name'
+    experimenter   = 'measurement_sample_experimenter_experimenter_name'
     full_file_name = 'measurement_sample_full_file_name'
 
     try: 
@@ -224,7 +224,7 @@ def extract_dict(fname, list_to_extract, index=0):
         pi_name = meta[experimenter][0]
     except KeyError:
         log.error("The experimenter name is missing from the hdf file %s." % fname)
-        pi_name = 'Unknownxx'
+        pi_name = 'Unknown'
     try:    
         # compact full_file_name to file name only as original data collection directory may have changed
         meta[full_file_name][0] = os.path.basename(meta[full_file_name][0])
