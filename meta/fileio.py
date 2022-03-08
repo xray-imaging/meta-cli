@@ -173,7 +173,7 @@ def extract_dx_meta(args):
     pd.options.display.max_rows = 999
     year_month = 'unknown'
     pi_name    = 'unknown'
-    fname      = args.h5_name
+    fname      = args.file_name
 
     if os.path.isfile(fname): 
         meta_dict, year_month, pi_name = extract_dict(fname, list_to_extract)

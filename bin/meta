@@ -39,7 +39,7 @@ def status(args):
     config.show_config(args)
 
 def run_show(args):
-    tree, meta_dict = fileio.read_hdf_meta(args.h5_name)
+    tree, meta_dict = fileio.read_hdf_meta(args.file_name)
     for entry in meta_dict:
         if meta_dict[entry][1] == None:
             # log.info('%s: %s' % (entry, meta_dict[entry][0]))
@@ -49,7 +49,7 @@ def run_show(args):
             print(f'{bcolors.OKGREEN}{entry}: {bcolors.WARNING}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
 
 def run_tree(args):
-    tree, meta_dict = fileio.read_hdf_meta(args.h5_name)
+    tree, meta_dict = fileio.read_hdf_meta(args.file_name)
     for entry in tree:
         # log.info(entry)
         print(entry)

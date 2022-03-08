@@ -32,7 +32,7 @@ SECTIONS['meta'] = {
         'type': str,
         'default': 'log',
         'help': "the sphinx/readthedocs compatible table file name prefix"},
-    'h5-name': {
+    'file-name': {
         'type': str,
         'default': '.',
         'help': "hdf5 file or directory containing multiple hdf5 files, e.g. /data/sample.h5 or /data/"},
