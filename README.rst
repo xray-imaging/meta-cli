@@ -34,7 +34,7 @@ View the hdf tree
 
 To view the data tree contained in a generic hdf file::
 
-    $ meta tree --h5-name data/base_file_name_001.h5 
+    $ meta tree --file-name data/base_file_name_001.h5 
     │
     ├── defaults
     │   │
@@ -60,7 +60,7 @@ View the meta data
 
 To view the meta data contained in a in a generic hdf file::
 
-    $ meta show --h5-name data/base_file_name_001.h5 
+    $ meta show --file-name data/base_file_name_001.h5 
 
     2022-02-08 20:29:42,114 - General
     2022-02-08 20:29:42,114 -   config           /Users/decarlo/meta.conf
@@ -80,7 +80,7 @@ Meta data rst table
 
 To generate a meta data rst table compatible with sphinx/readthedocs::
 
-    $ meta docs --h5-name data/base_file_name_001.h5 
+    $ meta docs --file-name data/base_file_name_001.h5 
 
     2022-02-09 12:30:15,421 - General
     2022-02-09 12:30:15,422 -   config           /Users/decarlo/meta.conf
