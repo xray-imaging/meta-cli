@@ -76,8 +76,8 @@ def main():
     cmd_parsers = [
         ('init',        init,           (),                             "Create configuration file"),
         ('status',      status,         show_params,                    "Show meta status"),
-        ('show',        run_show,       show_params,                    "Show meta data extracted from --h5-name"),
-        ('tree',        run_tree,       show_params,                    "Show meta data tree extracted from --h5-name"),
+        ('show',        run_show,       show_params,                    "Show meta data extracted from --file-name"),
+        ('tree',        run_tree,       show_params,                    "Show meta data tree extracted from --file-name"),
         ('docs',        run_docs,       docs_params,                    "Create in --doc-dir an rst file compatible with sphinx/readthedocs containing the DataExchange hdf file meta data"),
     ]
 
