@@ -47,16 +47,18 @@ def run_show(args):
         log.info("Publishing a single file: %s" % args.file_name)  
         tree, meta_dict = fileio.read_hdf_meta(args.file_name)
         for entry in meta_dict:
+            count = entry.count("_") - 1
+            label = '/' + entry.replace("_", "/", count)
             if meta_dict[entry][1] == None:
                 # log.info('%s: %s' % (entry, meta_dict[entry][0]))
-                print(f'{bcolors.OKGREEN}{entry}: {bcolors.WARNING}{meta_dict[entry][0]}{bcolors.ENDC}')
+                print(f'{bcolors.OKGREEN}{label}: {bcolors.WARNING}{meta_dict[entry][0]}{bcolors.ENDC}')
             else:
                 if np.isnan(meta_dict[entry][0]):
                     error += 1
                     # log.info('%s: %s %s' % (entry, meta_dict[entry][0], meta_dict[entry][1]))
-                    print(f'{bcolors.OKGREEN}{entry}: {bcolors.FAIL}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
+                    print(f'{bcolors.OKGREEN}{label}: {bcolors.FAIL}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
                 else:
-                    print(f'{bcolors.OKGREEN}{entry}: {bcolors.WARNING}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
+                    print(f'{bcolors.OKGREEN}{label}: {bcolors.WARNING}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
         if error >= 0:
             log.error("Found %d PVs listed has having valid units but containing a NaN value. Please check the detector XML attribute file" % error)              
     elif file_path.is_dir():
