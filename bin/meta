@@ -49,6 +49,7 @@ def run_show(args):
         for entry in meta_dict:
             count = entry.count("_") - 1
             label = '/' + entry.replace("_", "/", count)
+            # label = entry
             if meta_dict[entry][1] == None:
                 # log.info('%s: %s' % (entry, meta_dict[entry][0]))
                 print(f'{bcolors.OKGREEN}{label}: {bcolors.WARNING}{meta_dict[entry][0]}{bcolors.ENDC}')
