@@ -50,17 +50,25 @@ def run_show(args):
             count = entry.count("_") - 1
             label = '/' + entry.replace("_", "/", count)
             # label = entry
-            if meta_dict[entry][1] == None:
+            if meta_dict[entry][1] == None or type(meta_dict[entry][0]) == str:
                 # log.info('%s: %s' % (entry, meta_dict[entry][0]))
-                print(f'{bcolors.OKGREEN}{label}: {bcolors.WARNING}{meta_dict[entry][0]}{bcolors.ENDC}')
+                print(f'{bcolors.OKGREEN}{entry}: {bcolors.WARNING}{meta_dict[entry][0]}{bcolors.ENDC}')
+                # print(f'{bcolors.OKGREEN}{label} ==> {bcolors.OKGREEN}{entry}')
             else:
+                # print('***************************')
+                # print('***************************')
+                # print(type(meta_dict[entry][0]))
+                # print('***************************')
+                # print('***************************')
                 if np.isnan(meta_dict[entry][0]):
                     error += 1
                     # log.info('%s: %s %s' % (entry, meta_dict[entry][0], meta_dict[entry][1]))
-                    print(f'{bcolors.OKGREEN}{label}: {bcolors.FAIL}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
+                    print(f'{bcolors.OKGREEN}{entry}: {bcolors.FAIL}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
+                    # print(f'{bcolors.OKGREEN}{label} ==> {bcolors.OKGREEN}{entry}')
                 else:
-                    print(f'{bcolors.OKGREEN}{label}: {bcolors.WARNING}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
-        if error >= 0:
+                    print(f'{bcolors.OKGREEN}{entry}: {bcolors.WARNING}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
+                    # print(f'{bcolors.OKGREEN}{label} ==> {bcolors.OKGREEN}{entry}')
+        if error > 0:
             log.error("Found %d PVs listed has having valid units but containing a NaN value. Please check the detector XML attribute file" % error)              
     elif file_path.is_dir():
         log.info("publishing a multiple files in: %s" % args.file_name)
@@ -88,7 +96,7 @@ def run_show(args):
                             print(f'{bcolors.OKGREEN}{entry}: {bcolors.FAIL}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
                         else:
                             print(f'{bcolors.OKGREEN}{entry}: {bcolors.WARNING}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
-                if error >= 0:
+                if error > 0:
                     log.error("Found %d PVs listed has having valid units but containing a NaN value. Please check the detector XML attribute file" % error)
         else:
             log.error("directory %s does not contain any file" % args.file_name)
