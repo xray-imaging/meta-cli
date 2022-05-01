@@ -165,8 +165,8 @@ def extract_dx_meta(args):
 
     list_to_extract = ('measurement_instrument_monochromator_energy', 
                     'measurement_sample_experimenter_email',
-                    'measurement_instrument_sample_motor_stack_setup_sample_x', 
-                    'measurement_instrument_sample_motor_stack_setup_sample_y'
+                    'measurement_instrument_sample_motor_stack_setup_x', 
+                    'measurement_instrument_sample_motor_stack_setup_y'
                     )
 
     # set pandas display
@@ -208,8 +208,8 @@ def extract_dict(fname, list_to_extract, index=0):
     tree, meta = read_hdf_meta(fname)
 
     start_date     = 'process_acquisition_start_date'
-    experimenter   = 'measurement_sample_experimenter_experimenter_name'
-    full_file_name = 'measurement_sample_full_file_name'
+    experimenter   = 'measurement_sample_experimenter_name'
+    full_file_name = 'measurement_sample_file_full_name'
 
     try: 
         dt = datetime.datetime.strptime(meta[start_date][0], "%Y-%m-%dT%H:%M:%S%z")
