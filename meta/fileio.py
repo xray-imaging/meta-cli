@@ -97,7 +97,7 @@ def _add_branches(tree, meta, hdf_object, key, key1, index, last_index, prefix,
                         if  (value.dtype.kind == 'S'):
                             value = value.decode(encoding="utf-8")
                             # log.info(">>>>>> %s: %s" % (obj.name, value))
-                        meta.update( {name : [value, attr] } )
+                        meta.update( {name : [obj.name, value, attr] } )
             except KeyError:
                 shape = str("-> ???External-link???")
     if shape is not None:
@@ -193,7 +193,7 @@ def extract_dx_meta(args):
             file_counter+=1
         if year_month == 'unknown':
             log.error('No valid HDF5 file(s) fund in the directory %s' % top)
-            log.warning('Make sure to use the --h5-name H5_NAME  option to select  the hdf5 file or directory containing multiple hdf5 files')
+            log.warning('Make sure to use the --h5-name H5_NAME   option to select  the hdf5 file or directory containing multiple hdf5 files')
             return None
            
     else:

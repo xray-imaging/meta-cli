@@ -47,14 +47,14 @@ def run_show(args):
         log.info("Publishing a single file: %s" % args.file_name)  
         tree, meta_dict = fileio.read_hdf_meta(args.file_name)
         for entry in meta_dict:
-            if meta_dict[entry][1] == None or type(meta_dict[entry][0]) == str:
-                print(f'{bcolors.OKGREEN}{entry}: {bcolors.WARNING}{meta_dict[entry][0]}{bcolors.ENDC}')
+            if meta_dict[entry][2] == None or type(meta_dict[entry][1]) == str:
+                print(f'{bcolors.OKGREEN}{meta_dict[entry][0]}: {bcolors.WARNING}{meta_dict[entry][1]}{bcolors.ENDC}')
             else:
-                if np.isnan(meta_dict[entry][0]):
+                if np.isnan(meta_dict[entry][1]):
                     error += 1
-                    print(f'{bcolors.OKGREEN}{entry}: {bcolors.FAIL}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
+                    print(f'{bcolors.OKGREEN}{meta_dict[entry][0]}: {bcolors.FAIL}{meta_dict[entry][1]} {meta_dict[entry][2]}{bcolors.ENDC}')
                 else:
-                    print(f'{bcolors.OKGREEN}{entry}: {bcolors.WARNING}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
+                    print(f'{bcolors.OKGREEN}{meta_dict[entry][0]}: {bcolors.WARNING}{meta_dict[entry][1]} {meta_dict[entry][2]}{bcolors.ENDC}')
         if error > 0:
             log.error("Found %d PVs listed has having valid units but containing a NaN value. Please check the detector XML attribute file" % error)              
     elif file_path.is_dir():
@@ -73,14 +73,14 @@ def run_show(args):
                 tree, meta_dict = fileio.read_hdf_meta(args.file_name)
                 error = 0
                 for entry in meta_dict:
-                    if meta_dict[entry][1] == None:
-                        print(f'{bcolors.OKGREEN}{entry}: {bcolors.WARNING}{meta_dict[entry][0]}{bcolors.ENDC}')
+                    if meta_dict[entry][2] == None or type(meta_dict[entry][1]) == str:
+                        print(f'{bcolors.OKGREEN}{meta_dict[entry][0]}: {bcolors.WARNING}{meta_dict[entry][1]}{bcolors.ENDC}')
                     else:
-                        if np.isnan(meta_dict[entry][0]):
+                        if np.isnan(meta_dict[entry][1]):
                             error += 1
-                            print(f'{bcolors.OKGREEN}{entry}: {bcolors.FAIL}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
+                            print(f'{bcolors.OKGREEN}{meta_dict[entry][0]}: {bcolors.FAIL}{meta_dict[entry][1]} {meta_dict[entry][2]}{bcolors.ENDC}')
                         else:
-                            print(f'{bcolors.OKGREEN}{entry}: {bcolors.WARNING}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
+                            print(f'{bcolors.OKGREEN}{meta_dict[entry][0]}: {bcolors.WARNING}{meta_dict[entry][1]} {meta_dict[entry][2]}{bcolors.ENDC}')
                 if error > 0:
                     log.error("Found %d PVs listed has having valid units but containing a NaN value. Please check the detector XML attribute file" % error)
         else:
