@@ -144,7 +144,7 @@ def _extract_hdf(tree, meta, hdf_object, prefix="", key=None, level=0,
 # #####################################################################################
 def create_rst_file(args):
     
-    meta, year_month, pi_name = extract_dx_meta(args)
+    meta, year_month, pi_name = extract_rst_meta(args)
 
     decorator = '='
     if os.path.isdir(args.doc_dir):
@@ -163,8 +163,11 @@ def create_rst_file(args):
         f.write('\n\n')        
     log.warning('Please copy/paste the content of %s in your rst docs file' % (log_fname))
 
-def extract_dx_meta(args):
+def extract_rst_meta(args):
 
+    # Customize this list to add more meta data in the rst table.
+    # To see the full list of available meta data run:
+    # meta show --file-name myfile.h5
     list_to_extract = ('measurement_instrument_monochromator_energy', 
                     'measurement_sample_experimenter_email',
                     'measurement_instrument_sample_motor_stack_setup_x', 
@@ -180,6 +183,7 @@ def extract_dx_meta(args):
     if os.path.isfile(fname): 
         meta_dict, year_month, pi_name = extract_dict(fname, list_to_extract)
         # print (meta_dict, year_month, pi_name)
+        # exit()
     elif os.path.isdir(fname):
         # Add a trailing slash if missing
         top = os.path.join(fname, '')
@@ -202,7 +206,7 @@ def extract_dx_meta(args):
         log.error('No valid HDF5 file(s) fund')
         return None
 
-    df = pd.DataFrame.from_dict(meta_dict, orient='index', columns=('value', 'unit'))
+    df = pd.DataFrame.from_dict(meta_dict, orient='index', columns=('hdf path', 'value', 'unit'))
     return df.to_markdown(tablefmt='grid'), year_month, pi_name
 
 def extract_dict(fname, list_to_extract, index=0):
@@ -214,7 +218,7 @@ def extract_dict(fname, list_to_extract, index=0):
     full_file_name = 'measurement_sample_file_full_name'
 
     try: 
-        dt = datetime.datetime.strptime(meta[start_date][0], "%Y-%m-%dT%H:%M:%S%z")
+        dt = datetime.datetime.strptime(meta[start_date][1], "%Y-%m-%dT%H:%M:%S%z")
         year_month = str(dt.year) + '-' + '{:02d}'.format(dt.month)
     except ValueError:
         log.error("The start date information is missing from the hdf file %s. Error (2020-01)." % fname)
@@ -223,13 +227,13 @@ def extract_dict(fname, list_to_extract, index=0):
         log.error("The start date information is missing from the hdf file %s. Error (2020-02)." % fname)
         year_month = '2020-02'
     try:
-        pi_name = meta[experimenter][0]
+        pi_name = meta[experimenter][1]
     except KeyError:
         log.error("The experimenter name is missing from the hdf file %s." % fname)
         pi_name = 'Unknown'
     try:    
         # compact full_file_name to file name only as original data collection directory may have changed
-        meta[full_file_name][0] = os.path.basename(meta[full_file_name][0])
+        meta[full_file_name][1] = os.path.basename(meta[full_file_name][1])
     except KeyError:
         log.error("The full file name is missing from the hdf file %s." % fname)
 
