@@ -13,10 +13,13 @@ import sys
 import pathlib 
 import argparse
 import numpy as np
+import meta
+
 from datetime import datetime
-from meta import log
-from meta import config
-from meta import fileio
+
+from meta_cli import log
+from meta_cli import config
+from meta_cli import utils
 
 class bcolors:
     HEADER = '\033[95m'
@@ -28,7 +31,6 @@ class bcolors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
-
 
 def init(args):
     if not os.path.exists(str(args.config)):
@@ -45,7 +47,7 @@ def run_show(args):
     file_path = pathlib.Path(args.file_name)
     if file_path.is_file():
         log.info("Publishing a single file: %s" % args.file_name)  
-        tree, meta_dict = fileio.read_hdf_meta(args.file_name)
+        tree, meta_dict = meta.read_hdf(args.file_name)
         for entry in meta_dict:
             if meta_dict[entry][2] == None or type(meta_dict[entry][1]) == str:
                 print(f'{bcolors.OKGREEN}{meta_dict[entry][0]}: {bcolors.WARNING}{meta_dict[entry][1]}{bcolors.ENDC}')
@@ -70,7 +72,7 @@ def run_show(args):
                 args.file_name = top + fname
                 log.warning("  *** file %d/%d;  %s" % (index, len(h5_file_list_sorted), fname))
                 index += 1
-                tree, meta_dict = fileio.read_hdf_meta(args.file_name)
+                tree, meta_dict = meta.read_hdf(args.file_name)
                 error = 0
                 for entry in meta_dict:
                     if meta_dict[entry][2] == None or type(meta_dict[entry][1]) == str:
@@ -89,13 +91,13 @@ def run_show(args):
         log.error("directory or File Name does not exist: %s" % args.file_name)
 
 def run_tree(args):
-    tree, meta_dict = fileio.read_hdf_meta(args.file_name)
+    tree, meta_dict = meta.read_hdf(args.file_name)
     for entry in tree:
         # log.info(entry)
         print(entry)
 
 def run_docs(args):
-    fileio.create_rst_file(args)
+    utils.create_rst_file(args)
 
 def main():
     home = os.path.expanduser("~")

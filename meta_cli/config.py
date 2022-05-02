@@ -5,7 +5,7 @@ import argparse
 import configparser
 import numpy as np
 from collections import OrderedDict
-from meta import log
+from meta_cli import log
 
 CONFIG_FILE_NAME = os.path.join(str(pathlib.Path.home()), 'meta.conf')
 
