@@ -98,7 +98,7 @@ def extract_dict(fname, list_to_extract, index=0):
     full_file_name = 'measurement_sample_file_full_name'
 
     try: 
-        dt = datetime.datetime.strptime(meta_data[start_date][1], "%Y-%m-%dT%H:%M:%S%z")
+        dt = datetime.datetime.strptime(meta_data[start_date][0], "%Y-%m-%dT%H:%M:%S%z")
         year_month = str(dt.year) + '-' + '{:02d}'.format(dt.month)
     except ValueError:
         log.error("The start date information is missing from the hdf file %s. Error (2020-01)." % fname)
@@ -107,13 +107,13 @@ def extract_dict(fname, list_to_extract, index=0):
         log.error("The start date information is missing from the hdf file %s. Error (2020-02)." % fname)
         year_month = '2020-02'
     try:
-        pi_name = meta_data[experimenter][1]
+        pi_name = meta_data[experimenter][0]
     except KeyError:
         log.error("The experimenter name is missing from the hdf file %s." % fname)
         pi_name = 'Unknown'
     try:    
         # compact full_file_name to file name only as original data collection directory may have changed
-        meta_data[full_file_name][1] = os.path.basename(meta_data[full_file_name][1])
+        meta_data[full_file_name][0] = os.path.basename(meta_data[full_file_name][0])
     except KeyError:
         log.error("The full file name is missing from the hdf file %s." % fname)
 
