@@ -51,7 +51,7 @@ def run_show(args):
         for entry in meta_dict:
             # print(type(entry))
             if meta_dict[entry][1] == None or type(meta_dict[entry][0]) == str:
-                print(f'{bcolors.OKGREEN}{entry} {bcolors.OKGREEN}{meta_dict[entry][0]}')
+                print(f'{bcolors.OKGREEN}{entry} {bcolors.OKBLUE}{meta_dict[entry][0]}{bcolors.ENDC}')
             else:
                 if np.isnan(meta_dict[entry][0]):
                     error += 1
@@ -77,7 +77,7 @@ def run_show(args):
                 error = 0
                 for entry in meta_dict:
                     if meta_dict[entry][1] == None or type(meta_dict[entry][0]) == str:
-                        print(f'{bcolors.OKGREEN}{entry} {bcolors.OKGREEN}{meta_dict[entry][0]}')
+                        print(f'{bcolors.OKGREEN}{entry} {bcolors.OKBLUE}{meta_dict[entry][0]}{bcolors.ENDC}')
                     else:
                         if np.isnan(meta_dict[entry][0]):
                             error += 1
