@@ -64,13 +64,10 @@ Meta data rst table
 To generate a meta data rst table compatible with sphinx/readthedocs::
 
     $ meta docs --file-name data/base_file_name_001.h5 
+    2022-02-09 12:30:16,983 - Please copy/paste the content of ./log_2020-05.rst in your rst docs file
 
-    2022-02-09 12:30:15,421 - General
-    2022-02-09 12:30:15,422 -   config           /Users/decarlo/meta.conf
-    2022-02-09 12:30:15,422 -   tree             False
-    2022-02-09 12:30:15,422 -   verbose          True
-    2022-02-09 12:30:16,983 - Please copy/paste the content of ./log_2020-03.rst in your rst docs file
 
+The content of the generated rst file will publish in a sphinx/readthedocs document as:
 
 **2022-05**
 
