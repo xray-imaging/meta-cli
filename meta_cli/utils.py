@@ -48,10 +48,10 @@ def extract_rst_meta(args):
     # Customize this list to add more meta_data in the rst table.
     # To see the full list of available meta_data run:
     # meta show --file-name myfile.h5
-    list_to_extract = ('measurement_instrument_monochromator_energy', 
-                    'measurement_sample_experimenter_email',
-                    'measurement_instrument_sample_motor_stack_setup_x', 
-                    'measurement_instrument_sample_motor_stack_setup_y'
+    list_to_extract = ('/measurement/instrument/monochromator/energy', 
+                    '/measurement/sample/experimenter/email',
+                    '/measurement/instrument/sample_motor_stack/setup/x', 
+                    '/measurement/instrument/sample_motor_stack/setup/y'
                     )
 
     # set pandas display
@@ -86,16 +86,16 @@ def extract_rst_meta(args):
         log.error('No valid HDF5 file(s) fund')
         return None
 
-    df = pd.DataFrame.from_dict(meta_dict, orient='index', columns=('hdf path', 'value', 'unit'))
+    df = pd.DataFrame.from_dict(meta_dict, orient='index', columns=('value', 'unit'))
     return df.to_markdown(tablefmt='grid'), year_month, pi_name
 
 def extract_dict(fname, list_to_extract, index=0):
 
     tree, meta_data = meta.read_hdf(fname)
 
-    start_date     = 'process_acquisition_start_date'
-    experimenter   = 'measurement_sample_experimenter_name'
-    full_file_name = 'measurement_sample_file_full_name'
+    start_date     = '/process/acquisition/start_date'
+    experimenter   = '/measurement/sample/experimenter/name'
+    full_file_name = '/measurement/sample/file/full_name'
 
     try: 
         dt = datetime.datetime.strptime(meta_data[start_date][0], "%Y-%m-%dT%H:%M:%S%z")
