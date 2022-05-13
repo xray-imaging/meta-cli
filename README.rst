@@ -32,48 +32,29 @@ Usage
 View the hdf tree
 -----------------
 
-To view the data tree contained in a generic hdf file::
+To view the data tree contained in a generic hdf file:
 
+::
     $ meta tree --file-name data/base_file_name_001.h5 
-    │
-    ├── defaults
-    │   │
-    │   ├── ColorMode (754,)
-    │   ├── NDArrayEpicsTSSec (754,)
-    │   ├── NDArrayEpicsTSnSec (754,)
-    │   ├── NDArrayTimeStamp (754,)
-    │   ├── NDArrayUniqueId (754,)
-    │   ├── SaveDest (754,)
-    │   └── timestamp (754, 5)
-    ├── exchange
-    │   │
-    │   ├── data (726, 2048, 2448)
-    │   ├── data_dark (8, 2048, 2448)
-    │   ├── data_white (20, 2048, 2448)
-    │   └── theta (726,)
-    ├── measurement
-    ...
+
+.. image:: docs/source/img/meta_tree.png
+    :width: 40%
+    :align: center
 
 
 View the meta data
 ------------------
 
-To view the meta data contained in a in a generic hdf file::
+To view the meta data contained in a in a generic hdf file:
 
+::
     $ meta show --file-name data/base_file_name_001.h5 
 
-    2022-02-08 20:29:42,114 - General
-    2022-02-08 20:29:42,114 -   config           /Users/decarlo/meta.conf
-    2022-02-08 20:29:42,114 -   tree             False
-    2022-02-08 20:29:42,114 -   verbose          True
-    2022-02-08 20:29:42,141 - /measurement/instrument/attenuator/name: Filter
-    2022-02-08 20:29:42,143 - /measurement/instrument/attenuator/setup/filter_x: nan mm
-    2022-02-08 20:29:42,145 - /measurement/instrument/attenuator/setup/filter_x_dial: nan mm
-    2022-02-08 20:29:42,147 - /measurement/instrument/beam_monitor/name: Beam Monitor
-    2022-02-08 20:29:42,149 - /measurement/instrument/beam_monitor/setup/beam_monitor_x: 0.0 mm
-    2022-02-08 20:29:42,151 - /measurement/instrument/beam_monitor/setup/beam_monitor_x_dial: 0.06 mm
-    2022-02-08 20:29:42,153 - /measurement/instrument/beam_monitor/setup/beam_monitor_y: 0.0 mm
-    ...
+
+.. image:: docs/source/img/meta_show.png
+    :width: 40%
+    :align: center
+
 
 Meta data rst table
 -------------------
@@ -89,13 +70,22 @@ To generate a meta data rst table compatible with sphinx/readthedocs::
     2022-02-09 12:30:16,983 - Please copy/paste the content of ./log_2020-03.rst in your rst docs file
 
 
-+-------------------------------------------------+---------------------------------+--------+
-|                                                 | value                           | unit   |
-+=================================================+=================================+========+
-| 000_measurement_instrument_monochromator_energy | 8.0                             | keV    |
-+-------------------------------------------------+---------------------------------+--------+
-| 000_measurement_sample_experimenter_email       | decarlo@anl.gov                 |        |
-+-------------------------------------------------+---------------------------------+--------+
+**2022-05**
+
+**decarlo**
+
++--------------------------------------------------------+--------------------+--------+
+|                                                        | value              | unit   |
++========================================================+====================+========+
+| 000_/measurement/instrument/monochromator/energy       | 30.0               | keV    |
++--------------------------------------------------------+--------------------+--------+
+| 000_/measurement/instrument/sample_motor_stack/setup/x | 0.0                | mm     |
++--------------------------------------------------------+--------------------+--------+
+| 000_/measurement/instrument/sample_motor_stack/setup/y | 0.4000116247000278 | mm     |
++--------------------------------------------------------+--------------------+--------+
+| 000_/measurement/sample/experimenter/email             | decarlof@gmail.com |        |
++--------------------------------------------------------+--------------------+--------+
+
 
 .. note:: 
 	when using the **docs** option --h5-name can be also a folder, e.g. --h5-name data/ in this case all hdf files in the folder will be processed.
