@@ -35,6 +35,7 @@ View the hdf tree
 To view the data tree contained in a generic hdf file:
 
 ::
+
     $ meta tree --file-name data/base_file_name_001.h5 
 
 .. image:: docs/source/img/meta_tree.png
@@ -48,6 +49,7 @@ View the meta data
 To view the meta data contained in a in a generic hdf file:
 
 ::
+
     $ meta show --file-name data/base_file_name_001.h5 
 
 
