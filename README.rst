@@ -1,16 +1,16 @@
-====
-meta
-====
+========
+meta-cli
+========
 
-**meta** is commad-line-interface for extracting meta data from `data exchange <https://dxfile.readthedocs.io/en/latest/source/xraytomo.html/>`_ tomographic data used at the `Advanced Photon Source <https://www.aps.anl.gov/>`_  `beamlines <https://dxfile.readthedocs.io/en/latest/source/demo/doc.areadetector.html>`_.
+**meta-cli** is commad-line-interface for extracting meta data from `data exchange <https://dxfile.readthedocs.io/en/latest/source/xraytomo.html/>`_ tomographic data used at the `Advanced Photon Source <https://www.aps.anl.gov/>`_  `beamlines <https://dxfile.readthedocs.io/en/latest/source/demo/doc.areadetector.html>`_.
 
 Installation
 ============
 
 ::
 
-    $ git clone https://github.com/xray-imaging/meta.git
-    $ cd meta
+    $ git clone https://github.com/xray-imaging/meta-cli.git
+    $ cd meta-cli
     $ python setup.py install
 
 in a prepared virtualenv or as root for system-wide installation.
@@ -22,7 +22,7 @@ in a prepared virtualenv or as root for system-wide installation.
 Dependencies
 ============
 
-- `dxchange <https://github.com/data-exchange/dxchange>`_ version > 0.1.6 
+- `meta <https://github.com/xray-imaging/meta.git>`_
 - pandas => ``conda install pandas``
 - tabulate => ``conda install tabulate``
 
