@@ -87,7 +87,7 @@ The content of the generated rst file will publish in a sphinx/readthedocs docum
 
 
 .. note:: 
-	when using the **docs** option --h5-name can be also a folder, e.g. --h5-name data/ in this case all hdf files in the folder will be processed.
+	when using the **docs** option --file-name can be also a folder, e.g. --file-name data/ in this case all hdf files in the folder will be processed.
 
 
 to list of all available options::
@@ -102,7 +102,7 @@ meta parameters are stored in **meta.conf**. You can create a template with::
 
     $ meta init
 
-**meta.conf** is constantly updated to keep track of the last stored parameters, as initalized by **init** or modified by setting a new option value. For example to re-run the last meta with identical --h5-name parameters used before just use::
+**meta.conf** is constantly updated to keep track of the last stored parameters, as initalized by **init** or modified by setting a new option value. For example to re-run the last meta with identical --file-name parameters used before just use::
 
     $ meta docs
 
