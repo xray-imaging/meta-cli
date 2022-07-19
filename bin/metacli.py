@@ -78,14 +78,18 @@ def run_show(args):
 
 def run_set(args):
     tree, meta_dict = meta.read_hdf(args.file_name)
+    error = 0
     for entry in meta_dict:
         # print(type(entry))
         # print(entry)
         if args.key == entry:
             log.info("%s does match a hdf file tag" % args.key)
             utils.swap(args, entry)
-        # else:
-        #     log.error("%s does not match any hdf file tag" % args.key)
+            return
+        else:
+            error = 1
+    if error == 1:
+        log.error("%s does not match any hdf file tag" % args.key)
  
 def run_tree(args):
     tree, meta_dict = meta.read_hdf(args.file_name)
