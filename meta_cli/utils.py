@@ -191,9 +191,13 @@ def show_entry(meta_dict, entry):
 
 def swap(args, entry):
 
-    with h5py.File(args.file_name, "r+") as f:
-        data = list(f[entry])
+    if args.value is not None:
+        with h5py.File(args.file_name, "r+") as f:
+            data = list(f[entry])
+            data = f[entry]
+            log.warning("Old %s: %s" % (entry, data[0]))
+            data[0] = args.value
+            log.warning("New %s: %s" % (entry, data[0]))
 
-        print("Old %s: %s" % (entry, data))
-        print("New %s: %s" % (entry, args.value))
-
+    else:
+        log.error('Set --value to make a change to %s', entry)
