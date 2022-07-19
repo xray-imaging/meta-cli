@@ -46,7 +46,7 @@ To view the data tree contained in a generic hdf file:
 View the meta data
 ------------------
 
-To view the meta data contained in a in a generic hdf file:
+To view the meta data contained in a generic hdf file:
 
 ::
 
@@ -56,6 +56,25 @@ To view the meta data contained in a in a generic hdf file:
 .. image:: docs/source/img/meta_show.png
     :width: 40%
     :align: center
+
+View a subset meta data
+-----------------------
+
+To view a subset of the meta data contained in a generic hdf file:
+
+::
+
+    $ meta show --file-name data/base_file_name_001.h5 --key energy
+
+
+Replace an hdf entry value
+--------------------------
+
+To replace the value of an entry:
+
+ ::
+
+    $ meta set --file-name data/base_file_name_001.h5 --key /process/acquisition/rotation/rotation_start --value 10
 
 
 Meta data rst table
