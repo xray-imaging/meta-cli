@@ -8,11 +8,11 @@
 
 """
 
+import re
 import os
 import sys
 import pathlib 
 import argparse
-import numpy as np
 import meta
 
 from datetime import datetime
@@ -21,16 +21,6 @@ from meta_cli import log
 from meta_cli import config
 from meta_cli import utils
 
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
 
 def init(args):
     if not os.path.exists(str(args.config)):
@@ -50,14 +40,12 @@ def run_show(args):
         tree, meta_dict = meta.read_hdf(args.file_name)
         for entry in meta_dict:
             # print(type(entry))
-            if meta_dict[entry][1] == None or type(meta_dict[entry][0]) == str:
-                print(f'{bcolors.OKGREEN}{entry} {bcolors.OKBLUE}{meta_dict[entry][0]}{bcolors.ENDC}')
+            # print(entry)
+            if args.key == '':
+                utils.show_entry(meta_dict, entry)
             else:
-                if np.isnan(meta_dict[entry][0]):
-                    error += 1
-                    print(f'{bcolors.OKGREEN}{entry} {bcolors.FAIL}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
-                else:
-                    print(f'{bcolors.OKGREEN}{entry} {bcolors.WARNING}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
+                if args.key in entry:
+                    utils.show_entry(meta_dict, entry)
         if error > 0:
             log.error("Found %d PVs listed has having valid units but containing a NaN value. Please check the detector XML attribute file" % error)              
     elif file_path.is_dir():
@@ -76,14 +64,11 @@ def run_show(args):
                 tree, meta_dict = meta.read_hdf(args.file_name)
                 error = 0
                 for entry in meta_dict:
-                    if meta_dict[entry][1] == None or type(meta_dict[entry][0]) == str:
-                        print(f'{bcolors.OKGREEN}{entry} {bcolors.OKBLUE}{meta_dict[entry][0]}{bcolors.ENDC}')
+                    if args.key == '':
+                        utils.show_entry(meta_dict, entry)
                     else:
-                        if np.isnan(meta_dict[entry][0]):
-                            error += 1
-                            print(f'{bcolors.OKGREEN}{entry} {bcolors.FAIL}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
-                        else:
-                            print(f'{bcolors.OKGREEN}{entry} {bcolors.WARNING}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
+                        if args.key in entry:
+                            utils.show_entry(meta_dict, entry)
                 if error > 0:
                     log.error("Found %d PVs listed has having valid units but containing a NaN value. Please check the detector XML attribute file" % error)
         else:
@@ -91,6 +76,17 @@ def run_show(args):
     else:
         log.error("directory or File Name does not exist: %s" % args.file_name)
 
+def run_set(args):
+    tree, meta_dict = meta.read_hdf(args.file_name)
+    for entry in meta_dict:
+        # print(type(entry))
+        # print(entry)
+        if args.key == entry:
+            log.info("%s does match a hdf file tag" % args.key)
+            utils.swap(args, entry)
+        # else:
+        #     log.error("%s does not match any hdf file tag" % args.key)
+ 
 def run_tree(args):
     tree, meta_dict = meta.read_hdf(args.file_name)
     for entry in tree:
@@ -120,6 +116,7 @@ def main():
         ('init',        init,           (),                             "Create configuration file"),
         ('status',      status,         show_params,                    "Show meta status"),
         ('show',        run_show,       show_params,                    "Show meta data extracted from --file-name"),
+        ('set',         run_set,        show_params,                    "Set the meta data value of a defined --key extracted from --file-name"),
         ('tree',        run_tree,       show_params,                    "Show meta data tree extracted from --file-name"),
         ('docs',        run_docs,       docs_params,                    "Create in --doc-dir an rst file compatible with sphinx/readthedocs containing the DataExchange hdf file meta data"),
     ]

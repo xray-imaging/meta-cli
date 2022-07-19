@@ -44,10 +44,23 @@
 # #########################################################################
 
 import os
+import h5py
 import meta
 import datetime
+import numpy as np
 import pandas as pd
 from meta_cli import log
+
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
 
 
 def add_header(label):
@@ -165,3 +178,22 @@ def extract_dict(fname, list_to_extract, index=0):
     sub_dict = {(('%3.3d' % index) +'_' + k):v for k, v in meta_data.items() if k in list_to_extract}
 
     return sub_dict, year_month, pi_name
+
+def show_entry(meta_dict, entry):
+    if meta_dict[entry][1] == None or type(meta_dict[entry][0]) == str:
+        print(f'{bcolors.OKGREEN}{entry} {bcolors.OKBLUE}{meta_dict[entry][0]}{bcolors.ENDC}')
+    else:
+        if np.isnan(meta_dict[entry][0]):
+            error += 1
+            print(f'{bcolors.OKGREEN}{entry} {bcolors.FAIL}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
+        else:
+            print(f'{bcolors.OKGREEN}{entry} {bcolors.WARNING}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
+
+def swap(args, entry):
+
+    with h5py.File(args.file_name, "r+") as f:
+        data = list(f[entry])
+
+        print("Old %s: %s" % (entry, data))
+        print("New %s: %s" % (entry, args.value))
+

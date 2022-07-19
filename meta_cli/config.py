@@ -66,6 +66,14 @@ SECTIONS['general'] = {
         'default': True,
         'help': 'Verbose output',
         'action': 'store_true'},
+    'key': {
+        'type': str,
+        'default': '',
+        'help': "when set only tags containing key are shown"},
+    'value': {
+        'type': float,
+        'default': None,
+        'help': "value used by the set function to replace the original key entry"},
         }
 
 SECTIONS['meta'] = {
