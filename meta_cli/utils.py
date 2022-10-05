@@ -180,14 +180,17 @@ def extract_dict(fname, list_to_extract, index=0):
     return sub_dict, year_month, pi_name
 
 def show_entry(meta_dict, entry):
-    if meta_dict[entry][1] == None or type(meta_dict[entry][0]) == str:
-        print(f'{bcolors.OKGREEN}{entry} {bcolors.OKBLUE}{meta_dict[entry][0]}{bcolors.ENDC}')
+    if entry.find('exchange') != -1:
+        log.error("Found 1D array at %s" % entry)
     else:
-        if np.isnan(meta_dict[entry][0]):
-            error += 1
-            print(f'{bcolors.OKGREEN}{entry} {bcolors.FAIL}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
+        if meta_dict[entry][1] == None or type(meta_dict[entry][0]) == str:
+            print(f'{bcolors.OKGREEN}{entry} {bcolors.OKBLUE}{meta_dict[entry][0]}{bcolors.ENDC}')
         else:
-            print(f'{bcolors.OKGREEN}{entry} {bcolors.WARNING}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
+            if np.isnan(meta_dict[entry][0]):
+                error += 1
+                print(f'{bcolors.OKGREEN}{entry} {bcolors.FAIL}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
+            else:
+                print(f'{bcolors.OKGREEN}{entry} {bcolors.WARNING}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
 
 def swap(args, entry):
 
