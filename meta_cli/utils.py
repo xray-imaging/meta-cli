@@ -183,12 +183,14 @@ def show_entry(meta_dict, entry):
     if meta_dict[entry][1] == None or type(meta_dict[entry][0]) == str:
         print(f'{bcolors.OKGREEN}{entry} {bcolors.OKBLUE}{meta_dict[entry][0]}{bcolors.ENDC}')
     else:
-        if np.isnan(meta_dict[entry][0]):
-            error += 1
-            print(f'{bcolors.OKGREEN}{entry} {bcolors.FAIL}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
-        else:
-            print(f'{bcolors.OKGREEN}{entry} {bcolors.WARNING}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
-
+        try:
+            if np.isnan(meta_dict[entry][0]):
+                error += 1
+                print(f'{bcolors.OKGREEN}{entry} {bcolors.FAIL}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
+            else:
+                print(f'{bcolors.OKGREEN}{entry} {bcolors.WARNING}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
+        except ValueError:
+            log.error('One of the /exchange data array has dims (1,:,:)')
 def swap(args, entry):
 
     if args.value is not None:
