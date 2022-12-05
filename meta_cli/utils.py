@@ -180,6 +180,7 @@ def extract_dict(fname, list_to_extract, index=0):
     return sub_dict, year_month, pi_name
 
 def show_entry(meta_dict, entry):
+    error = 0
     if entry.find('exchange') != -1:
         log.error("Found 1D array at %s" % entry)
     else:
@@ -188,12 +189,14 @@ def show_entry(meta_dict, entry):
                 print(f'{bcolors.OKGREEN}{entry} {bcolors.OKBLUE}{meta_dict[entry][0]}{bcolors.ENDC}')
             else:
                 if np.isnan(meta_dict[entry][0]):
-                    error += 1
+                    error = 1
                     print(f'{bcolors.OKGREEN}{entry} {bcolors.FAIL}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
                 else:
                     print(f'{bcolors.OKGREEN}{entry} {bcolors.WARNING}{meta_dict[entry][0]} {meta_dict[entry][1]}{bcolors.ENDC}')
         except ValueError:
             log.error('One of the /exchange data array has dims (1,:,:)')
+
+    return error
 
 def swap(args, entry):
 

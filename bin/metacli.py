@@ -33,7 +33,7 @@ def status(args):
 
 def run_show(args):
 
-    error = 0
+    errors = 0
     file_path = pathlib.Path(args.file_name)
     if file_path.is_file():
         log.info("Publishing a single file: %s" % args.file_name)  
@@ -42,12 +42,12 @@ def run_show(args):
             # print(type(entry))
             # print(entry)
             if args.key == '':
-                utils.show_entry(meta_dict, entry)
+                errors += utils.show_entry(meta_dict, entry)
             else:
                 if args.key in entry:
-                    utils.show_entry(meta_dict, entry)
-        if error > 0:
-            log.error("Found %d PVs listed has having valid units but containing a NaN value. Please check the detector XML attribute file" % error)              
+                    errors += utils.show_entry(meta_dict, entry)
+        if errors > 0:
+            log.error("Found %d PVs listed has having valid units but containing a NaN value. The EPICS IOC associted with these PVs was not running during data collections." % errors)
     elif file_path.is_dir():
         log.info("publishing a multiple files in: %s" % args.file_name)
         top = os.path.join(args.file_name, '')
@@ -65,16 +65,17 @@ def run_show(args):
                 error = 0
                 for entry in meta_dict:
                     if args.key == '':
-                        utils.show_entry(meta_dict, entry)
+                        errors += utils.show_entry(meta_dict, entry)
                     else:
                         if args.key in entry:
-                            utils.show_entry(meta_dict, entry)
-                if error > 0:
-                    log.error("Found %d PVs listed has having valid units but containing a NaN value. Please check the detector XML attribute file" % error)
+                            errors += utils.show_entry(meta_dict, entry)
+                if errors > 0:
+                    log.error("Found %d PVs listed has having valid units but containing a NaN value. The EPICS IOC associted with these PVs was not running during data collections." % errors)
+
         else:
             log.error("directory %s does not contain any file" % args.file_name)
     else:
-        log.error("directory or File Name does not exist: %s" % args.file_name)
+        log.error("directory or file name does not exist: %s" % args.file_name)
 
 def run_set(args):
     tree, meta_dict = meta.read_hdf(args.file_name)
