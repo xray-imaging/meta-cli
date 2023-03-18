@@ -149,7 +149,9 @@ def extract_rst_meta(args):
 
 def extract_dict(fname, list_to_extract, index=0):
 
-    tree, meta_data = meta.read_hdf(fname)
+    mp = meta.read_meta.Hdf5MetadataReader(fname)
+    meta_data = mp.readMetadata()
+    mp.close()
 
     start_date     = '/process/acquisition/start_date'
     experimenter   = '/measurement/sample/experimenter/name'
@@ -204,9 +206,11 @@ def swap(args, entry):
         with h5py.File(args.file_name, "r+") as f:
             data = list(f[entry])
             data = f[entry]
-            log.warning("Old %s: %s" % (entry, data[0]))
-            data[0] = args.value
-            log.warning("New %s: %s" % (entry, data[0]))
-
+            if isinstance(data[0], float):
+                log.warning("Old %s: %s" % (entry, data[0]))
+                data[0] = args.value
+                log.warning("New %s: %s" % (entry, data[0]))
+            else:
+                log.error('Only floating point variable can be modified')
     else:
         log.error('Set --value to make a change to %s', entry)

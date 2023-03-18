@@ -36,11 +36,10 @@ def run_show(args):
     errors = 0
     file_path = pathlib.Path(args.file_name)
     if file_path.is_file():
-        log.info("Publishing a single file: %s" % args.file_name)  
-        tree, meta_dict = meta.read_hdf(args.file_name)
+        mp = meta.read_meta.Hdf5MetadataReader(args.file_name)
+        meta_dict = mp.readMetadata()
+        mp.close()
         for entry in meta_dict:
-            # print(type(entry))
-            # print(entry)
             if args.key == '':
                 errors += utils.show_entry(meta_dict, entry)
             else:
@@ -61,7 +60,8 @@ def run_show(args):
                 args.file_name = top + fname
                 log.warning("  *** file %d/%d;  %s" % (index, len(h5_file_list_sorted), fname))
                 index += 1
-                tree, meta_dict = meta.read_hdf(args.file_name)
+                mp = meta.read_meta.Hdf5MetadataReader(args.file_name)
+                meta_dict = mp.readMetadata()
                 error = 0
                 for entry in meta_dict:
                     if args.key == '':
@@ -78,25 +78,35 @@ def run_show(args):
         log.error("directory or file name does not exist: %s" % args.file_name)
 
 def run_set(args):
-    tree, meta_dict = meta.read_hdf(args.file_name)
-    error = 0
-    for entry in meta_dict:
-        # print(type(entry))
-        # print(entry)
-        if args.key == entry:
-            log.info("%s does match a hdf file tag" % args.key)
-            utils.swap(args, entry)
-            return
-        else:
-            error = 1
-    if error == 1:
-        log.error("%s does not match any hdf file tag" % args.key)
+
+    file_path = pathlib.Path(args.file_name)
+    if file_path.is_file():
+        mp = meta.read_meta.Hdf5MetadataReader(args.file_name)
+        meta_dict = mp.readMetadata()
+        mp.close()
+
+        error = 0
+        for entry in meta_dict:
+            # print(type(entry))
+            # print(entry)
+            if args.key == entry:
+                log.info("%s does match a hdf file tag" % args.key)
+                utils.swap(args, entry)
+                return
+            else:
+                error = 1
+        if error == 1:
+            log.error("%s does not match any hdf file tag" % args.key)
+    else:
+        log.error("file %s does not exist" % args.file_name)
+
+
+
  
 def run_tree(args):
-    tree, meta_dict = meta.read_hdf(args.file_name)
+    tree = meta.get_hdf_tree(args.file_name, display=False)
     for entry in tree:
-        # log.info(entry)
-        print(entry)
+        log.info(entry)
 
 def run_docs(args):
     utils.create_rst_file(args)
