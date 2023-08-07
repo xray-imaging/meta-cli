@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<project>
+	<additional_project_info>
+		<property name="Operator" description="Current operator name." type="5" value="Goetz, Freya" visible="1" />
+		<property name="Researcher" description="Primary researcher for this sample name." type="5" value="" visible="1" />
+		<property name="NMNH PI" description="Smithsonian permenant staff member responsible for appointment or data." type="5" value="Osborn, Karen" visible="1" />
+		<property name="Department" description="Referring Department." type="5" value="Invertebrate Zoology" visible="1">
+			<option name="UNDEFINED" value="UNDEFINED" />
+			<option name="Anthropology" value="Anthropology" />
+			<option name="Botany" value="Botany" />
+			<option name="Entomology" value="Entomology" />
+			<option name="Invertebrate Zoology" value="Invertebrate Zoology" />
+			<option name="Mineral Sciences" value="Mineral Sciences" />
+			<option name="Paleobiology" value="Paleobiology" />
+			<option name="Vertebrate Zoology" value="Vertebrate Zoology" />
+			<option name="Education" value="Education" />
+			<option name="Exhibitions" value="Exhibitions" />
+			<option name="Conservation" value="Conservation" />
+			<option name="Tenant Orginization" value="Tenant Orginization" />
+			<option name="Other SI Unit" value="Other SI Unit" />
+			<option name="Non-SI Organization" value="Non-SI Organization" />
+		</property>
+		<property name="Project Name" description="Name of the project sample belongs to." type="5" value="" visible="1" />
+		<property name="Project Number" description="Assigned project number." type="5" value="2300187" visible="1" />
+		<property name="Sample ID" description="ID of the item to be scanned." type="5" value="USNM1615671" visible="1" />
+		<property name="Description" description="Sample Description." type="5" value="PTA + EtOH" visible="1" />
+		<property name="Sample Name" description="Object name of the item to be scanned." type="5" value="Thysanopoda, aequalis" visible="1" />
+		<property name="Sample Type" description="What type of material is this." type="5" value="" visible="1" />
+	</additional_project_info>
+</project>
