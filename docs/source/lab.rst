@@ -22,4 +22,4 @@ skyscan 1272 instruments generated the following meta-data files:
     #. DRP_P21_3~01.log    
     #. DRP_P21_3~00.oog    
     #. DRP_P21_3~01.oog
-    #. In the DRP_P21_3_Rec foilder: DRP_P21_3_rec.log       
+    #. In the DRP_P21_3_Rec folder: DRP_P21_3_rec.log       
