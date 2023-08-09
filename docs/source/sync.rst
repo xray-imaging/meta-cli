@@ -8,7 +8,7 @@ APS
 
 At the Advanced Photon Source (APS) experimental meta-data are stored in the HDF file together with the raw data. 
 
-Meta-data are saved automatically for each scan by reading the beamline configuration (motor positions) of all beamline components, this includes lens, scintillator, energy, sample to detector distance, etc. Other parameters, like user and proposal information, are collected by automatically accessing the APS user proposal data base. Tomography scan parameters are automatically added by the `tomoScan engine <https://tomoscan.readthedocs.io/en/latest/>`_
+Meta-data are saved automatically for each scan by reading the beamline configuration (motor positions) of all beamline components, this includes lens, scintillator, energy, sample to detector distance, etc. Other parameters, like user and proposal information, are collected by automatically accessing the APS user proposal data base. Tomography scan parameters are automatically added by the `tomoScan engine <https://tomoscan.readthedocs.io/en/latest/>`_.
 
 The full and up-to-date list of meta-data stored at the APS tomography beamlines is available at `DXfile <https://dxfile.readthedocs.io/en/latest/source/demo/doc.areadetector.html>`_. 
 A python script to extract as a text file the APS meta-data from the raw data HDF file is available at `meta cli <https://github.com/xray-imaging/meta-cli>`_.
@@ -16,7 +16,7 @@ A python script to extract as a text file the APS meta-data from the raw data HD
 The APS meta-data also include all parameters required to complete a tomographic reconstruction including sample to detector distance, x-ray energy, pixel size, etc.; 
 these parameters are extracted automatically and used by the beamline reconstruction software `tomoPy <https://tomopy.readthedocs.io/en/stable/>`_ and `tomocuPy <https://tomocupy.readthedocs.io/en/latest/index.html>`_ . 
 
-Additionally, all reconstruction parameters like the center of rotation, the ring removal filter used as well as the version of the software used are stored in the HDF file. This guarantees full data collection and data analysis pipe-line repeatability. 
+Additionally, when using `tomopy cli <https://tomopycli.readthedocs.io/en/latest/>`_, all reconstruction parameters like the center of rotation, the ring removal filter used as well as the version of the software used are stored in the HDF file. This guarantees full data collection and data analysis pipe-line repeatability. 
 
 
 Beamline 2-BM μCT
