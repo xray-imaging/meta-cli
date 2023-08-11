@@ -8,7 +8,7 @@ GE Phoenix
 
 GE Phoenix instruments generates the following meta-data files:
 
-    #. :download:`sample_name.dtxml <demo/ge/FEG230530_409-run-files/FEG230530_409.dtxml>` 
+    #. :download:`sample_name.dtxml <../demo/ge/FEG230530_409-run-files/FEG230530_409.dtxml>` 
 
 +-----------------------+-----------------------+
 | Operator              |  Goetz, Freya         |
@@ -32,7 +32,7 @@ GE Phoenix instruments generates the following meta-data files:
 | Sample Type           |                       |
 +-----------------------+-----------------------+
 
-    #. :download:`sample_name.pca <demo/ge/FEG230530_409-run-files/FEG230530_409.pca>` 
+    #. :download:`sample_name.pca <../demo/ge/FEG230530_409-run-files/FEG230530_409.pca>` 
 
 
 [General]
@@ -451,7 +451,7 @@ GE Phoenix instruments generates the following meta-data files:
 | BHC_Param             |   2     |
 +-----------------------+---------+
 
-    #. :download:`sample_name.pcj <demo/ge/FEG230530_409-run-files/FEG230530_409.pcj>` 
+    #. :download:`sample_name.pcj <../demo/ge/FEG230530_409-run-files/FEG230530_409.pcj>` 
 
 [Info]
 
@@ -482,7 +482,7 @@ GE Phoenix instruments generates the following meta-data files:
 +---------+-------------+-------------+--------------+-------------+-------------+----------+----------+-----------+------------+
 
 
-    #. :download:`sample_name.pcp <demo/ge/FEG230530_409-run-files/FEG230530_409.pcp>` 
+    #. :download:`sample_name.pcp <../demo/ge/FEG230530_409-run-files/FEG230530_409.pcp>` 
 
 datos|x 2 acquisition 2.4.0
 
@@ -499,7 +499,7 @@ datos|x 2 acquisition 2.4.0
 +---------+-------------+------------+--------------+-------------+-------------+----------+--------------+-------------------------+
 
 
-    #. :download:`sample_name.pcr <demo/ge/FEG230530_409-run-files/FEG230530_409.pcr>` 
+    #. :download:`sample_name.pcr <../demo/ge/FEG230530_409-run-files/FEG230530_409.pcr>` 
 
 [Versions]
 
@@ -716,7 +716,7 @@ SkyScan 1272
 
 skyscan 1272 instruments generates the following meta-data files:
 
-    #. :download:`sample_name.log <demo/skyscan_1272/DRP_P21_3/DRP_P21_3.log>` 
+    #. :download:`sample_name.log <../demo/skyscan_1272/DRP_P21_3/DRP_P21_3.log>` 
 
 [System]
 
@@ -967,7 +967,7 @@ skyscan 1272 instruments generates the following meta-data files:
 | Cone-beam Angle Vert.(deg)                          |     5.060536                                    |
 +-----------------------------------------------------+-------------------------------------------------+
 
-    #. :download:`sample_name~00.log <demo/skyscan_1272/DRP_P21_3/DRP_P21_3~00.log>` 
+    #. :download:`sample_name~00.log <../demo/skyscan_1272/DRP_P21_3/DRP_P21_3~00.log>` 
 
 
 [System]
@@ -1102,7 +1102,7 @@ skyscan 1272 instruments generates the following meta-data files:
 +-----------------------------------------+-------------------+
 
 
-    #. :download:`sample_name~01.log <demo/skyscan_1272/DRP_P21_3/DRP_P21_3~01.log>` 
+    #. :download:`sample_name~01.log <../demo/skyscan_1272/DRP_P21_3/DRP_P21_3~01.log>` 
 
 [System]
 
@@ -1238,7 +1238,7 @@ skyscan 1272 instruments generates the following meta-data files:
 | Pseudo-parallel projection calculated       |         1                              |
 +---------------------------------------------+----------------------------------------+
 
-    #. :download:`sample_name~00.oog <demo/skyscan_1272/DRP_P21_3/DRP_P21_3~00.oog>` 
+    #. :download:`sample_name~00.oog <../demo/skyscan_1272/DRP_P21_3/DRP_P21_3~00.oog>` 
   
 [System]
 
@@ -1363,7 +1363,7 @@ skyscan 1272 instruments generates the following meta-data files:
 | Scan duration                         | 0h:0m:50s                     | 
 +---------------------------------------+-------------------------------+
 
-    #. :download:`sample_name~01.oog <demo/skyscan_1272/DRP_P21_3/DRP_P21_3~01.oog>` 
+    #. :download:`sample_name~01.oog <../demo/skyscan_1272/DRP_P21_3/DRP_P21_3~01.oog>` 
 
 
 [System]
@@ -1488,7 +1488,7 @@ skyscan 1272 instruments generates the following meta-data files:
 | Scan duration                         |  0h:0m:50s                    |
 +---------------------------------------+-------------------------------+
 
-    #. :download:`sample_name_Rec\\sample_name_rec.log <demo/skyscan_1272/DRP_P21_3/DRP_P21_3_Rec/DRP_P21_3_rec.log>` 
+    #. :download:`sample_name_Rec\\sample_name_rec.log <../demo/skyscan_1272/DRP_P21_3/DRP_P21_3_Rec/DRP_P21_3_rec.log>` 
      
 [System]
 

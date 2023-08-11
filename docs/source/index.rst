@@ -7,5 +7,4 @@ Content
    about
    install
    usage
-   lab
-   sync
+   tomometa
