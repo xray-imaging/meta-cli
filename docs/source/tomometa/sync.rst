@@ -787,6 +787,8 @@ ESRF
 ----
 
 European Synchrotron Radiation Facility (ESRF) uses `NeXus <https://www.nexusformat.org/>`_ NXTomo definition to store data and meta-data in a HDF file.
+The raw data file collected at the beamline are converted in a NeXus file using `nxtomomill <https://gitlab.esrf.fr/tomotools/nxtomomill>`_.
+Below is the output of nxtomomill version a3173f887d97ede9b4947bc984d34b913a7cc255.
 
 +-------------------------------------------------------------+---------------------------------------------------------+------------+
 |  Meta data name                                             |    Value                                                | Units      |
