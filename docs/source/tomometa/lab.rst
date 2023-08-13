@@ -1764,6 +1764,9 @@ skyscan 1272 instruments generates the following meta-data files:
 Sigray
 ------
 
+Sigray instrument generates HDF files.
+A meta-data reader is available at `hdf reder <https://dxchange.readthedocs.io/en/latest/source/api/dxchange.reader.html#dxchange.reader.read_hdf_meta>`_
+
 +----------------------------------------------------------------------------+-------------------------+------------+------------+
 |  Meta data name                                                            |    Value                | Units      |  dimention |
 +----------------------------------------------------------------------------+-------------------------+------------+------------+
@@ -1913,6 +1916,9 @@ Sigray
 
 Zeiss
 -----
+
+Zeiss Xradia instrument use a proprietary xrm/txrm data and meta data format. A python reader is avaialble at `DXChange <https://dxchange.readthedocs.io/en/latest/source/api/dxchange.reader.html#dxchange.reader.read_txrm>`_ .
+
 
 .. image:: ../img/meta_zeiss.png
     :width: 40%

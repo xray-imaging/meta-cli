@@ -8,6 +8,8 @@ APS
 
 At the Advanced Photon Source (APS) experimental meta-data are stored in the HDF file together with the raw data. 
 
+A meta-data reader is available at `hdf reder <https://dxchange.readthedocs.io/en/latest/source/api/dxchange.reader.html#dxchange.reader.read_hdf_meta>`_
+
 Meta-data are saved automatically for each scan by reading the beamline configuration (motor positions) of all beamline components, this includes lens, scintillator, energy, sample to detector distance, etc. Other parameters, like user and proposal information, are collected by automatically accessing the APS user proposal data base. Tomography scan parameters are automatically added by the `tomoScan engine <https://tomoscan.readthedocs.io/en/latest/>`_.
 
 The full and up-to-date list of meta-data stored at the APS tomography beamlines is available at `DXfile <https://dxfile.readthedocs.io/en/latest/source/demo/doc.areadetector.html>`_. 
@@ -23,6 +25,8 @@ Beamline 2-BM μCT
 ~~~~~~~~~~~~~~~~~
 
 The full and up-to-date list of meta-data stored at the APS beamline 2-BM is available at `DXfile <https://dxfile.readthedocs.io/en/latest/source/demo/doc.areadetector.html>`_. 
+A meta-data reader is available at `hdf reder <https://dxchange.readthedocs.io/en/latest/source/api/dxchange.reader.html#dxchange.reader.read_hdf_meta>`_
+
 
 
 +----------------------------------------------------------------------------------+---------------------------------------------------------------------------------+-----------------+
@@ -329,12 +333,14 @@ Beamline 7-BM μCT
 ~~~~~~~~~~~~~~~~~
 
 The full and up-to-date list of meta-data stored at the APS beamline 7-BM is available at `DXfile <https://dxfile.readthedocs.io/en/latest/source/demo/doc.areadetector.html>`_. 
+A meta-data reader is available at `hdf reder <https://dxchange.readthedocs.io/en/latest/source/api/dxchange.reader.html#dxchange.reader.read_hdf_meta>`_
 
 
 Beamline 32-ID nanoCT
 ~~~~~~~~~~~~~~~~~~~~~
 
 The full and up-to-date list of meta-data stored at the APS beamline 32-ID is available at `DXfile <https://dxfile.readthedocs.io/en/latest/source/demo/doc.areadetector.html>`_. 
+A meta-data reader is available at `hdf reder <https://dxchange.readthedocs.io/en/latest/source/api/dxchange.reader.html#dxchange.reader.read_hdf_meta>`_
 
 
 +----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------+---------------------+
@@ -740,7 +746,8 @@ The full and up-to-date list of meta-data stored at the APS beamline 32-ID is av
 NSLS-II
 -------
 
-National Synchrotron Light Source II (NSLS-II)
+The National Synchrotron Light Source II (NSLS-II) nano tomography instrument generates HDF files.
+A meta-data reader is available at `hdf reder <https://dxchange.readthedocs.io/en/latest/source/api/dxchange.reader.html#dxchange.reader.read_hdf_meta>`_
 
 +-------------------------+---------------------------------------------+-------+
 |  Meta data name         | Value                                       | Units |
@@ -789,6 +796,7 @@ ESRF
 European Synchrotron Radiation Facility (ESRF) uses `NeXus <https://www.nexusformat.org/>`_ NXTomo definition to store data and meta-data in a HDF file.
 The raw data file collected at the beamline are converted in a NeXus file using `nxtomomill <https://gitlab.esrf.fr/tomotools/nxtomomill>`_.
 Below is the output of nxtomomill version a3173f887d97ede9b4947bc984d34b913a7cc255.
+A meta-data reader is available at `hdf reder <https://dxchange.readthedocs.io/en/latest/source/api/dxchange.reader.html#dxchange.reader.read_hdf_meta>`_
 
 +-------------------------------------------------------------+---------------------------------------------------------+------------+
 |  Meta data name                                             |    Value                                                | Units      |
@@ -832,6 +840,7 @@ DESY
 ----
 
 Deutsches Elektronen-Synchrotron (DESY) uses `NeXus <https://www.nexusformat.org/>`_ NXTomo definition to store data and meta-data in a HDF file.
+A meta-data reader is available at `hdf reder <https://dxchange.readthedocs.io/en/latest/source/api/dxchange.reader.html#dxchange.reader.read_hdf_meta>`_
 
 
 +---------------------------------------------+-------------------------+-------+
@@ -974,6 +983,7 @@ Diamond
 -------
 
 Diamond Light Source uses `NeXus <https://www.nexusformat.org/>`_ NXTomo definition to store data and meta-data in a HDF file.
+A meta-data reader is available at `hdf reder <https://dxchange.readthedocs.io/en/latest/source/api/dxchange.reader.html#dxchange.reader.read_hdf_meta>`_
 
 +------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |  Meta data name                                                        | Value                                                                                                                                                                                                                                                                                                                                                       |
