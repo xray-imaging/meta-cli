@@ -792,7 +792,7 @@ nanoTomo scalar meta data
 |  z_ini                  | -615.0000000000001                          |       |
 +-------------------------+---------------------------------------------+-------+
 
-nanoTOmo full layout
+nanoTomo full layout
 ~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: text
