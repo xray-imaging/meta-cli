@@ -711,10 +711,10 @@ datos|x 2 acquisition 2.4.0
 |   DetectorMaskUsed        |   0         |
 +---------------------------+-------------+
 
-SkyScan 1272
-------------
+Bruker SkyScan 1272
+-------------------
 
-skyscan 1272 instruments generates the following meta-data files:
+Bruker SkyScan 1272 instruments generates the following meta-data files:
 
     #. :download:`sample_name.log <../demo/skyscan_1272/DRP_P21_3/DRP_P21_3.log>` 
 
@@ -1768,7 +1768,7 @@ Sigray instrument generates HDF files.
 A meta-data reader is available at `hdf reder <https://dxchange.readthedocs.io/en/latest/source/api/dxchange.reader.html#dxchange.reader.read_hdf_meta>`_
 
 +----------------------------------------------------------------------------+-------------------------+------------+------------+
-|  Meta data name                                                            |    Value                | Units      |  dimention |
+|  Meta data name                                                            |    Value                | Units      |  dimension |
 +----------------------------------------------------------------------------+-------------------------+------------+------------+
 | /measurement/instrument/detector/binning_x                                 |   1                     |            |  (2401,)   |
 +----------------------------------------------------------------------------+-------------------------+------------+------------+
