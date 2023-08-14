@@ -1767,6 +1767,9 @@ Sigray
 Sigray instrument generates HDF files.
 A meta-data reader is available at `hdf reder <https://dxchange.readthedocs.io/en/latest/source/api/dxchange.reader.html#dxchange.reader.read_hdf_meta>`_
 
+meta-data
+~~~~~~~~~
+
 +----------------------------------------------------------------------------+-------------------------+------------+------------+
 |  Meta data name                                                            |    Value                | Units      |  dimension |
 +----------------------------------------------------------------------------+-------------------------+------------+------------+
@@ -1912,7 +1915,132 @@ A meta-data reader is available at `hdf reder <https://dxchange.readthedocs.io/e
 +----------------------------------------------------------------------------+-------------------------+------------+------------+
 | /process/name                                                              |   absorption_tomography |            |  (1,)      |
 +----------------------------------------------------------------------------+-------------------------+------------+------------+       
-       
+
+layout
+~~~~~~
+
+.. code-block:: text
+
+    │
+    ├── exchange
+    │   │
+    │   ├── data (1901, 1152, 1470)
+    │   ├── data_dark (1152, 1470)
+    │   ├── data_white (1152, 1470)
+    │   └── theta (1901,)
+    ├── implements ()
+    ├── measurement
+    │   └── instrument
+    │       │
+    │       ├── detector
+    │       │   │
+    │       │   ├── binning_x (2401,)
+    │       │   ├── binning_y (2401,)
+    │       │   ├── dimension_x (2401,)
+    │       │   ├── dimension_y (2401,)
+    │       │   ├── exposure_time (2401,)
+    │       │   ├── manufacturer (2401,)
+    │       │   ├── name (1,)
+    │       │   ├── objective_magnification (1,)
+    │       │   ├── operating_temperature (2401,)
+    │       │   ├── output_data (1,)
+    │       │   ├── physical_pixel_size (1,)
+    │       │   ├── pixel_size_x ()
+    │       │   ├── pixel_size_y ()
+    │       │   ├── setup
+    │       │   │   │
+    │       │   │   ├── andor_y (2401,)
+    │       │   │   ├── andor_z (2401,)
+    │       │   │   ├── detector_x (2401,)
+    │       │   │   ├── detector_z (2401,)
+    │       │   │   ├── focus_x (2401,)
+    │       │   │   ├── focus_y (2401,)
+    │       │   │   └── shadobox_y (2401,)
+    │       │   └── translation
+    │       │       └── geometry
+    │       │           │
+    │       │           ├── andor_y_offset (2401,)
+    │       │           ├── andor_z_offset (2401,)
+    │       │           ├── detector_x_offset (2401,)
+    │       │           ├── detector_z_offset (2401,)
+    │       │           ├── focus_x_offset (2401,)
+    │       │           ├── focus_y_offset (2401,)
+    │       │           └── shadobox_y_offset (2401,)
+    │       ├── grid
+    │       │   │
+    │       │   ├── name (1,)
+    │       │   ├── setup
+    │       │   │   │
+    │       │   │   ├── grid1_pitch (2401,)
+    │       │   │   ├── grid1_roll (2401,)
+    │       │   │   ├── grid1_x (2401,)
+    │       │   │   ├── grid1_y (2401,)
+    │       │   │   ├── grid1_yaw (2401,)
+    │       │   │   ├── grid1_z (2401,)
+    │       │   │   ├── grid2_pitch (2401,)
+    │       │   │   ├── grid2_roll (2401,)
+    │       │   │   ├── grid2_x (2401,)
+    │       │   │   ├── grid2_y (2401,)
+    │       │   │   ├── grid2_yaw (2401,)
+    │       │   │   └── grid2_z (2401,)
+    │       │   └── translation
+    │       │       └── geometry
+    │       │           │
+    │       │           ├── grid1_pitch_offset (2401,)
+    │       │           ├── grid1_roll_offset (2401,)
+    │       │           ├── grid1_x_offset (2401,)
+    │       │           ├── grid1_y_offset (2401,)
+    │       │           ├── grid1_yaw_offset (2401,)
+    │       │           ├── grid1_z_offset (2401,)
+    │       │           ├── grid2_pitch_offset (2401,)
+    │       │           ├── grid2_roll_offset (2401,)
+    │       │           ├── grid2_x_offset (2401,)
+    │       │           ├── grid2_y_offset (2401,)
+    │       │           ├── grid2_yaw_offset (2401,)
+    │       │           └── grid2_z_offset (2401,)
+    │       ├── sample
+    │       │   │
+    │       │   ├── name (1,)
+    │       │   ├── setup
+    │       │   │   │
+    │       │   │   ├── sample_theta (2401,)
+    │       │   │   ├── sample_x (2401,)
+    │       │   │   ├── sample_y (2401,)
+    │       │   │   └── sample_z (2401,)
+    │       │   └── translation
+    │       │       └── geometry
+    │       │           │
+    │       │           ├── sample_theta_offset (2401,)
+    │       │           ├── sample_x_offset (2401,)
+    │       │           ├── sample_y_offset (2401,)
+    │       │           └── sample_z_offset (2401,)
+    │       └── source
+    │           │
+    │           ├── name (1,)
+    │           ├── setup
+    │           │   │
+    │           │   ├── source_x (2401,)
+    │           │   └── source_z (2401,)
+    │           └── translation
+    │               └── geometry
+    │                   │
+    │                   ├── source_x_offset (2401,)
+    │                   └── source_z_offset (2401,)
+    └── process
+        │
+        ├── acquisition
+        │   │
+        │   ├── image_exposure_time (2401,)
+        │   ├── image_is_complete (2401,)
+        │   ├── image_theta (2401,)
+        │   └── setup
+        │       │
+        │       ├── angular_step (2401,)
+        │       ├── number_of_projections (2401,)
+        │       ├── rotation_end_angle (2401,)
+        │       └── rotation_start_angle (2401,)
+        └── name (1,)
+
 
 Zeiss
 -----
