@@ -5,6 +5,5 @@ Content
    :maxdepth: 2
 
    about
-   install
-   usage
+   api
    tomometa

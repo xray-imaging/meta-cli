@@ -20,7 +20,7 @@ import os
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 # sys.path.insert(0, os.path.abspath('..'))
-sys.path.insert(0, os.path.abspath('../../meta_cli'))
+sys.path.insert(0, os.path.abspath('../../src'))
 
 # -- General configuration ------------------------------------------------
 
@@ -74,7 +74,7 @@ master_doc = 'index'
 
 # General information about the project.
 Affiliation = u'Argonne National Laboratory'
-project = u'meta-cli'
+project = u'tomo-meta'
 copyright = u'2022, ' + Affiliation
 
 # The version info for the project you're documenting, acts as replacement for
@@ -288,7 +288,7 @@ texinfo_documents = [
   project+u' Documentation',
   Affiliation, 
   project, 
-  'tomocupy'),
+  'tomo-meta'),
 ]
 
 # Documents to append as an appendix to all manuals.
@@ -306,7 +306,7 @@ texinfo_documents = [
 # -- Options for Texinfo output -------------------------------------------
 # http://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html#confval-autodoc_mock_imports
 
-# autodoc_mock_imports = [
+autodoc_mock_imports = [
 #     'argparse',
 #     'builtins',
 #     'copy',
@@ -316,15 +316,15 @@ texinfo_documents = [
 #     'cv2',
 #     'cupy',
 #     'cupyx',
-#     'h5py',
-#     'inspect',
+    'h5py',
+    'meta',
 #     'logging',
-#     'numexpr',
-#     'numpy',
+    # 'meta_cli',
+    'numpy',
 #     'os',
-#     'pathlib',
-#     'pywt',
-#     'queue',
+    'pandas',
+    'xmltodict',
+    'openpyxl',
 #     'signal',
 #     'shutil',
 #     'sys',
@@ -339,5 +339,6 @@ texinfo_documents = [
 #     'tomocupy.cfunc_filter',
 #     'tomocupy.cfunc_filterfp16',    
 #     'tomocupy.cfunc_linerec',    
-#     'tomocupy.cfunc_linerecfp16',]
+#     'tomocupy.cfunc_linerecfp16',
+]
 
