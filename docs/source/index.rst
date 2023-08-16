@@ -5,5 +5,5 @@ Content
    :maxdepth: 2
 
    about
-   api
    tomometa
+   api
