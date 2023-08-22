@@ -136,7 +136,7 @@ meta parameters are stored in **meta.conf**. You can create a template with::
 GE Phoenix v|tome|x m µCT
 =========================
 
-The GE Phoenix v|tome|x m µCT instruments generates .pca, .dtxml, .pcj and .pcp files. An example is available at :ref:`GE files`.
+The GE Phoenix v|tome|x m µCT instruments generates .pca, .dtxml, .pcj and .pcp files. An example is available at :ref:`GE`.
 
 Code
 ----
@@ -205,5 +205,5 @@ Zeiss Xradia instrument use a proprietary xrm/txrm data and meta data format. A 
 Bruker SkyScan 1272
 ===================
 
-The Bruker SkyScan 1272 instruments generates .log and .oog files. An example is available at :ref:`Bruker files`.
+The Bruker SkyScan 1272 instruments generates .log and .oog files. An example is available at :ref:`Bruker`.
 

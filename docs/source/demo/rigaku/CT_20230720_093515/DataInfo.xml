@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<CtAllInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SampleInfo>
+    <Id>4</Id>
+    <SampleId>000000000014</SampleId>
+    <SampleName1>PB-AWC</SampleName1>
+    <SampleName2 />
+    <SampleName3 />
+    <BirthDate>2023-07-19T00:00:00</BirthDate>
+    <Sex>None</Sex>
+    <Weight>0</Weight>
+    <SampleComment />
+    <SampleCreateDate>2023-07-19T15:33:50.027</SampleCreateDate>
+    <SampleUpdatedDate>2023-07-19T15:33:49.986</SampleUpdatedDate>
+  </SampleInfo>
+  <StudyInfo>
+    <Id>5</Id>
+    <Study>20230719</Study>
+    <StudyComment />
+    <StudyCreateDate>2023-07-19T15:33:56.407</StudyCreateDate>
+    <StudyUpdatedDate>2023-07-19T15:33:56.355</StudyUpdatedDate>
+    <SampleId>4</SampleId>
+  </StudyInfo>
+  <SeriesInfo>
+    <Id>36</Id>
+    <Series>093515</Series>
+    <VolumeFileName>CT_20230720_093515.VOX</VolumeFileName>
+    <SeriesComment />
+    <SeriesCreateDate>2023-07-20T09:35:15.864</SeriesCreateDate>
+    <SeriesUpdatedDate>2023-07-20T09:35:15.865</SeriesUpdatedDate>
+    <KV>50</KV>
+    <UA>280</UA>
+    <FOV>15</FOV>
+    <VoxelSize>14.9</VoxelSize>
+    <ScanMode>High Resolution</ScanMode>
+    <ScanTime>68min</ScanTime>
+    <Filter3D>0</Filter3D>
+    <StudyId>5</StudyId>
+    <BodyPosition>0</BodyPosition>
+    <ContrastAgent>-</ContrastAgent>
+    <EquipmentType>-1</EquipmentType>
+    <XrayFilter>None</XrayFilter>
+    <Geometry>Long</Geometry>
+    <ScanType>0</ScanType>
+    <ExposureTime>-1</ExposureTime>
+    <IntegrationTimes>-1</IntegrationTimes>
+    <TotalView>-1</TotalView>
+    <StitchCount>1</StitchCount>
+    <ReconSizeFlg>1</ReconSizeFlg>
+    <StitchingJobFlg>0</StitchingJobFlg>
+    <StitchingJobScanNo>-1</StitchingJobScanNo>
+    <StitchingJobScanCount>-1</StitchingJobScanCount>
+    <StitchingRawPath />
+    <StitchingVoxPath />
+    <ZPos>5.86</ZPos>
+    <DyStOptMaxErr>-1</DyStOptMaxErr>
+    <DyStOptNStacks>-1</DyStOptNStacks>
+    <DyStOptBigSig>-1</DyStOptBigSig>
+    <XPos>0</XPos>
+    <YPos>0</YPos>
+    <Focus>Long</Focus>
+  </SeriesInfo>
+</CtAllInfo>
