@@ -12,7 +12,7 @@ UCL File
 
 Univesity College London Edge Illumination instruments generates the following meta-data files:
 
-    #. :download:`sample_name.dtxml <../demo/ucl/scan_parameters.txt>` 
+    #. :download:`scan_parameters.txt <../demo/ucl/scan_parameters.txt>` 
 
 
 [System]
