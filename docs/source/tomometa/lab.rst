@@ -10,7 +10,7 @@ Bruker
 
 Bruker SkyScan 1272 instruments generates the following meta-data files:
 
-    #. :download:`sample_name.log <../demo/skyscan_1272/DRP_P21_3/DRP_P21_3.log>` 
+    #. :download:`sample_name.log <../demo/bruker/DRP_P21_3/DRP_P21_3.log>` 
 
 
 meta-data
@@ -266,7 +266,7 @@ meta-data
 | Cone-beam Angle Vert.(deg)                          |     5.060536                                    |
 +-----------------------------------------------------+-------------------------------------------------+
 
-    #. :download:`sample_name~00.log <../demo/skyscan_1272/DRP_P21_3/DRP_P21_3~00.log>` 
+    #. :download:`sample_name~00.log <../demo/bruker/DRP_P21_3/DRP_P21_3~00.log>` 
 
 
 [System]
@@ -401,7 +401,7 @@ meta-data
 +-----------------------------------------+-------------------+
 
 
-    #. :download:`sample_name~01.log <../demo/skyscan_1272/DRP_P21_3/DRP_P21_3~01.log>` 
+    #. :download:`sample_name~01.log <../demo/bruker/DRP_P21_3/DRP_P21_3~01.log>` 
 
 [System]
 
@@ -537,7 +537,7 @@ meta-data
 | Pseudo-parallel projection calculated       |         1                              |
 +---------------------------------------------+----------------------------------------+
 
-    #. :download:`sample_name~00.oog <../demo/skyscan_1272/DRP_P21_3/DRP_P21_3~00.oog>` 
+    #. :download:`sample_name~00.oog <../demo/bruker/DRP_P21_3/DRP_P21_3~00.oog>` 
   
 [System]
 
@@ -662,7 +662,7 @@ meta-data
 | Scan duration                         | 0h:0m:50s                     | 
 +---------------------------------------+-------------------------------+
 
-    #. :download:`sample_name~01.oog <../demo/skyscan_1272/DRP_P21_3/DRP_P21_3~01.oog>` 
+    #. :download:`sample_name~01.oog <../demo/bruker/DRP_P21_3/DRP_P21_3~01.oog>` 
 
 
 [System]
@@ -787,7 +787,7 @@ meta-data
 | Scan duration                         |  0h:0m:50s                    |
 +---------------------------------------+-------------------------------+
 
-    #. :download:`sample_name_Rec\\sample_name_rec.log <../demo/skyscan_1272/DRP_P21_3/DRP_P21_3_Rec/DRP_P21_3_rec.log>` 
+    #. :download:`sample_name_Rec\\sample_name_rec.log <../demo/bruker/DRP_P21_3/DRP_P21_3_Rec/DRP_P21_3_rec.log>` 
      
 [System]
 
