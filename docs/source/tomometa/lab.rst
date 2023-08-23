@@ -2082,6 +2082,31 @@ layout
         │       └── rotation_start_angle (2401,)
         └── name (1,)
 
+
+.. _Tescan:
+
+Tescan
+------
+
+
+Tescan instrument generates the following meta-data file:
+
+in the raw data directory:
+
+    #. :download:`script_executed.txt <../demo/tescan/script_executed.txt>` 
+    #. :download:`script.txt <../demo/tescan/script.txt>` 
+    #. :download:`scan settings.txt <../demo/tescan/scan settings.txt>` 
+    #. :download:`data settings XRE.txt <../demo/tescan/data settings XRE.txt>` 
+    #. :download:`data set settings.ini <../demo/tescan/data set settings.ini>` 
+    #. :download:`Acquisition settings XRE.txt <../demo/tescan/Acquisition settings XRE.txt>` 
+
+recon folder:
+
+    #. :download:`reconreport.html <../demo/tescan/recon/reconreport.html>` 
+    #. :download:`geometry recon.txt <../demo/tescan/recon/geometry recon.txt>` 
+    #. :download:`data settings xre recon.txt <../demo/tescan/recon/data settings xre recon.txt>` 
+
+
 .. _UCL:
 
 UCL
