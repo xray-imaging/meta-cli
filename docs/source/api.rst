@@ -205,5 +205,5 @@ Zeiss Xradia instrument use a proprietary xrm/txrm data and meta data format. A 
 Bruker SkyScan 1272
 ===================
 
-The Bruker SkyScan 1272 instruments generates .log and .oog files. An example is available at :ref:`Bruker`.
+The Bruker SkyScan 1272 instruments generates .log files for data collection and data analysis. An example is available at :ref:`Bruker`.
 
