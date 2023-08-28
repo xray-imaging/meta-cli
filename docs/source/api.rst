@@ -186,10 +186,106 @@ If **master.xlsx** already exists it will append a new meta data row to the exis
 
 will append to the Sheet1 of master.xlsx the meta data for all samples listed above
 
+Scanco
+======
+
+Scanco instruments save data and the meta-data an ISQ file. To extract the meta-data you can use the code example below
+
+Code
+----
 
 .. toctree::
 
-   api/readers.ge
+   api/readers.scanco
+
+
+Dependencies
+------------
+
+Create a new conda environment::
+
+        conda create --name nocturn python=3.9
+
+and activate the new environment with::
+
+        conda activate nocturn
+
+then install the following packages::
+
+        conda install json
+        conda install pathlib
+        pip install itk-ioscanco
+
+
+Run
+---
+
+::
+
+        conda activate nocturn
+        python scanco.py /nocturn/data/scanco_file.ISQ
+
+will print the meta-data as:
+
+.. code-block:: text
+
+    "CalibrationData": "",
+    "CreationDate": "16-AUG-2023 14:32:47.206",
+    "DataRange": [
+        -21716.0,
+        32767.0
+    ],
+    "Energy": 55.0,
+    "Intensity": 0.145,
+    "MeasurementIndex": 24292,
+    "ModificationDate": "16-AUG-2023 14:32:47.206",
+    "MuScaling": 4096.0,
+    "MuWater": 0.7032999992370605,
+    "NumberOfProjections": 1000,
+    "NumberOfSamples": 2000,
+    "PatientIndex": 9130,
+    "PatientName": "SB_WT_G3955",
+    "ReconstructionAlg": 3,
+    "ReferenceLine": 37.704,
+    "RescaleIntercept": -1000.0,
+    "RescaleSlope": 0.34713582434927287,
+    "RescaleType": 0,
+    "RescaleUnits": "",
+    "SampleTime": 200.0,
+    "ScanDistance": 12.0,
+    "ScannerID": 4274,
+    "ScannerType": 10,
+    "Site": 4,
+    "SliceIncrement": 0.006,
+    "SliceThickness": 0.006,
+    "Version": "CTDATA-HEADER_V1",
+    "direction": [
+        [
+            1.0,
+            0.0,
+            0.0
+        ],
+        [
+            0.0,
+            1.0,
+            0.0
+        ],
+        [
+            0.0,
+            0.0,
+            1.0
+        ]
+    ],
+    "origin": [
+        0.0,
+        0.0,
+        0.0
+    ],
+    "spacing": [
+        0.006,
+        0.006,
+        0.006
+    ]}
 
 
 Zeiss Xradia

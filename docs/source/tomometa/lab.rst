@@ -1282,6 +1282,83 @@ List of files stored in the CR_sample_name folder:
     #. :download:`Recon.mnri <../demo/rigaku/CR_20230720_093515/Recon.mnri>`
     #. :download:`Recon.prm <../demo/rigaku/CR_20230720_093515/Recon.prm>`
 
+Scanco
+------
+
+Scanco instruments save data and the meta-data an ISQ file. 
+
+The meta-data are saved in the header of the ISQ file. ISQ Header format of an ISQ files 
+consist of a standard 512-byte header, optional extended header blocks and the data part. 
+Because the size of the extended header can vary, one has to read the data-offset (last 4
+bytes of the 512-byte header) to be able to get to the start of the data (image) part. 
+The offset is in 512-byte blocks, meaning if you encounter a value of 6, the data starts 
+at byte 3584 (512 for standard header + 6x512 for the extended header).
+
+meta-data
+~~~~~~~~~
+
+.. code-block:: text
+
+    "CalibrationData": "",
+    "CreationDate": "16-AUG-2023 14:32:47.206",
+    "DataRange": [
+        -21716.0,
+        32767.0
+    ],
+    "Energy": 55.0,
+    "Intensity": 0.145,
+    "MeasurementIndex": 24292,
+    "ModificationDate": "16-AUG-2023 14:32:47.206",
+    "MuScaling": 4096.0,
+    "MuWater": 0.7032999992370605,
+    "NumberOfProjections": 1000,
+    "NumberOfSamples": 2000,
+    "PatientIndex": 9130,
+    "PatientName": "SB_WT_G3955",
+    "ReconstructionAlg": 3,
+    "ReferenceLine": 37.704,
+    "RescaleIntercept": -1000.0,
+    "RescaleSlope": 0.34713582434927287,
+    "RescaleType": 0,
+    "RescaleUnits": "",
+    "SampleTime": 200.0,
+    "ScanDistance": 12.0,
+    "ScannerID": 4274,
+    "ScannerType": 10,
+    "Site": 4,
+    "SliceIncrement": 0.006,
+    "SliceThickness": 0.006,
+    "Version": "CTDATA-HEADER_V1",
+    "direction": [
+        [
+            1.0,
+            0.0,
+            0.0
+        ],
+        [
+            0.0,
+            1.0,
+            0.0
+        ],
+        [
+            0.0,
+            0.0,
+            1.0
+        ]
+    ],
+    "origin": [
+        0.0,
+        0.0,
+        0.0
+    ],
+    "spacing": [
+        0.006,
+        0.006,
+        0.006
+    ]
+}
+
+
 Sigray
 ------
 
