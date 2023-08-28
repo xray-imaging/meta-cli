@@ -1362,6 +1362,8 @@ sclice in the lower right.
 meta-data
 ~~~~~~~~~
 
+You can extract the Scanco meta-data using the provided python reader (see Meta-data readers section on this website).
+
 .. code-block:: text
 
     "CalibrationData": "",
