@@ -24,7 +24,7 @@ def main(args):
     if len(sys.argv) == 1:
         print ('ERROR: Must provide the path to a run-file folder as the argument')
         print ('Example:')
-        print ('        python scanco.py /Users/decarlo/conda/nocturn/data/FEG230530_413/')
+        print ('        python scanco.py /nocturn/data/scanco_file.ISQ')
         sys.exit(1)
     else:
 

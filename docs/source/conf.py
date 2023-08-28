@@ -320,6 +320,7 @@ autodoc_mock_imports = [
 #     'cupy',
 #     'cupyx',
     'h5py',
+    'itk',
     'meta',
 #     'logging',
     # 'meta_cli',
