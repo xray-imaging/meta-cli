@@ -189,7 +189,7 @@ will append to the Sheet1 of master.xlsx the meta data for all samples listed ab
 Scanco
 ======
 
-Scanco instruments save data and the meta-data in an ISQ file. To extract the meta-data you can use the code example below
+Scanco instruments save data and the meta-data in an ISQ file. An example is available at :ref:`Scanco`. To extract the meta-data you can use the code example below
 
 Code
 ----
@@ -292,7 +292,7 @@ will print the meta-data as:
 Tomcat
 ======
 
-Tomcat instruments save data and the meta-data in a json file. To load the meta-data in a dictionary and print them you use the code example below.
+Tomcat instruments save data and the meta-data in a json file. An example is available at :ref:`PSI`. To load the meta-data in a dictionary and print them you use the code example below.
 
 Code
 ----

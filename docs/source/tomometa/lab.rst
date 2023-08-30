@@ -1508,6 +1508,8 @@ List of files stored in the CR_sample_name folder:
     #. :download:`Recon.mnri <../demo/rigaku/CR_20230720_093515/Recon.mnri>`
     #. :download:`Recon.prm <../demo/rigaku/CR_20230720_093515/Recon.prm>`
 
+.. _Scanco:
+
 Scanco
 ------
 
@@ -1650,6 +1652,8 @@ You can extract the Scanco meta-data using the provided python reader (see Meta-
         0.006
     ]}
 
+
+.. _Sigray:
 
 Sigray
 ------
@@ -2051,6 +2055,8 @@ meta-data
 +-------------------------------------------+-----------------------+
 | extra_projection_flag                     | 1                     |
 +-------------------------------------------+-----------------------+
+
+.. _Zeiss:
 
 Zeiss
 -----
