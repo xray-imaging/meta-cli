@@ -2790,13 +2790,13 @@ ID12 full layout
 
 
 PSI
----
+===
 
 The Tomcat beamline at the Swiss Light Source (SLS) at the Paul Scherrer Institut meta-data are reported below:
 
 
 tomcat before 2017
-~~~~~~~~~~~~~~~~~~
+------------------
 
 +-------------------------------+---------------------------------------------------+
 |  Meta data name               | Value                                             |
@@ -2878,7 +2878,7 @@ tomcat before 2017
 
 
 tomcat after 2017
-~~~~~~~~~~~~~~~~~
+-----------------
 
 .. code-block:: text
 
