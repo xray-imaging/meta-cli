@@ -292,7 +292,7 @@ will print the meta-data as:
 Tomcat
 ======
 
-Tomcat instruments save data and the meta-data in a json file. To extract the meta-data you can use the code example below
+Tomcat instruments save data and the meta-data in a json file. To load the meta-data in a dictionary and print them you use the code example below.
 
 Code
 ----
