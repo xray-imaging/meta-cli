@@ -2789,9 +2789,14 @@ ID12 full layout
 	       └── username ()
 
 
-SLS
+PSI
 ---
 
+The Tomcat beamline at the Swiss Light Source (SLS) at the Paul Scherrer Institut meta-data are reported below:
+
+
+tomcat before 2017
+~~~~~~~~~~~~~~~~~~
 
 +-------------------------------+---------------------------------------------------+
 |  Meta data name               | Value                                             |
@@ -2870,3 +2875,331 @@ SLS
 +-------------------------------+---------------------------------------------------+
 | sample_zz                     |  1612.80                                          |
 +-------------------------------+---------------------------------------------------+
+
+
+tomcat after 2017
+~~~~~~~~~~~~~~~~~
+
+.. code-block:: text
+
+	{
+	    "accessGroups": [
+	        "slstomcat",
+	        "p19555"
+	    ],
+	    "classification": "IN=medium,AV=low,CO=low",
+	    "contactEmail": "ElseMarie.Friis@nrm.se, peter.crane@yale.edu, krp@geo.au.dk",
+	    "createdAt": "2023-03-02T16:19:26.096Z",
+	    "createdBy": "slstomcat",
+	    "creationTime": "2023-02-23T22:59:34.782Z",
+	    "datasetName": "S266379\_10x\_",
+	    "datasetlifecycle": {
+	        "archivable": false,
+	        "archiveRetentionTime": "2033-03-02T00:00:00.000Z",
+	        "archiveStatusMessage": "datasetOnArchiveDisk",
+	        "dateOfPublishing": "2026-03-02T00:00:00.000Z",
+	        "isOnCentralDisk": true,
+	        "publishable": false,
+	        "publishedOn": "2023-07-10T14:14:21.940Z",
+	        "retrievable": true,
+	        "retrieveIntegrityCheck": false,
+	        "retrieveStatusMessage": ""
+	    },
+	    "description": "SRXTM insights into major evolutionary transitions",
+	    "history": [
+	        {
+	            "datasetlifecycle": {
+	                "currentValue": {
+	                    "archivable": "false",
+	                    "archiveStatusMessage": "started",
+	                    "retrievable": "false"
+	                },
+	                "previousValue": {
+	                    "archivable": false,
+	                    "archiveRetentionTime": "2033-03-02T00:00:00.000Z",
+	                    "archiveStatusMessage": "scheduledForArchiving",
+	                    "dateOfPublishing": "2026-03-02T00:00:00.000Z",
+	                    "isOnCentralDisk": true,
+	                    "publishable": false,
+	                    "retrievable": false,
+	                    "retrieveIntegrityCheck": false,
+	                    "retrieveStatusMessage": ""
+	                }
+	            },
+	            "id": "e8553257-c37c-4b39-922a-0c83a35c3c39",
+	            "updatedAt": "2023-03-02T19:36:05.542Z",
+	            "updatedBy": "archiveManager"
+	        },
+	        {
+	            "datasetlifecycle": {
+	                "currentValue": {
+	                    "archivable": "false",
+	                    "archiveStatusMessage": "datasetOnArchiveDisk",
+	                    "retrievable": "true"
+	                },
+	                "previousValue": {
+	                    "archivable": false,
+	                    "archiveRetentionTime": "2033-03-02T00:00:00.000Z",
+	                    "archiveStatusMessage": "started",
+	                    "dateOfPublishing": "2026-03-02T00:00:00.000Z",
+	                    "isOnCentralDisk": true,
+	                    "publishable": false,
+	                    "retrievable": false,
+	                    "retrieveIntegrityCheck": false,
+	                    "retrieveStatusMessage": ""
+	                }
+	            },
+	            "id": "cb9a2fe8-009a-4088-81b4-755180088dd8",
+	            "updatedAt": "2023-03-02T19:43:36.763Z",
+	            "updatedBy": "archiveManager"
+	        },
+	        {
+	            "datasetlifecycle": {
+	                "currentValue": {
+	                    "publishedOn": "2023-07-10T14:14:21.940Z"
+	                },
+	                "previousValue": {
+	                    "archivable": false,
+	                    "archiveRetentionTime": "2033-03-02T00:00:00.000Z",
+	                    "archiveStatusMessage": "datasetOnArchiveDisk",
+	                    "dateOfPublishing": "2026-03-02T00:00:00.000Z",
+	                    "isOnCentralDisk": true,
+	                    "publishable": false,
+	                    "retrievable": true,
+	                    "retrieveIntegrityCheck": false,
+	                    "retrieveStatusMessage": ""
+	                }
+	            },
+	            "id": "12fb47ee-5129-47e9-8540-daa925411764",
+	            "isPublished": {
+	                "currentValue": true,
+	                "previousValue": false
+	            },
+	            "updatedAt": "2023-07-10T14:14:21.945Z",
+	            "updatedBy": "anonymous"
+	        }
+	    ],
+	    "inputDatasets": [
+	        "20.500.11935/9e9db9ec-413a-4dcf-8b43-bb6a7663a902"
+	    ],
+	    "investigator": "ElseMarie.Friis@nrm.se, peter.crane@yale.edu, krp@geo.au.dk",
+	    "isPublished": true,
+	    "license": "CC BY-SA 4.0",
+	    "numberOfFiles": 2161,
+	    "numberOfFilesArchived": 2162,
+	    "owner": "Else Marie Friis, Peter R. Crane, Kaj Raunsgaard Pedersen",
+	    "ownerEmail": "ElseMarie.Friis@nrm.se, peter.crane@yale.edu, krp@geo.au.dk",
+	    "ownerGroup": "p19555",
+	    "packedSize": 5276518400,
+	    "pid": "20.500.11935/c8fae0ad-270b-46d9-9daf-38fe625f4073",
+	    "scientificMetadata": {
+	        "beamlineParameters": {
+	            "Beam energy": {
+	                "u": "keV",
+	                "unitSI": "(kg m^2) / s^2",
+	                "v": 10,
+	                "valueSI": 1.602176565e-15
+	            },
+	            "FE-Filter": "No Filter 100%",
+	            "Monostripe": "Ru/C",
+	            "OP-Filter1": "No Filter",
+	            "OP-Filter2": "No Filter",
+	            "OP-Filter3": "No Filter",
+	            "Ring current": {
+	                "u": "mA",
+	                "unitSI": "A",
+	                "v": 401.409,
+	                "valueSI": 0.401409
+	            }
+	        },
+	        "detectorParameters": {
+	            "Actual pixel size": {
+	                "u": "um",
+	                "unitSI": "m",
+	                "v": 0.65,
+	                "valueSI": 6.5e-07
+	            },
+	            "Camera": "PCO.Edge 5.5",
+	            "Delay time": {
+	                "u": "ms",
+	                "unitSI": "s",
+	                "v": 0,
+	                "valueSI": 0
+	            },
+	            "Exposure time": {
+	                "u": "ms",
+	                "unitSI": "s",
+	                "v": 150,
+	                "valueSI": 0.15
+	            },
+	            "Microscope": "Opt.Peter MB op",
+	            "Microscope x position": {
+	                "u": "mm",
+	                "unitSI": "m",
+	                "v": 138.26,
+	                "valueSI": 0.13826
+	            },
+	            "Microscope y position": {
+	                "u": "mm",
+	                "unitSI": "m",
+	                "v": -23.71,
+	                "valueSI": -0.023710000000000002
+	            },
+	            "Microscope z position": {
+	                "u": "mm",
+	                "unitSI": "m",
+	                "v": 52,
+	                "valueSI": 0.052000000000000005
+	            },
+	            "Millisecond shutter": "not used",
+	            "Objective": 10,
+	            "Scintillator": "LuAg:Ce 20um (C20-76)",
+	            "X-ROI End": 2560,
+	            "X-ROI Start": 1,
+	            "Y-ROI End": 2160,
+	            "Y-ROI Start": 1
+	        },
+	        "postProcessingParameters": [
+	            {
+	                "commandLineArgument": {
+	                    "angle": "0",
+	                    "angleShift": 0,
+	                    "anglesFile": "",
+	                    "axisPositionIn2piScan": "",
+	                    "binSize": "1,1",
+	                    "centerOfRotation": "1231.2",
+	                    "corBandParams": "0.125,0.5,0.5,0.875",
+	                    "correctionOnly": false,
+	                    "correctionType": 7,
+	                    "createMissing": true,
+	                    "cutoff": "0.5",
+	                    "darkMedian": false,
+	                    "decompositionLevel": "0:0",
+	                    "differenceInStandardDeviation": 0,
+	                    "doFBPA": false,
+	                    "doNotCropReconstructions": false,
+	                    "doSimulateImages": false,
+	                    "doTestRun": false,
+	                    "filter": "parz",
+	                    "firstIndex": 1,
+	                    "flatMedian": false,
+	                    "geometry": "6",
+	                    "gridRecRoiParameters": "726,198,1838,2390",
+	                    "imageSize": "",
+	                    "inputSource": "/sls/X02DA/Data10/e19555/disk2/S266379_10x_/S266379_10x_.h5",
+	                    "inputType": "2",
+	                    "jsonFile": false,
+	                    "jsonMetaDataFile": "",
+	                    "keepSinograms": "0",
+	                    "logFile": "/sls/X02DA/data/e19555/Data10/disk2/S266379_10x_/S266379_10x_.log",
+	                    "maxRingWidth": 0,
+	                    "maxTif": "2.622e-03",
+	                    "mbaFilterParams": "",
+	                    "minTif": " -2.594e-03",
+	                    "moosmannFilterParams": "",
+	                    "numberOfGPUs": 0,
+	                    "pSWF_LUT_length": 0,
+	                    "paganinFilterParams": "",
+	                    "pathToPixelmaskFile": "",
+	                    "preFlatsOnly": false,
+	                    "prefix": "S266379_10x_",
+	                    "pswf": 0,
+	                    "recOnlySelect": "0,0",
+	                    "recOutputDir": "",
+	                    "reconstruct": "abs",
+	                    "ringRemoval": "0",
+	                    "roiParameters": "0,0,0,0",
+	                    "scaleImageFactor": 1,
+	                    "scanparameters": "1500,10,100,0,0",
+	                    "senderReceiverRatio": "8",
+	                    "separateAngles": "/sls/X02DA/data/e19555/Data10/disk2/S266379_10x_/S266379_10x_.h5",
+	                    "separateCorrection": "",
+	                    "shiftCorrection": false,
+	                    "sigmaInGaussFilter": "0",
+	                    "sinogramDirectory": "/sls/X02DA/Data10/e19555/disk2/S266379_10x_/sin",
+	                    "skipPiProj": true,
+	                    "stepLines": 1,
+	                    "stitching": "N",
+	                    "stripeOrientation": "v",
+	                    "stripeRemoval": "",
+	                    "thresholdInZinger": 0.95,
+	                    "tifConversionType": "8",
+	                    "underSampleSinoFactor": 1,
+	                    "verbose": 0,
+	                    "waveletPaddingMode": "0",
+	                    "waveletType": "0",
+	                    "widthOfSmoothingKernel": 9,
+	                    "zeroPadding": "0.5",
+	                    "zinger": ""
+	                },
+	                "gitRepositoryLink": "f9e3d5f356f014a4d55c53901f2ba9c5dbdea97e",
+	                "postProcessingTimestamp": "2023-02-23T22:59:34.782Z"
+	            }
+	        ],
+	        "scanParameters": {
+	            "Angular step": {
+	                "u": "deg",
+	                "unitSI": "rad",
+	                "v": 0.12,
+	                "valueSI": 0.0020943951023931952
+	            },
+	            "File Prefix": "S266379_10x_",
+	            "Flat frequency": 0,
+	            "Number of darks": 10,
+	            "Number of flats": 100,
+	            "Number of inter-flats": 0,
+	            "Number of projections": 1500,
+	            "Raw Source": "/sls/X02DA/Data10/e19555/disk2/S266379_10x_/",
+	            "Rot Y max position": {
+	                "u": "deg",
+	                "unitSI": "rad",
+	                "v": 180,
+	                "valueSI": 3.141592653589793
+	            },
+	            "Rot Y min position": {
+	                "u": "deg",
+	                "unitSI": "rad",
+	                "v": 0,
+	                "valueSI": 0
+	            },
+	            "Rotation axis position": "Standard",
+	            "Sample In": {
+	                "u": "um",
+	                "unitSI": "m",
+	                "v": 0,
+	                "valueSI": 0
+	            },
+	            "Sample Out": {
+	                "u": "um",
+	                "unitSI": "m",
+	                "v": 5000,
+	                "valueSI": 0.005
+	            },
+	            "Sample folder": "/sls/X02DA/data/e19555/Data10/disk2/S266379_10x_/",
+	            "Sample holder X-position": {
+	                "u": "um",
+	                "unitSI": "m",
+	                "v": 7835.4,
+	                "valueSI": 0.0078354
+	            },
+	            "Sample holder Y-position": {
+	                "u": "um",
+	                "unitSI": "m",
+	                "v": 2560.1,
+	                "valueSI": 0.0025600999999999996
+	            }
+	        }
+	    },
+	    "size": 5272583164,
+	    "sourceFolder": "/sls/X02DA/Data10/e19555/disk2/S266379_10x_/rec_8bit_abs",
+	    "sourceFolderHost": "x02da-cons-bl-9.psi.ch",
+	    "techniques": [],
+	    "type": "derived",
+	    "updatedAt": "2023-07-10T14:14:23.015Z",
+	    "updatedBy": "anonymous",
+	    "usedSoftware": [
+	        "Schindelin, J.; Arganda-Carreras, I. & Frise, E. et al. (2012), \"Fiji: an open-source platform for biological-image analysis\", Nature methods 9(7): 676-682, PMID 22743772, doi:10.1038/nmeth.2019",
+	        "Marone, F. et al. (2017), \"Towards on-the-fly data post-processing for real-time tomographic imaging at TOMCAT\", Advanced Structural and Chemical Imaging 3(1): 1, doi:10.1186/s40679-016-0035-9"
+	    ],
+	    "version": "3.1.0"
+	}
