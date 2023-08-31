@@ -1542,8 +1542,8 @@ Here is the header structure in c code:
     int dimx_um;
     int dimy_um;
     int dimz_um;
-    int slice_thickness_um;
-    int slice_increment_um;
+    int slice_thickness_um; /* not used anymore */
+    int slice_increment_um; /* not used anymore */
     int slice_1_pos_um;
     int min_data_value;
     int max_data_value;
