@@ -1,0 +1,173 @@
+#############################################
+#            FILTER PARAMETER               #
+#############################################
+# FLT_SHEPP_LOGAN   = 0
+# FLT_RAM_LAK       = 1
+# FLT_CHESLER       = 2
+
+FLT_TYPE            = 1
+FLT_FREQ            = 1.0
+FLT_GAIN            = 1.0
+
+FLT_FFT             = 0         # 0:   1: FFT_SKIP
+FLT_READBACK = 0
+
+#############################################
+#            GEOMETRY PARAMETER             #
+#############################################
+
+MM_SID              = 430       #304.8
+MM_SOD              = 47        #76.2/52
+
+PROJECTION          = 950       # 512[proj]
+ROT                 =   1       # 1 CW or -1 CCW
+PROJECTION_MIRROR   =   1       # 0 NO MIRROR or 1 MIRROR
+
+DET_NU              = 2944       # [pixel]
+DET_NV              = 2352       # [pixel]
+
+# ClipArea For Resize Process
+# if there is no parameter, then this value equal to DET_NU,NV.
+DET_CLIPFORRESIZEU  = 2864       # [pixel]
+DET_CLIPFORRESIZEV  = 2272       # [pixel]
+
+# Resize Pixel Size
+# if there is no parameter, then this value equal to DET_NU,NV.
+DET_RESIZEU         = 1024       # [pixel]
+DET_RESIZEV         = 812       # [pixel]
+
+# ClipSize(Reconstrcution algorithm is using.)
+DET_CLIPU           = 1024       # [pixel]
+DET_CLIPV           = 800       # [pixel]
+
+# Rotation
+DET_ROTATION = 2
+
+DET_CU = -0.185625
+DET_CV              = 0.0	# [mm]
+
+DET_PU              = 0.0495     # [mm/pixel]
+DET_PV              = 0.0495     # [mm/pixel]
+
+#After Resize 1Pixel Pitch mm.
+#if there is no parameter, then this value equal to DET_PU,PV.
+DET_RESIZEPU        = 0.1384453125     # [mm/pixel(After Resize)]
+DET_RESIZEPV        = 0.1384453125     # [mm/pixel(After Resize)]
+
+#Filtered-image samplingrate. Do not change these values.
+DET_SAMPLINGRATE = 0.424
+DET_REDUCTION_SAMPLINGRATE = 1.0
+DET_REDUCTION = 1
+
+REC_NX = 1040
+REC_NY = 1040
+REC_NZ = 680
+REC_ORG_NX = 1024
+REC_ORG_NY = 1024
+REC_ORG_NZ = 800
+
+REC_CX = -0.000000
+REC_CY = 0.000000
+REC_CZ = 0.000000
+
+REC_PX = 0.014900
+REC_PY = 0.014900
+REC_PZ = 0.014900
+REC_ORG_PX = 0.014900
+REC_ORG_PY = 0.014900
+REC_ORG_PZ = 0.014900
+
+RECON_TYPE = 0
+PREVIEW = 0
+
+#### 080801 Added.
+#CYLINDER            = 1
+#CYLINDER_R          = 1
+
+#############################################
+#          PRE PROCESSING PARAMETER         #
+#############################################
+PREP_LOG	    = 1			# 0:off   1:on
+#PREP_S2FGAIN    = 1.0
+#PREP_S2FOFFSET  = 0
+
+#############################################
+#           RECON MODE PARAMETER            #
+#############################################
+HALF                = 0         # 0: full    1: half
+
+#############################################
+#          INPUT FILE PARAMETER             #
+#############################################
+
+#INPUT_FILE         = "data\tst\tst%04d.raw"
+#INPUT_DATA_TYPE    = 0         # 0:i16   1:f32
+
+RING_FILE  = ""
+RING_FILE_TYPE = 4
+RING_CONV_WIDTH=24
+RING_PROC_WIDTH=32
+RING_HC_PRM1=64
+RING_HC_PRM2=16
+
+SAG_FILE   = "D:\RigakuApplicationData\RmCT4\CT_RawData\Hershey\CR_20230720_093515\SagData.csv"
+SAG_FILE_TYPE       = 0         # 0:nouse 1:use
+
+ANGLE_FILE = "D:\RigakuApplicationData\RmCT4\CT_RawData\Hershey\CR_20230720_093515\Angle.prm"
+ANGLE_FILE_TYPE     = 1         # 0:nouse 1:use
+ANGLE_RANGE = 360.000000
+ANGLE_START = 0.000000
+ANGLE_IGNORE_COUNT = 0
+
+#############################################
+#          OUTPUT FILE PARAMETER            #
+#############################################
+
+POST_GAIN           = 300.0
+POST_OFFSET         = 500.0
+POST_OUTSIDEVAL     = 0         #-32000.0
+
+POST_LIMIT_HIGH = 65535
+POST_LIMIT_LOW = 0
+
+POST_LUT_HIGH = 7.123697
+POST_LUT_LOW = -1.548900
+POST_PROC_TYPE = 0
+
+CUStep = 0.250000
+CUWidth = 10
+OUTPUT_DATA_TYPE = 0
+#OUTPUT_FILE         = "data\volume.vox"
+#OUTPUT_BASE_DIR     = "."
+
+OUTPUT_FILE_TYPE = 0
+#SAVE_VOLUME         = 0
+#SAVE_VOLUME_FILE    = "data\volume.raw"
+
+DEBUGINFO = 0
+DBG_FLT_RESET = 0
+DEBUG_FILE = "D:\RigakuApplicationData\RmCT2\CT_RawData\Rayence\2x2\FOV20\2x2_float.raw"
+
+BHC_FILE   = "D:\RigakuApplicationData\RmCT4\CT_RawData\Hershey\CR_20230720_093515\BHCData.csv"
+BHC_FILE_TYPE = 0
+ORG_PARAM_PATH      = "C:\ProgramData\Rigaku\RmCT4\Recon\1K\Recon_15_Long_High Resolution.prm"
+BASE_PARAM_LOW       = "D:\RigakuApplicationData\RmCT4\CT_RawData\Hershey\CR_20230720_093515\512_Recon_15_Long_High Resolution.prm"
+BASE_PARAM_HIGH      = "D:\RigakuApplicationData\RmCT4\CT_RawData\Hershey\CR_20230720_093515\1K_Recon_15_Long_High Resolution.prm"
+BASE_PARAM_SUPERHIGH = "D:\RigakuApplicationData\RmCT4\CT_RawData\Hershey\CR_20230720_093515\Full_Recon_15_Long_High Resolution.prm"
+IMAGE_RESOLUTION_TYPE = 1
+PARAM_PATH = "D:\RigakuApplicationData\RmCT4\CT_RawData\Hershey\CR_20230720_093515\"
+TIFF_PATH = "D:\RigakuApplicationData\RmCT4\CT_RawData\Hershey\CR_20230720_093515\CR_20230720_093515.RIF"
+VOX_PATH = "D:\Projects\Hershey\CT_20230720_093515\"
+FLT_PRE = 0
+BHC_EXPINDEX = -2.667
+NUM_ITERATIONS = 10
+NUM_SUBSETS = 16
+TV_ITERATIONS = 20
+L1_VAL = 0.000000
+TV_VAL = 0.0000000000
+TV_CUTOFF = 0.0000001000
+CONSISTENCY_TYPE = 0
+CONSISTENCY_ITERATIONS = 1000
+CONSISTENCY_ORDERS = 4
+CONSISTENCY_WIDTH = 0.0010
+CONSISTENCY_UPDATERATE = 0.0010

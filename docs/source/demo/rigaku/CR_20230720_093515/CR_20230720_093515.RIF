@@ -1,0 +1,15 @@
+[Condition]
+CaptType=3
+SaveFolder=D:\RigakuApplicationData\RmCT4\CT_RawData\Hershey\CR_20230720_093515
+MyFileName=D:\RigakuApplicationData\RmCT4\CT_RawData\Hershey\CR_20230720_093515\CR_20230720_093515.RIF
+PixelSizeX=49.50
+PixelSizeY=49.50
+OptPixelSizeX=0.005410
+OptPixelSizeY=0.005410
+[Projection]
+Width=2352
+Height=2944
+Rotation=2
+TotalFrames=30400
+ProcFrames=950
+SaveFrames=950

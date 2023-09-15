@@ -16,11 +16,13 @@
 import sys
 import os
 
+import sphinx_rtd_theme
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 # sys.path.insert(0, os.path.abspath('..'))
-sys.path.insert(0, os.path.abspath('../../meta_cli'))
+sys.path.insert(0, os.path.abspath('../../src'))
 
 # -- General configuration ------------------------------------------------
 
@@ -74,7 +76,7 @@ master_doc = 'index'
 
 # General information about the project.
 Affiliation = u'Argonne National Laboratory'
-project = u'meta-cli'
+project = u'tomo-meta'
 copyright = u'2022, ' + Affiliation
 
 # The version info for the project you're documenting, acts as replacement for
@@ -129,7 +131,8 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'default'
+html_theme = 'sphinx_rtd_theme'
+html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 # on_rtd is whether we are on readthedocs.org
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
@@ -288,7 +291,7 @@ texinfo_documents = [
   project+u' Documentation',
   Affiliation, 
   project, 
-  'tomocupy'),
+  'tomo-meta'),
 ]
 
 # Documents to append as an appendix to all manuals.
@@ -306,7 +309,7 @@ texinfo_documents = [
 # -- Options for Texinfo output -------------------------------------------
 # http://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html#confval-autodoc_mock_imports
 
-# autodoc_mock_imports = [
+autodoc_mock_imports = [
 #     'argparse',
 #     'builtins',
 #     'copy',
@@ -316,15 +319,16 @@ texinfo_documents = [
 #     'cv2',
 #     'cupy',
 #     'cupyx',
-#     'h5py',
-#     'inspect',
+    'h5py',
+    'itk',
+    'meta',
 #     'logging',
-#     'numexpr',
-#     'numpy',
+    # 'meta_cli',
+    'numpy',
 #     'os',
-#     'pathlib',
-#     'pywt',
-#     'queue',
+    'pandas',
+    'xmltodict',
+    'openpyxl',
 #     'signal',
 #     'shutil',
 #     'sys',
@@ -339,5 +343,6 @@ texinfo_documents = [
 #     'tomocupy.cfunc_filter',
 #     'tomocupy.cfunc_filterfp16',    
 #     'tomocupy.cfunc_linerec',    
-#     'tomocupy.cfunc_linerecfp16',]
+#     'tomocupy.cfunc_linerecfp16',
+]
 

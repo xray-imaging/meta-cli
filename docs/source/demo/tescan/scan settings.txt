@@ -1,0 +1,73 @@
+ScanID : 201106_001
+BatchID : 
+Project : 
+START
+date: 11/6/2020; time: 9:34:16 AM
+
+STOP
+date: 11/6/2020; time: 9:36:43 AM
+
+SCAN DURATION : 2 minutes
+COR : 479.958040
+VC : 474.006270
+HC : 480.002507
+SDD : 599.999432
+SOD : 149.999970
+Voxel size : 75.000056
+Magnification : 3.999997
+
+Operator : Jay
+Sample name : sweets
+Sample owner : Jay
+Application area : 
+Sample size : 30.000000 mm
+Comment : 
+Scanner name : UniTOM XL WMG
+Scanner type : UniTOM XLScanner S/N : 119_0022
+Acquila version : 2727:af20fc9e4ea4
+
+
+X-ray tube : xraysource
+Tube voltage : 80.000000
+Tube power : 38.000000
+Vacuum level : 874.648379E-9
+Filter : 
+Focus mode : Microfocus
+Target current : 531.357666
+Filament status : OK
+Filament mode : 
+Output mode : Target power
+
+Camera : XRD4343_1920x1896
+Exposure time (ms) : 25.018500
+Number of averages : 1.000000
+Original pixel size : 0.150000
+Imaging mode : 2_HW2SW1LOW
+Binning value : 2
+Binned pixel size : 0.300000
+ROI (LTRB) : 0,12,1919,1907
+
+ver_obj : 830.001976 ; speed : 37.500000 ; acceleration : 125.000000
+mag_obj : 105.546570 ; speed : 40.000000 ; acceleration : 50.000000
+mag_det : 625.675232 ; speed : 40.000000 ; acceleration : 50.000000
+rot_obj : -3.222728 ; speed : 9.999570 ; acceleration : 22.500000
+PI_X : 5.149875 ; speed : 5.000000 ; acceleration : 4.000000
+PI_Y : -2.783000 ; speed : 5.000000 ; acceleration : 4.000000
+tra_obj : 55.769165 ; speed : 40.000000 ; acceleration : 80.000000
+tra_det : 32.034668 ; speed : 100.000000 ; acceleration : 100.000000
+ver_tube : 36.998024 ; speed : 37.500000 ; acceleration : 125.000000
+ver_det : 169.606293 ; speed : 37.500000 ; acceleration : 125.000000
+
+Script summary:
+
+scan type:
+smooth scan
+# projections: 1440
+Start angle : 0.000000
+Last angle : 360.000000
+# pre flat fields: 30
+# post flat fields: 0
+# offset images: 15
+Reference images every 0 projections
+Preheating time: 20 minutes
+Axis for flat field movement : tra_obj

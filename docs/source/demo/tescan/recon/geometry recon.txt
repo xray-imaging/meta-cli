@@ -1,0 +1,16 @@
+Z-position first slice=799.401489
+Z-step=0.075000
+X-position first slice=21.215496
+X-step=-0.075000
+Y-position first slice=14.782622
+Y-step=-0.075000
+Z=830.001953
+X=5.149875
+Y=-2.783000
+Z-space=-30.600492
+X-space=-16.065622
+Y-space=-17.565622
+left=-21.215496
+back=14.782622
+top=-799.401489
+COR=258.208130
