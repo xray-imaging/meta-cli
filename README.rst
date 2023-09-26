@@ -25,6 +25,8 @@ Dependencies
 - `meta <https://github.com/xray-imaging/meta.git>`_
 - pandas => ``conda install pandas``
 - tabulate => ``conda install tabulate``
+- skbuild => ``install scikit-build``
+- h5py => ``conda install h5py``
 
 Usage
 =====
