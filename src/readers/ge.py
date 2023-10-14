@@ -13,7 +13,7 @@ def extract_meta_from_config(file_name):
 
     try:
         with open(file_name, encoding='latin-1') as f:
-            config = configparser.ConfigParser()
+            config = configparser.ConfigParser(interpolation=None)
             config.read_file(f)   
 
         sections = config.sections()
@@ -155,7 +155,7 @@ def main(args):
     my_dict['multiscan (# of scans)']              = my_pca_dict['Multiscan']['active']
     my_dict['filter']                              = "Manual Entry"
     my_dict['target']                              = "Manual Entry"
-    my_dict['collimator']                          = "Manual Entry"
+    my_dict['collimator']                          = my_pca_dict['Xray']['collimation']
 
     # Specific to Freya
     my_dict['Trawl number or collection event ID'] = "Manual Entry"
