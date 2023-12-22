@@ -135,7 +135,10 @@ def main(args):
     my_dict['specimen ID or USNM#']                = my_xml_dict['Sample ID']
     my_dict['Species name']                        = my_xml_dict['Sample Name']
     my_dict['stain']                               = my_xml_dict['Description']
-    my_dict['Sample type']                         = my_xml_dict['Sample Type']
+    try: 
+        my_dict['Sample type']                      = my_xml_dict['Sample Type']
+    except KeyError: 
+        print('Sample type is missing')
     my_dict['folder name']                         = p.stem
     # my_dict['Folder']                              = my_pcr_dict['ImageData']['pca_file']
     my_dict['timing (ms)']                         = my_pca_dict['Detector']['timingval']
