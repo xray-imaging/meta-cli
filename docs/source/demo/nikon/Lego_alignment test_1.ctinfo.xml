@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Information xmlns:xsi="none">
+  <JobGuid>b23b9e12-0c66-462a-a58f-ad43bafedd7e</JobGuid>
+  <Identifier>Lego_alignment test_1</Identifier>
+  <Elements>
+    <Element>
+      <tag>Dataset name</tag>
+      <value>Lego_alignment test_1</value>
+    </Element>
+  </Elements>
+</Information>
