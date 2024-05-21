@@ -186,6 +186,86 @@ If **master.xlsx** already exists it will append a new meta data row to the exis
 
 will append to the Sheet1 of master.xlsx the meta data for all samples listed above
 
+
+GE Phoenix v|tome|x m µCT
+=========================
+
+The GE Phoenix v|tome|x m µCT instruments generates .pca, .dtxml, .pcj and .pcp files. An example is available at :ref:`GE`.
+
+Code
+----
+
+.. toctree::
+
+   api/readers.ge
+
+
+Dependencies
+------------
+
+Create a new conda environment::
+
+        conda create --name nocturn python=3.9
+
+and activate the new environment with::
+
+        conda activate nocturn
+
+then install the following packages::
+
+        conda install xmltodict
+        conda install pandas
+        conda install openpyxl
+
+
+Run
+---
+
+::
+
+        conda activate nocturn
+        python ge.py /nocturn/data/FEG230530_413
+
+
+
+Nikon
+=====
+
+The Nikon µCT instruments generates .xml (ctinfo.xml and ctprofile.xml), and xtekct files. An example is available at :ref:`Nikon`.
+
+Code
+----
+
+.. toctree::
+
+   api/readers.nikon
+
+
+Dependencies
+------------
+
+Create a new conda environment::
+
+        conda create --name nocturn python=3.9
+
+and activate the new environment with::
+
+        conda activate nocturn
+
+then install the following packages::
+
+        conda install xmltodict
+
+
+Run
+---
+
+::
+
+        conda activate nocturn
+        python nikon.py /nocturn/data/sample_name [2023-10-18 11.22.08]
+
+
 Scanco
 ======
 
