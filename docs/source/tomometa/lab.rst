@@ -1483,34 +1483,34 @@ datos|x 2 acquisition 2.4.0
 Nikon
 -----
 
-Nikon instruments generate the meta-data files stored in one folders:
+Nikon instruments create a folder using the sample name plus a space and the date-time as formatted below:
 
-    #. sample_name
+    - sample_name [2023-10-18 11.22.08]
 
-List of files stored in the sample_name folder:
+Inside this folder the following meta data files are stored:
 
-    #. :download:`_ctdata.txt <../demo/nikon/_ctdata.txt>`
-    #. :download:`sample_name.ctinfo.xml <../demo/nikon/Lego_alignment test_1.ctinfo>`
-    #. :download:`sample_name.ctprofile.xml <../demo/nikon/Lego_alignment test_1.ctprofile.xml>`
-    #. :download:`sample_name.xtekct <../demo/nikon/Lego_alignment test_1.xtekct>`
-    #. :download:`sample_name_01.xtekct <../demo/nikon/Lego_alignment test_1_01.xtekct>`
+    #. :download:`_ctdata.txt <../demo/nikon/Lego_alignment test_1 [2023-10-18 11.22.08]/_ctdata.txt>`
+    #. :download:`sample_name.xtekct <../demo/nikon/Lego_alignment test_1 [2023-10-18 11.22.08]/Lego_alignment test_1.xtekct>`
+    #. :download:`sample_name_01.xtekct <../demo/nikon/Lego_alignment test_1 [2023-10-18 11.22.08]/Lego_alignment test_1_01.xtekct>`
+    #. :download:`sample_name.ctinfo.xml <../demo/nikon/Lego_alignment test_1 [2023-10-18 11.22.08]/Lego_alignment test_1.ctinfo.xml>`
+    #. :download:`sample_name.ctprofile.xml <../demo/nikon/Lego_alignment test_1 [2023-10-18 11.22.08]/Lego_alignment test_1.ctprofile.xml>`
 
 _ctdata.txt
 ~~~~~~~~~~~
 
 Contains the total number of Projections, the number of frames per projection and the exposure time in ms.
 
-+=============+========+==============+
++-------------+--------+--------------+
 | Projections | Frames | Exposure(ms) |
-+=============+========+==============+
++-------------+--------+--------------+
 |    1570     |    1   |    708.00    |
 +-------------+--------+--------------+
 
 and the projection number, angle and time
 
-+=============+============+===========+
++-------------+------------+-----------+
 |  Projection | Angle(deg) |   Time(s) |
-+=============+============+===========+
++-------------+------------+-----------+
 |      1      |   000.0342 | 002.8319  |
 +-------------+------------+-----------+
 |      2      |   000.2617 | 003.5397  |
@@ -1549,7 +1549,7 @@ and the projection number, angle and time
 +-------------+------------+-----------+
 |      19     |   004.1729 | 015.5768  |
 +-------------+------------+-----------+
-|      ..     |   ......   |  ......   |
+|      '..'   |   '......' |  '......' |
 +-------------+------------+-----------+
 |      1566   |   359.9180 | 1110.9320 |
 +-------------+------------+-----------+
@@ -1564,19 +1564,406 @@ and the projection number, angle and time
 |      1571   |   361.0664 | 1114.4720 |
 +-------------+------------+-----------+
 
-:download:`_ctdata.txt <../demo/nikon/_ctdata.txt>`
-
-sample_name.ctinfo.xml
-~~~~~~~~~~~~~~~~~~~~~~
-
-sample_name.ctprofile.xml
-~~~~~~~~~~~~~~~~~~~~~~~~~
+:download:`_ctdata.txt <../demo/nikon/Lego_alignment test_1 [2023-10-18 11.22.08]/_ctdata.txt>`
 
 sample_name.xtekct
 ~~~~~~~~~~~~~~~~~~
 
+sample_name.xtekct contains the following meta data:
+
+CTPro
+
++----------------------------+---------------------------------------------------------+
+|'anglefile_ignoreerrors'    |  'True'                                                 |
++----------------------------+---------------------------------------------------------+
+|'anglefile_use'             |  'False'                                                |
++----------------------------+---------------------------------------------------------+
+|'autocor_numbands'          |  '2'                                                    |
++----------------------------+---------------------------------------------------------+
+|'corautoaccuracy'           |  '2'                                                    |
++----------------------------+---------------------------------------------------------+
+|'filter_material'           |  'Aluminium'                                            |
++----------------------------+---------------------------------------------------------+
+|'filter_thicknessmm'        |  '1.0'                                                  |
++----------------------------+---------------------------------------------------------+
+|'product'                   |  '[XT 5.4][Copyright (c) 2004-2019 Nikon Metrology NV]' |
++----------------------------+---------------------------------------------------------+
+|'shuttling'                 |  'False'                                                |
++----------------------------+---------------------------------------------------------+
+|'sliceheightmmdualbottom'   |  '4.99999926'                                           |
++----------------------------+---------------------------------------------------------+
+|'sliceheightmmdualtop'      |  '14.99999779'                                          |
++----------------------------+---------------------------------------------------------+
+|'sliceheightmmsingle'       |  '9.99999853'                                           |
++----------------------------+---------------------------------------------------------+
+|'version'                   |  'V5.4.7289.18310 (Date:2019-12-16)'                    |    
++----------------------------+---------------------------------------------------------+
+ 
+DICOM
+
++-------------+------------------------------------------------------------------------------------------------------------------------------------+
+| 'dicomtags' | '<?xml version="1.0" '                                                                                                             |
++-------------+------------------------------------------------------------------------------------------------------------------------------------+
+|             | 'encoding="utf-16"?><ArrayOfMetaDataSchema '                                                                                       |
++-------------+------------------------------------------------------------------------------------------------------------------------------------+
+|             | 'xmlns:xsd="http://www.w3.org/2001/XMLSchema" '                                                                                    |
++-------------+------------------------------------------------------------------------------------------------------------------------------------+
+|             | 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><MetaDataSchema '                                                           |
++-------------+------------------------------------------------------------------------------------------------------------------------------------+
+|             | 'xsi:type="MetaDataStringSchema"><Tag>Dataset '                                                                                    |
++-------------+------------------------------------------------------------------------------------------------------------------------------------+
+|             | 'name</Tag><Description>Dataset '                                                                                                  |
++-------------+------------------------------------------------------------------------------------------------------------------------------------+
+|             | 'name</Description><Identifier>true</Identifier><DataValue>Lego_alignment '                                                        |
++-------------+------------------------------------------------------------------------------------------------------------------------------------+
+|             | 'test_1</DataValue><DicomTagGroup>0</DicomTagGroup><DicomTagElement>0</DicomTagElement></MetaDataSchema></ArrayOfMetaDataSchema>'  |
++-------------+------------------------------------------------------------------------------------------------------------------------------------+
+
+XTekCT
+
++--------------------------------+-------------------------+
+|  'angularstep'                 | '0.2299575'             |
++--------------------------------+-------------------------+
+|  'automaticcentreofrotation'   | '0'                     |
++--------------------------------+-------------------------+
+|  'autoscalingtype'             | '0'                     |
++--------------------------------+-------------------------+
+|  'beamhardeninglutfile'        | ''                      |
++--------------------------------+-------------------------+
+|  'blanking'                    | '0'                     |
++--------------------------------+-------------------------+
+|  'coefx0'                      | '0.0'                   |
++--------------------------------+-------------------------+
+|  'coefx1'                      | '1.0'                   |
++--------------------------------+-------------------------+
+|  'coefx2'                      | '0.0'                   |
++--------------------------------+-------------------------+
+|  'coefx3'                      | '0.0'                   |
++--------------------------------+-------------------------+
+|  'coefx4'                      | '0.0'                   |
++--------------------------------+-------------------------+
+|  'convolutionkernelsize'       | '0'                     |
++--------------------------------+-------------------------+
+|  'cutofffrequency'             | '1.25'                  |
++--------------------------------+-------------------------+
+|  'detectoroffsetx'             | '0.0'                   |
++--------------------------------+-------------------------+
+|  'detectoroffsety'             | '0.0'                   |
++--------------------------------+-------------------------+
+|  'detectorpixelsizex'          | '0.4'                   |
++--------------------------------+-------------------------+
+|  'detectorpixelsizey'          | '0.4'                   |
++--------------------------------+-------------------------+
+|  'detectorpixelsx'             | '1000'                  |
++--------------------------------+-------------------------+
+|  'detectorpixelsy'             | '1000'                  |
++--------------------------------+-------------------------+
+|  'exponent'                    | '1.0'                   |
++--------------------------------+-------------------------+
+|  'filtertype'                  | '1'                     |
++--------------------------------+-------------------------+
+|  'highpercentile'              | '99.8'                  |
++--------------------------------+-------------------------+
+|  'importconversion'            | '1'                     |
++--------------------------------+-------------------------+
+|  'increment'                   | '1'                     |
++--------------------------------+-------------------------+
+|  'initialangle'                | '40.20631'              |
++--------------------------------+-------------------------+
+|  'inputdigits'                 | '4'                     |
++--------------------------------+-------------------------+
+|  'inputfoldername'             | ''                      |
++--------------------------------+-------------------------+
+|  'inputname'                   | 'Lego_alignment test_1' |
++--------------------------------+-------------------------+
+|  'inputseparator'              | '_'                     |
++--------------------------------+-------------------------+
+|  'interpolationtype'           | '1'                     |
++--------------------------------+-------------------------+
+|  'lowpercentile'               | '0.2'                   |
++--------------------------------+-------------------------+
+|  'maskradius'                  | '9.56649218'            |
++--------------------------------+-------------------------+
+|  'medianfilterkernelsize'      | '1'                     |
++--------------------------------+-------------------------+
+|  'modifierid'                  | ''                      |
++--------------------------------+-------------------------+
+|  'name'                        | 'Lego_alignment test_1' |
++--------------------------------+-------------------------+
+|  'normalisation'               | '1.0'                   |
++--------------------------------+-------------------------+
+|  'objectoffsetx'               | '-0.0277442'            |
++--------------------------------+-------------------------+
+|  'objectoffsety'               | '0.0'                   |
++--------------------------------+-------------------------+
+|  'objectroll'                  | '-0.07657059'           |
++--------------------------------+-------------------------+
+|  'objecttilt'                  | '0.0'                   |
++--------------------------------+-------------------------+
+|  'offsetx'                     | '0.0'                   |
++--------------------------------+-------------------------+
+|  'offsety'                     | '0.0'                   |
++--------------------------------+-------------------------+
+|  'offsetz'                     | '-0.12043333'           |
++--------------------------------+-------------------------+
+|  'operatorid'                  | ''                      |
++--------------------------------+-------------------------+
+|  'orderfft'                    | '12'                    |
++--------------------------------+-------------------------+
+|  'outputdigits'                | '4'                     |
++--------------------------------+-------------------------+
+|  'outputfoldername'            | 'Lego_alignment test_1' |
++--------------------------------+-------------------------+
+|  'outputname'                  | 'Lego_alignment test_1' |
++--------------------------------+-------------------------+
+|  'outputseparator'             | '_'                     |
++--------------------------------+-------------------------+
+|  'outputtype'                  | '1'                     |
++--------------------------------+-------------------------+
+|  'outputunits'                 | '/m'                    |
++--------------------------------+-------------------------+
+|  'projections'                 | '1570'                  |
++--------------------------------+-------------------------+
+|  'regionpixelsx'               | '1000'                  |
++--------------------------------+-------------------------+
+|  'regionpixelsy'               | '1000'                  |
++--------------------------------+-------------------------+
+|  'regionstartx'                | '0'                     |
++--------------------------------+-------------------------+
+|  'regionstarty'                | '0'                     |
++--------------------------------+-------------------------+
+|  'scale'                       | '1.0'                   |
++--------------------------------+-------------------------+
+|  'scaling'                     | '1000.0'                |
++--------------------------------+-------------------------+
+|  'scalingmaximum'              | '1000.0'                |
++--------------------------------+-------------------------+
+|  'scalingminimum'              | '0.0'                   |
++--------------------------------+-------------------------+
+|  'scattering'                  | '0.0'                   |
++--------------------------------+-------------------------+
+|  'srctodetector'               | '679.5143'              |
++--------------------------------+-------------------------+
+|  'srctoobject'                 | '33.97571'              |
++--------------------------------+-------------------------+
+|  'srctovirtualdetector'        | '679.5143'              |
++--------------------------------+-------------------------+
+|  'units'                       | 'mm'                    |
++--------------------------------+-------------------------+
+|  'virtualdetectoroffsetx'      | '0.0'                   |
++--------------------------------+-------------------------+
+|  'virtualdetectoroffsety'      | '0.0'                   |
++--------------------------------+-------------------------+
+|  'virtualdetectorpixelsizex'   | '0.4'                   |
++--------------------------------+-------------------------+
+|  'virtualdetectorpixelsizey'   | '0.4'                   |
++--------------------------------+-------------------------+
+|  'virtualdetectorpixelsx'      | '1000'                  |
++--------------------------------+-------------------------+
+|  'virtualdetectorpixelsy'      | '1000'                  |
++--------------------------------+-------------------------+
+|  'voxelsizex'                  | '0.02'                  |
++--------------------------------+-------------------------+
+|  'voxelsizey'                  | '0.02'                  |
++--------------------------------+-------------------------+
+|  'voxelsizez'                  | '0.02'                  |
++--------------------------------+-------------------------+
+|  'voxelsx'                     | '1000'                  |
++--------------------------------+-------------------------+
+|  'voxelsy'                     | '1000'                  |
++--------------------------------+-------------------------+
+|  'voxelsz'                     | '814'                   |
++--------------------------------+-------------------------+
+|  'whitelevel'                  | '58500'                 |
++--------------------------------+-------------------------+
+
+Xrays
+
++---------+-------+
+|'xraykv' |  '90' |
++---------+-------+
+|'xrayua' |  '32' |
++---------+-------+
+
+:download:`sample_name_01.xtekct <../demo/nikon/Lego_alignment test_1 [2023-10-18 11.22.08]/Lego_alignment test_1_01.xtekct>`
+
 sample_name_01.xtekct
 ~~~~~~~~~~~~~~~~~~~~~
+
+This is identical to the previous xtekct files.
+
+:download:`sample_name_01.xtekct <../demo/nikon/Lego_alignment test_1 [2023-10-18 11.22.08]/Lego_alignment test_1_01.xtekct>`
+
+sample_name.ctinfo.xml
+~~~~~~~~~~~~~~~~~~~~~~
+
++---------------+----------------+----------------------------------------+------------+--------------------------+
+| 'Information' | '@xmlns:xsi'   | 'none'                                 |            |                          |
++---------------+----------------+----------------------------------------+------------+--------------------------+
+|               | 'Elements'     | 'Element'                              | 'tag'      | 'Dataset name            |
++---------------+----------------+----------------------------------------+------------+--------------------------+
+|               |                |                                        | 'value'    | 'Lego_alignment test_1   |
++---------------+----------------+----------------------------------------+------------+--------------------------+
+|               | 'Identifier'   | 'Lego_alignment test_1'                |            |                          |
++---------------+----------------+----------------------------------------+------------+--------------------------+
+|               | 'JobGuid'      | 'b23b9e12-0c66-462a-a58f-ad43bafedd7e' |            |                          |
++---------------+----------------+----------------------------------------+------------+--------------------------+
+
+:download:`sample_name.ctinfo.xml <../demo/nikon/Lego_alignment test_1 [2023-10-18 11.22.08]/Lego_alignment test_1.ctinfo.xml>`
+
+sample_name.ctprofile.xml
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    {'CTProfile': {'@xmlns:xsi': 'none',
+                   'AutomaticallyPreprocess': 'true',
+                   'BeamHardeningLUTFile': None,
+                   'BeamHardeningPreset': '0',
+                   'CTAxisOffset': '0',
+                   'CalculateCentreOfRotation': 'false',
+                   'CoROffsetZ1': '0',
+                   'CoROffsetZ2': '0',
+                   'DataSetName': 'Lego_alignment test_1',
+                   'DatasetAcquisition': 'false',
+                   'Delay': {'Hours': '0', 'Minutes': '0', 'Seconds': '0'},
+                   'DetectorPixelSizeMM': '0.4',
+                   'DualCentreOfRotation': 'false',
+                   'FastPanelScan': 'false',
+                   'FluxNormalisation': 'false',
+                   'FluxNormalisationRect': {'Height': '100',
+                                             'Location': {'X': '10', 'Y': '10'},
+                                             'Size': {'Height': '100',
+                                                      'Width': '100'},
+                                             'Width': '100',
+                                             'X': '10',
+                                             'Y': '10'},
+                   'FramesPerProjection': '1',
+                   'HelicalScan': 'false',
+                   'ImagingSettings': {'@BlackToWhiteLatency': '0',
+                                       '@WhiteToBlackLatency': '20000',
+                                       '@WhiteToWhiteLatency': '1000',
+                                       '@accumulation': '0',
+                                       '@binning': '1',
+                                       '@brightness': '0',
+                                       '@digitalGain': '0',
+                                       '@exposure': '708',
+                                       '@gain': '3',
+                                       '@lines': '1',
+                                       'imageOffsetX': '24',
+                                       'imageOffsetY': '24',
+                                       'imageSizeX': '2000',
+                                       'imageSizeY': '2000',
+                                       'transform': '1'},
+                   'IntensifierField': '0',
+                   'IrisDemand': '100',
+                   'JobGuid': 'b23b9e12-0c66-462a-a58f-ad43bafedd7e',
+                   'LimitedAngleScan': 'false',
+                   'LinearInterpolation': 'true',
+                   'ManipulatorPosition': {'@Version': '2',
+                                           'AxisPosition': ['1.00195634',
+                                                            '497.5113',
+                                                            '222.689911',
+                                                            '324.7129',
+                                                            '0']},
+                   'ManualCentreOfRotation': 'false',
+                   'MedianFilterSize': '1',
+                   'MetrologyMode': {'Apply': 'false',
+                                     'CalibrationScan': 'false',
+                                     'Reference': None,
+                                     'ScanVOI': {'AdjustHeight': '0',
+                                                 'AdjustRadius': '0',
+                                                 'Height': '0'},
+                                     'VolumeAnalysisMode': 'Automatic'},
+                   'MinimiseRingArtefacts': 'false',
+                   'NoiseReductionPreset': '0',
+                   'NumberOfDatasets': '1',
+                   'OptimiseProjections': 'true',
+                   'PanelScanImages': '1',
+                   'ProfileName': 'Lego_alignment test_1',
+                   'ProfileVersion': '0',
+                   'ProjectionImageEnhancement': 'None',
+                   'Projections': '1570',
+                   'Reconstruct': 'false',
+                   'ReconstructionOutput': {'AutoScalingType': '0',
+                                            'FixedAttenuationHighInvMM': '1',
+                                            'FixedAttenuationLowInvMM': '0',
+                                            'ImportConversion': '0',
+                                            'LinearAttenuationUnits': '2',
+                                            'OutputDataFormat': '0',
+                                            'PercentileHigh': '99.8',
+                                            'PercentileLow': '0.2'},
+                   'ReconstructionPCName': 'JSXIR-CTLAB-REC',
+                   'ReconstructionQuality': '100',
+                   'SafeFocusDisabled': 'false',
+                   'SafePosition': {'@Version': '2',
+                                    'AxisPosition': ['57.40561',
+                                                     '496.2577',
+                                                     '222.689911',
+                                                     '324.7129',
+                                                     '0']},
+                   'ScanFlatPanel': 'false',
+                   'SelectVolumeAnalysis': 'NotSet',
+                   'ShadingCorrectionProfile': {'Frames': '43',
+                                                'GreyLevelTargets': {'Target': [{'GreyLevel': '3939',
+                                                                                 'PercentageWhiteLevel': '0',
+                                                                                 'XrayFilterMaterial': None,
+                                                                                 'XrayFilterThickness': '0',
+                                                                                 'kV': '0',
+                                                                                 'uA': '0'},
+                                                                                {'GreyLevel': '9871',
+                                                                                 'PercentageWhiteLevel': '100',
+                                                                                 'XrayFilterMaterial': 'Aluminium',
+                                                                                 'XrayFilterThickness': '1',
+                                                                                 'kV': '90',
+                                                                                 'uA': '32'}]},
+                                                'ImagingConditions': {'@BlackToWhiteLatency': '0',
+                                                                      '@WhiteToBlackLatency': '20000',
+                                                                      '@WhiteToWhiteLatency': '1000',
+                                                                      '@accumulation': '0',
+                                                                      '@binning': '1',
+                                                                      '@brightness': '0',
+                                                                      '@digitalGain': '0',
+                                                                      '@exposure': '708',
+                                                                      '@gain': '3',
+                                                                      '@lines': '1',
+                                                                      'imageOffsetX': '24',
+                                                                      'imageOffsetY': '24',
+                                                                      'imageSizeX': '2000',
+                                                                      'imageSizeY': '2000',
+                                                                      'transform': '1'},
+                                                'IntensifierField': '0',
+                                                'Mode': 'CT3D',
+                                                'PanelScan': 'false',
+                                                'PanelScanNumberImages': '1',
+                                                'StandardCorrection': 'false',
+                                                'TiltDegrees': '0',
+                                                'UsesMultipleXrayFilters': 'false',
+                                                'WhiteTargetLevel': '58500'},
+                   'TallSampleRadius': '0',
+                   'TubeWarmUpTimeSeconds': '0',
+                   'UseTallSampleROI': 'false',
+                   'VGInLineWatchFolder': None,
+                   'VolumeGraphicsMacros': None,
+                   'VolumeGraphicsMacrosSupportFiles': None,
+                   'VolumeGraphicsVersion': '0',
+                   'VolumeOfInterest': {'XEnd': '999',
+                                        'XStart': '0',
+                                        'YEnd': '999',
+                                        'YStart': '0',
+                                        'ZEnd': '999',
+                                        'ZStart': '0'},
+                   'XrayHead': 'Transmission',
+                   'XrayHeadNumber': '2',
+                   'XraySettings': {'FocusMode': 'autoDefocus',
+                                    'kV': '90',
+                                    'uA': '32'},
+                   'preprocessingType': '-1',
+                   'requiresPreprocessing': 'false'}}
+
+
+:download:`sample_name.ctprofile.xml <../demo/nikon/Lego_alignment test_1 [2023-10-18 11.22.08]/Lego_alignment test_1.ctprofile.xml>`
+
 
 .. _Rigaku:
 
