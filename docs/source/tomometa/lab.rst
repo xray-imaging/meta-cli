@@ -1971,11 +1971,13 @@ sample_name.ctprofile.xml
 NSI
 ---
 
-North Start instruments create a folder using the sample name plus a space and the date-time as formatted below:
+North Start Instruments generate the meta-data file with .nsipro extension. This is an xml file,
 
-    - sample_name [2023-10-18 11.22.08]
 
-Inside this folder the following meta data files are stored:
+List of files stored in the CT_sample_name folder:
+
+    #. :download:`Plastic Part 6-5-2024.nsipro <../demo/nsi/Plastic Part 6-5-2024.nsipro>`
+
 
 
 .. _Rigaku:
@@ -1983,12 +1985,30 @@ Inside this folder the following meta data files are stored:
 Rigaku
 ------
 
-Rigaku instruments generate the meta-data file with .nsipro extension. This is an xml file,
+Rigaku instruments generate the meta-data files stored in two folders:
 
+    #. CT_sample_name containg data collection paramenters
+    #. CR_sample_name containg data analysis paramenters
 
 List of files stored in the CT_sample_name folder:
 
-    #. :download:`Plastic Part 6-5-2024.nsipro <../demo/nsi/Plastic Part 6-5-2024.nsipro>`
+    #. :download:`AutoCU_values.csv <../demo/rigaku/CT_20230720_093515/AutoCU_values.csv>`
+    #. :download:`CT_20230720_093515.VIF <../demo/rigaku/CT_20230720_093515/CT_20230720_093515.VIF>`
+    #. :download:`CT_20230720_093515.xml <../demo/rigaku/CT_20230720_093515/CT_20230720_093515.xml>`
+    #. :download:`CT_20230720_093515_th.jpg <../demo/rigaku/CT_20230720_093515/CT_20230720_093515_th.jpg>`
+    #. :download:`DataInfo.xml <../demo/rigaku/CT_20230720_093515/DataInfo.xml>`
+
+List of files stored in the CR_sample_name folder:
+
+    #. :download:`1K_Recon_15_Long_High Resolution.prm <../demo/rigaku/CR_20230720_093515/1K_Recon_15_Long_High Resolution.prm>`
+    #. :download:`512_Recon_15_Long_High Resolution.prm <../demo/rigaku/CR_20230720_093515/512_Recon_15_Long_High Resolution.prm>`
+    #. :download:`Angle.prm <../demo/rigaku/CR_20230720_093515/Angle.prm>`
+    #. :download:`BHCData.csv <../demo/rigaku/CR_20230720_093515/BHCData.csv>`
+    #. :download:`CR_20230720_093515.RIF <../demo/rigaku/CR_20230720_093515/CR_20230720_093515.RIF>`
+    #. :download:`CR_20230720_093515_th.jpg <../demo/rigaku/CR_20230720_093515/CR_20230720_093515_th.jpg>`
+    #. :download:`Full_Recon_15_Long_High Resolution.prm <../demo/rigaku/CR_20230720_093515/Full_Recon_15_Long_High Resolution.prm>`
+    #. :download:`Recon.mnri <../demo/rigaku/CR_20230720_093515/Recon.mnri>`
+    #. :download:`Recon.prm <../demo/rigaku/CR_20230720_093515/Recon.prm>`
 
 .. _Scanco:
 
