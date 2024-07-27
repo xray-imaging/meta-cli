@@ -1971,10 +1971,8 @@ sample_name.ctprofile.xml
 NSI
 ---
 
-North Start Instruments generate the meta-data file with .nsipro extension. This is an xml file,
+North Start Instruments generate the meta-data file with .nsipro extension. This is an xml file like:
 
-
-List of files stored in the CT_sample_name folder:
 
     #. :download:`Plastic Part 6-5-2024.nsipro <../demo/nsi/Plastic Part 6-5-2024.nsipro>`
 
