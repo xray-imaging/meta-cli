@@ -47,6 +47,7 @@ import os
 import h5py
 import meta
 import datetime
+import pathlib 
 import numpy as np
 import pandas as pd
 from meta_cli import log
@@ -80,13 +81,12 @@ def add_decorator(label, decorator='='):
     
     return decorator.replace(decorator, decorator*len(label))
 
-def create_rst_file(args):
+def create_rst_file(file_name):
     
-    meta_data, year_month, pi_name = extract_rst_meta(args)
+    meta_data, year_month, pi_name = extract_rst_meta(file_name)
 
     decorator = '='
-    if os.path.isdir(args.doc_dir):
-        log_fname = os.path.join(args.doc_dir, 'log_' + year_month + '.rst')
+    log_fname = os.path.join(str(pathlib.Path.home()), 'log_' + year_month + '.rst')
 
     with open(log_fname, 'a') as f:
         if f.tell() == 0:
@@ -101,7 +101,7 @@ def create_rst_file(args):
         f.write('\n\n')        
     log.warning('Please copy/paste the content of %s in your rst docs file' % (log_fname))
 
-def extract_rst_meta(args):
+def extract_rst_meta(fname):
 
     # Customize this list to add more meta_data in the rst table.
     # To see the full list of available meta_data run:
@@ -116,7 +116,6 @@ def extract_rst_meta(args):
     pd.options.display.max_rows = 999
     year_month = 'unknown'
     pi_name    = 'unknown'
-    fname      = args.file_name
 
     if os.path.isfile(fname): 
         meta_dict, year_month, pi_name = extract_dict(fname, list_to_extract)
@@ -200,15 +199,15 @@ def show_entry(meta_dict, entry):
 
     return error
 
-def swap(args, entry):
+def swap(file_name, entry, value):
 
-    if args.value is not None:
-        with h5py.File(args.file_name, "r+") as f:
+    if value is not None:
+        with h5py.File(file_name, "r+") as f:
             data = list(f[entry])
             data = f[entry]
             if isinstance(data[0], float):
                 log.warning("Old %s: %s" % (entry, data[0]))
-                data[0] = args.value
+                data[0] = value
                 log.warning("New %s: %s" % (entry, data[0]))
             else:
                 log.error('Only floating point variable can be modified')
