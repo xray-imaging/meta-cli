@@ -1968,7 +1968,7 @@ sample_name.ctprofile.xml
 
 .. _NSI:
 
-NIS
+NSI
 ---
 
 North Start Instruments generate the meta-data file with .nsipro extension. This is an xml file,
