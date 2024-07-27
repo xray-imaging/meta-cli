@@ -1969,7 +1969,7 @@ sample_name.ctprofile.xml
 .. _NSI:
 
 NSI
------
+---
 
 North Start instruments create a folder using the sample name plus a space and the date-time as formatted below:
 
