@@ -18,20 +18,11 @@ import click
 from datetime import datetime
 
 from meta_cli import log
-from meta_cli import config
 from meta_cli import utils
 
 @click.group()
 def cli():
     pass
-
-@cli.command()
-@click.option('--config-file-name', default=str(os.path.join(str(pathlib.Path.home()), 'meta.conf')), help='Name of the configuration file.')
-def init(config_file_name):
-    if not os.path.exists(config_file_name):
-        config.write(config_file_name)
-    else:
-        log.error("{0} already exists".format(config_file_name))
 
 @cli.command()
 @click.option('--file-name', default='.', help="An hdf5 file or directory containing multiple hdf5 files, e.g. /data/sample.h5 or /data/")
