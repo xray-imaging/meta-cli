@@ -28,6 +28,7 @@ def cli():
 @click.option('--file-name', default='.', help="An hdf5 file or directory containing multiple hdf5 files, e.g. /data/sample.h5 or /data/")
 @click.option('--key', default='', help="When set only tags containing key are shown")
 def show(file_name, key):
+    """Show meta data extracted from --file-name"""
     errors = 0
     file_path = pathlib.Path(file_name)
     if file_path.is_file():
@@ -77,6 +78,7 @@ def show(file_name, key):
 @click.option('--key', default='', help="Key entry to be modified")
 @click.option('--value', default=None, help="Value to replace the original key entry")
 def set(file_name):
+    """Set the meta data value of a --key from an hdf file --file-name"""
 
     file_path = pathlib.Path(file_name)
     if file_path.is_file():
@@ -103,6 +105,7 @@ def set(file_name):
 @cli.command()
 @click.option('--file-name', default='.', help="An hdf5 file, e.g. /data/sample.h5")
 def tree(file_name):
+    """Show meta data tree extracted from --file-name"""
     tree = meta.get_hdf_tree(file_name, display=False)
     for entry in tree:
         log.info(entry)
@@ -110,6 +113,9 @@ def tree(file_name):
 @cli.command()
 @click.option('--file-name', default='.', help="An hdf5 file, e.g. /data/sample.h5")
 def docs(file_name):
+    """Create in --doc-dir an rst file compatible with sphinx/readthedocs containing 
+    the DataExchange hdf file meta data
+    """
     utils.create_rst_file(file_name)
 
 def main():
