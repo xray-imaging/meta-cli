@@ -1,4 +1,5 @@
 scikit-build
+click
 dxchange
 h5py
 numpy
