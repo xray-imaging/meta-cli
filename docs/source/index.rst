@@ -5,5 +5,5 @@ Content
    :maxdepth: 2
 
    about
-   tomometa
+   sync
    api
