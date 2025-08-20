@@ -728,8 +728,8 @@ Zeiss Xradia
 Zeiss Xradia instrument use a proprietary xrm/txrm data and meta data format. A python reader is avaialble at `DXChange <https://dxchange.readthedocs.io/en/latest/source/api/dxchange.reader.html#dxchange.reader.read_txrm>`_ .
 
 
-Bruker SkyScan 1272
-===================
+Bruker SkyScan
+==============
 
-The Bruker SkyScan 1272 instruments generates .log files for data collection and data analysis. An example is available at :ref:`Bruker`.
+Bruker SkyScan instruments generate .log files for data collection and data analysis. An example is available at :ref:`Bruker`.
 
