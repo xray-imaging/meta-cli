@@ -140,7 +140,7 @@ html_context = {
     "github_user": "xray-imaging", # Username
     "github_repo": "meta-cli", # Repo name
     "github_version": "master", # Version
-    "conf_py_path": "/docs/source", # Path in the checkout to the docs root
+    "conf_py_path": "/docs/source/", # Path in the checkout to the docs root
 }
 
 # Theme options are theme-specific and customize the look and feel of a theme
