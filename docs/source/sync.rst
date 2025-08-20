@@ -9,4 +9,4 @@ This section contains meta-data files from different synchrotron and laboratory 
    :maxdepth: 1
 
    tomometa/lab
-   tomometa/sync
+   tomometa/sync2
