@@ -10,8 +10,7 @@ Bruker
 
 SkyScan 1173
 ~~~~~~~~~~~~
-
-SkyScan 1173 instruments generates the following meta-data files:
+`SkyScan 1173 <https://web.archive.org/web/20180929210503/http://bruker-microct.com/products/1173.htm>`_ instruments generate the following meta-data files:
 
     #. :download:`sample_name.log <../demo/bruker/skyscan_1173/MML0514A_gg_lumbar1_al_26.8um_2k_.log>` 
 
