@@ -7,3 +7,4 @@ Content
    about
    sync
    api
+   credits
