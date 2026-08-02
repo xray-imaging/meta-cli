@@ -28,8 +28,11 @@ Dependencies
 ------------
 
 - `meta <https://github.com/xray-imaging/meta.git>`_
-- pandas => ``conda install pandas``
-- tabulate => ``conda install tabulate``
+- scikit-build
+- click
+- h5py
+- numpy
+- pandas
 
 
 Usage
@@ -42,7 +45,7 @@ To view the data tree contained in a generic hdf file:
 
 ::
 
-    $ meta tree --file-name data/base_file_name_001.h5 
+    $ meta tree --file-name data/base_file_name_001.h5
 
 .. image:: img/meta_tree.png
     :width: 40%
@@ -56,12 +59,16 @@ To view the meta data contained in a generic hdf file:
 
 ::
 
-    $ meta show --file-name data/base_file_name_001.h5 
+    $ meta show --file-name data/base_file_name_001.h5
 
 
 .. image:: img/meta_show.png
     :width: 40%
     :align: center
+
+``--path`` is an alias for ``--file-name`` and reads more naturally when the argument is a directory. Both accept either a single file or a directory of hdf files; when a directory is given, ``meta show`` iterates over every ``.h5`` / ``.hdf`` / ``.hdf5`` file it contains::
+
+    $ meta show --path data/
 
 View a subset meta data
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -82,54 +89,34 @@ To replace the value of an entry:
 
     $ meta set --file-name data/base_file_name_001.h5 --key /process/acquisition/rotation/rotation_start --value 10
 
-
-Meta data rst table
-~~~~~~~~~~~~~~~~~~~
-
-To generate a meta data rst table compatible with sphinx/readthedocs::
-
-    $ meta docs --file-name data/base_file_name_001.h5 
-    2022-02-09 12:30:16,983 - Please copy/paste the content of ./log_2020-05.rst in your rst docs file
+.. note::
+   ``meta tree`` and ``meta set`` operate on a single hdf file. If you pass a directory to ``--file-name`` they warn and exit; use ``meta show`` (or ``meta rec``) for folder input.
 
 
-The content of the generated rst file will publish in a sphinx/readthedocs document as:
+Show the tomocupy reconstruction command
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**2022-05**
+`tomocupy <https://github.com/tomography/tomocupy>`_ stores the reconstruction command line as a ``command`` string attribute on ``/exchange/data`` of every ``_rec.h5`` file. To print it back out::
 
-**decarlo**
+    $ meta rec --file-name data/base_file_name_001_rec.h5
 
-+--------------------------------------------------------+--------------------+--------+
-|                                                        | value              | unit   |
-+========================================================+====================+========+
-|     /measurement/instrument/monochromator/energy       | 30.0               | keV    |
-+--------------------------------------------------------+--------------------+--------+
-|     /measurement/instrument/sample_motor_stack/setup/x | 0.0                | mm     |
-+--------------------------------------------------------+--------------------+--------+
-|     /measurement/instrument/sample_motor_stack/setup/y | 0.4000116247000278 | mm     |
-+--------------------------------------------------------+--------------------+--------+
-|     /measurement/sample/experimenter/email             | decarlof@gmail.com |        |
-+--------------------------------------------------------+--------------------+--------+
+Add ``--save`` to also write a sibling ``base_file_name_001_rec_line.txt`` sidecar next to the input, matching what the ``tiff`` and ``h5sino`` tomocupy formats already produce::
+
+    $ meta rec --file-name data/base_file_name_001_rec.h5 --save
+
+Like ``meta show``, ``meta rec`` accepts a directory (via ``--file-name`` or the ``--path`` alias). It iterates over every hdf file in the folder; files that are not tomocupy rec files (raw scans, or older rec files that pre-date the ``command`` attribute) surface a clear warning and get no sidecar::
+
+    $ meta rec --path data/reconstructed/ --save
 
 
-.. note:: 
-   when using the **docs** option --file-name can be also a folder, e.g. --file-name data/ in this case all hdf files in the folder will be processed.
+Help
+~~~~
 
+Both ``-h`` and ``--help`` work on the top-level command and on every subcommand::
 
-to list of all available options::
-
-    $ meta  -h
-
-
-Configuration File
-~~~~~~~~~~~~~~~~~~
-
-meta parameters are stored in **meta.conf**. You can create a template with::
-
-    $ meta init
-
-**meta.conf** is constantly updated to keep track of the last stored parameters, as initalized by **init** or modified by setting a new option value. For example to re-run the last meta with identical --file-name parameters used before just use::
-
-    $ meta docs
+    $ meta -h
+    $ meta show -h
+    $ meta rec -h
 
 
 
