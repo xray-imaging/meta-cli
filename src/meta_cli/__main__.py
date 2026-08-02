@@ -11,8 +11,9 @@
 import re
 import os
 import sys
-import pathlib 
+import pathlib
 import meta
+import h5py
 import click
 
 from datetime import datetime
@@ -121,6 +122,57 @@ def tree(file_name):
     tree = meta.get_hdf_tree(file_name, display=False)
     for entry in tree:
         log.info(entry)
+
+def _rec_one(file_name, save):
+    """Print the tomocupy 'command' attribute of /exchange/data for one file;
+    optionally write a <basename>_line.txt sidecar. Skips (with a warning) any
+    file that is not a tomocupy rec file."""
+    try:
+        with h5py.File(file_name, 'r') as f:
+            if '/exchange/data' not in f:
+                log.error("%s has no /exchange/data dataset" % file_name)
+                return
+            attrs = f['/exchange/data'].attrs
+            if 'command' not in attrs:
+                log.warning("%s has no 'command' attribute on /exchange/data (raw file, or a rec file that pre-dates the attribute)" % file_name)
+                return
+            cmd = attrs['command']
+            if isinstance(cmd, bytes):
+                cmd = cmd.decode('utf-8', errors='replace')
+            cmd = str(cmd).rstrip('\x00').strip()
+    except OSError as e:
+        log.error("Failed to open %s: %s" % (file_name, e))
+        return
+
+    print(cmd)
+
+    if save:
+        stem = str(file_name)
+        sidecar = (stem[:-3] if stem.endswith('.h5') else stem) + '_line.txt'
+        with open(sidecar, 'w') as fh:
+            fh.write(cmd + '\n')
+        log.info("wrote %s" % sidecar)
+
+
+@cli.command(context_settings=CONTEXT_SETTINGS)
+@click.option('--path', '--file-name', 'file_name', default='.', help="A tomocupy _rec.h5 file or a directory containing multiple hdf5 files, e.g. /data/sample_rec.h5 or /data/")
+@click.option('--save', is_flag=True, help="Also write a sidecar <basename>_line.txt next to each input file")
+def rec(file_name, save):
+    """Show the tomocupy command that was used to generate a --file-name / --path _rec.h5 file"""
+    file_path = pathlib.Path(file_name)
+    if file_path.is_file():
+        _rec_one(file_name, save)
+    elif file_path.is_dir():
+        top = os.path.join(file_name, '')
+        h5_file_list = sorted(filter(lambda x: x.endswith(('.h5', '.hdf', '.hdf5')), os.listdir(top)))
+        if not h5_file_list:
+            log.error("directory %s does not contain any hdf5 file" % file_name)
+            return
+        for fname in h5_file_list:
+            log.warning("  *** %s" % fname)
+            _rec_one(top + fname, save)
+    else:
+        log.error("file or directory %s does not exist" % file_name)
 
 def main():
     home = os.path.expanduser("~")
