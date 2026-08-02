@@ -53,12 +53,16 @@ To view the meta data contained in a generic hdf file:
 
 ::
 
-    $ meta show --file-name data/base_file_name_001.h5 
+    $ meta show --file-name data/base_file_name_001.h5
 
 
 .. image:: docs/source/img/meta_show.png
     :width: 40%
     :align: center
+
+``--path`` is an alias for ``--file-name`` and reads more naturally when the argument is a directory. Both accept either a single file or a directory of hdf files; when a directory is given, ``meta show`` iterates over every ``.h5`` / ``.hdf`` / ``.hdf5`` file it contains::
+
+    $ meta show --path data/
 
 View a subset meta data
 -----------------------
@@ -79,20 +83,31 @@ To replace the value of an entry:
 
     $ meta set --file-name data/base_file_name_001.h5 --key /process/acquisition/rotation/rotation_start --value 10
 
-
-to list of all available options::
-
-    $ meta  -h
+.. note::
+    ``meta tree`` and ``meta set`` operate on a single hdf file. If you pass a directory to ``--file-name`` they warn and exit; use ``meta show`` (or ``meta rec``) for folder input.
 
 
-Configuration File
-------------------
+Show the tomocupy reconstruction command
+----------------------------------------
 
-meta parameters are stored in **meta.conf**. You can create a template with::
+`tomocupy <https://github.com/tomography/tomocupy>`_ stores the reconstruction command line as a ``command`` string attribute on ``/exchange/data`` of every ``_rec.h5`` file. To print it back out::
 
-    $ meta init
+    $ meta rec --file-name data/base_file_name_001_rec.h5
 
-**meta.conf** is constantly updated to keep track of the last stored parameters, as initalized by **init** or modified by setting a new option value. For example to re-run the last meta with identical --file-name parameters used before just use::
+Add ``--save`` to also write a sibling ``base_file_name_001_rec_line.txt`` sidecar next to the input, matching what the ``tiff`` and ``h5sino`` tomocupy formats already produce::
 
-    $ meta docs
+    $ meta rec --file-name data/base_file_name_001_rec.h5 --save
 
+Like ``meta show``, ``meta rec`` accepts a directory (via ``--file-name`` or the ``--path`` alias). It iterates over every hdf file in the folder; files that are not tomocupy rec files (raw scans, or older rec files that pre-date the ``command`` attribute) surface a clear warning and get no sidecar::
+
+    $ meta rec --path data/reconstructed/ --save
+
+
+Help
+----
+
+Both ``-h`` and ``--help`` work on the top-level command and on every subcommand::
+
+    $ meta -h
+    $ meta show -h
+    $ meta rec -h
