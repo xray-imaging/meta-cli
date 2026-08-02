@@ -11,8 +11,9 @@
 import re
 import os
 import sys
-import pathlib 
+import pathlib
 import meta
+import h5py
 import click
 
 from datetime import datetime
@@ -20,15 +21,17 @@ from datetime import datetime
 from meta_cli import log
 from meta_cli import utils
 
-@click.group()
+CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
+
+@click.group(context_settings=CONTEXT_SETTINGS)
 def cli():
     pass
 
-@cli.command()
-@click.option('--file-name', default='.', help="An hdf5 file or directory containing multiple hdf5 files, e.g. /data/sample.h5 or /data/")
+@cli.command(context_settings=CONTEXT_SETTINGS)
+@click.option('--path', '--file-name', 'file_name', default='.', help="An hdf5 file or a directory containing multiple hdf5 files, e.g. /data/sample.h5 or /data/")
 @click.option('--key', default='', help="When set only tags containing key are shown")
 def show(file_name, key):
-    """Show meta data extracted from --file-name"""
+    """Show meta data extracted from --file-name / --path"""
     errors = 0
     file_path = pathlib.Path(file_name)
     if file_path.is_file():
@@ -45,7 +48,7 @@ def show(file_name, key):
             log.error("Found %d PVs listed has having valid units but containing a NaN value. The EPICS IOC associted with these PVs was not running during data collections." % errors)
     elif file_path.is_dir():
         log.info("publishing a multiple files in: %s" % file_name)
-        top = os.path.join(args.file_name, '')
+        top = os.path.join(file_name, '')
         h5_file_list = list(filter(lambda x: x.endswith(('.h5', '.hdf', 'hdf5')), os.listdir(top)))
         h5_file_list_sorted = sorted(h5_file_list, key = lambda x: x.split('_')[-1])
         if (h5_file_list):
@@ -73,14 +76,17 @@ def show(file_name, key):
     else:
         log.error("directory or file name does not exist: %s" % file_name)
 
-@cli.command()
+@cli.command(context_settings=CONTEXT_SETTINGS)
 @click.option('--file-name', default='.', help="An hdf5 file, e.g. /data/sample.h5")
 @click.option('--key', default='', help="Key entry to be modified")
-@click.option('--value', default=None, help="Value to replace the original key entry")
-def set(file_name):
+@click.option('--value', default=None, type=float, help="Value to replace the original key entry")
+def set(file_name, key, value):
     """Set the meta data value of a --key from an hdf file --file-name"""
 
     file_path = pathlib.Path(file_name)
+    if file_path.is_dir():
+        log.warning("--file-name %s is a directory; set only accepts a single hdf5 file" % file_name)
+        return
     if file_path.is_file():
         mp = meta.read_meta.Hdf5MetadataReader(file_name)
         meta_dict = mp.readMetadata()
@@ -102,21 +108,71 @@ def set(file_name):
         log.error("file %s does not exist" % file_name)
 
 
-@cli.command()
+@cli.command(context_settings=CONTEXT_SETTINGS)
 @click.option('--file-name', default='.', help="An hdf5 file, e.g. /data/sample.h5")
 def tree(file_name):
     """Show meta data tree extracted from --file-name"""
+    file_path = pathlib.Path(file_name)
+    if file_path.is_dir():
+        log.warning("--file-name %s is a directory; tree only accepts a single hdf5 file" % file_name)
+        return
+    if not file_path.is_file():
+        log.error("file %s does not exist" % file_name)
+        return
     tree = meta.get_hdf_tree(file_name, display=False)
     for entry in tree:
         log.info(entry)
 
-@cli.command()
-@click.option('--file-name', default='.', help="An hdf5 file, e.g. /data/sample.h5")
-def docs(file_name):
-    """Create in --doc-dir an rst file compatible with sphinx/readthedocs containing 
-    the DataExchange hdf file meta data
-    """
-    utils.create_rst_file(file_name)
+def _rec_one(file_name, save):
+    """Print the tomocupy 'command' attribute of /exchange/data for one file;
+    optionally write a <basename>_line.txt sidecar. Skips (with a warning) any
+    file that is not a tomocupy rec file."""
+    try:
+        with h5py.File(file_name, 'r') as f:
+            if '/exchange/data' not in f:
+                log.error("%s has no /exchange/data dataset" % file_name)
+                return
+            attrs = f['/exchange/data'].attrs
+            if 'command' not in attrs:
+                log.warning("%s has no 'command' attribute on /exchange/data (raw file, or a rec file that pre-dates the attribute)" % file_name)
+                return
+            cmd = attrs['command']
+            if isinstance(cmd, bytes):
+                cmd = cmd.decode('utf-8', errors='replace')
+            cmd = str(cmd).rstrip('\x00').strip()
+    except OSError as e:
+        log.error("Failed to open %s: %s" % (file_name, e))
+        return
+
+    print(cmd)
+
+    if save:
+        stem = str(file_name)
+        sidecar = (stem[:-3] if stem.endswith('.h5') else stem) + '_line.txt'
+        with open(sidecar, 'w') as fh:
+            fh.write(cmd + '\n')
+        log.info("wrote %s" % sidecar)
+
+
+@cli.command(context_settings=CONTEXT_SETTINGS)
+@click.option('--path', '--file-name', 'file_name', default='.', help="A tomocupy _rec.h5 file or a directory containing multiple hdf5 files, e.g. /data/sample_rec.h5 or /data/")
+@click.option('--save', is_flag=True, help="Also write a sidecar <basename>_line.txt next to each input file")
+def rec(file_name, save):
+    """Show the tomocupy command that was used to generate a --file-name / --path _rec.h5 file"""
+    file_path = pathlib.Path(file_name)
+    if file_path.is_file():
+        _rec_one(file_name, save)
+    elif file_path.is_dir():
+        top = os.path.join(file_name, '')
+        h5_file_list = sorted(filter(lambda x: x.endswith(('.h5', '.hdf', '.hdf5')), os.listdir(top)))
+        if not h5_file_list:
+            log.error("directory %s does not contain any hdf5 file" % file_name)
+            return
+        for fname in h5_file_list:
+            log.warning("  *** %s" % fname)
+            _rec_one(top + fname, save)
+    else:
+        log.error("file or directory %s does not exist" % file_name)
 
 def main():
     home = os.path.expanduser("~")
