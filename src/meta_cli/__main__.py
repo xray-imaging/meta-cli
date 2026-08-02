@@ -110,14 +110,6 @@ def tree(file_name):
     for entry in tree:
         log.info(entry)
 
-@cli.command()
-@click.option('--file-name', default='.', help="An hdf5 file, e.g. /data/sample.h5")
-def docs(file_name):
-    """Create in --doc-dir an rst file compatible with sphinx/readthedocs containing 
-    the DataExchange hdf file meta data
-    """
-    utils.create_rst_file(file_name)
-
 def main():
     home = os.path.expanduser("~")
     logs_home = home + '/logs/'
