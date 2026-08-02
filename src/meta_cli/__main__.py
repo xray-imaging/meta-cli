@@ -78,8 +78,8 @@ def show(file_name, key):
 @cli.command(context_settings=CONTEXT_SETTINGS)
 @click.option('--file-name', default='.', help="An hdf5 file, e.g. /data/sample.h5")
 @click.option('--key', default='', help="Key entry to be modified")
-@click.option('--value', default=None, help="Value to replace the original key entry")
-def set(file_name):
+@click.option('--value', default=None, type=float, help="Value to replace the original key entry")
+def set(file_name, key, value):
     """Set the meta data value of a --key from an hdf file --file-name"""
 
     file_path = pathlib.Path(file_name)
