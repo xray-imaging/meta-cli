@@ -43,6 +43,8 @@
 # POSSIBILITY OF SUCH DAMAGE.                                             #
 # #########################################################################
 
+import datetime
+
 import h5py
 import numpy as np
 from meta_cli import log
@@ -57,6 +59,54 @@ class bcolors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
+
+
+def _mark_stale_start_date(meta_data):
+    """Detect and mark stale /process/acquisition/start_date in-place.
+
+    The XML-based DateTimeStart NDAttribute in older tomoscan deployments
+    used when="OnFileOpen", which reads the last-cached NDArray timestamp.
+    Between scans no NDArrays flow, so start_date froze at the previous
+    scan's last-frame time (off by seconds to days).
+
+    Heuristic: if the implied duration (end - start) is more than 3x the
+    physical acquisition duration + 300 s, treat start_date as stale.
+    Physical = num_angles*acquire_period + num_dark*exp + num_flat*flat_exp
+                + 30 s (motion/shutter overhead).
+
+    When stale, replace start_date's value with a derived timestamp
+    (end - physical) plus the marker " [derived]" so any downstream
+    formatter (show_entry, table, rst) makes the substitution visible.
+    """
+    fmt = "%Y-%m-%dT%H:%M:%S%z"
+    key_start = '/process/acquisition/start_date'
+    key_end   = '/process/acquisition/end_date'
+    if key_start not in meta_data or key_end not in meta_data:
+        return
+    try:
+        start = datetime.datetime.strptime(meta_data[key_start][0], fmt)
+        end   = datetime.datetime.strptime(meta_data[key_end  ][0], fmt)
+    except (ValueError, TypeError, KeyError):
+        return
+
+    def _num(key, default=0):
+        try: return float(meta_data[key][0])
+        except (KeyError, ValueError, TypeError): return default
+
+    n_proj    = _num('/process/acquisition/rotation/num_angles', 0)
+    n_dark    = _num('/process/acquisition/dark_fields/number', 0)
+    n_flat    = _num('/process/acquisition/flat_fields/number', 0)
+    period    = _num('/measurement/instrument/detector/acquire_period', 0)
+    expo      = _num('/measurement/instrument/detector/exposure_time', period)
+    flat_expo = _num('/process/acquisition/flat_fields/flat_exposure_time', expo)
+
+    physical = n_proj * period + n_dark * expo + n_flat * flat_expo + 30.0
+    span = (end - start).total_seconds()
+    if physical <= 0 or span <= 3 * physical + 300:
+        return
+
+    derived = (end - datetime.timedelta(seconds=physical)).strftime(fmt)
+    meta_data[key_start] = (derived + ' [derived]', meta_data[key_start][1])
 
 
 def show_entry(meta_dict, entry):
