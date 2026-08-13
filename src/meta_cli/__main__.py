@@ -38,6 +38,7 @@ def show(file_name, key):
         mp = meta.read_meta.Hdf5MetadataReader(file_name)
         meta_dict = mp.readMetadata()
         mp.close()
+        utils._mark_stale_start_date(meta_dict)
         for entry in meta_dict:
             if key == '':
                 errors += utils.show_entry(meta_dict, entry)
@@ -61,6 +62,7 @@ def show(file_name, key):
                 index += 1
                 mp = meta.read_meta.Hdf5MetadataReader(file_name)
                 meta_dict = mp.readMetadata()
+                utils._mark_stale_start_date(meta_dict)
                 error = 0
                 for entry in meta_dict:
                     if key == '':
